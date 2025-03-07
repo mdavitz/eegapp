@@ -2,8 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Ensures responsive scaling on mobile -->
+  <!-- Ensures responsive scaling on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <!-- Favicon for browser tabs -->
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- Apple Touch Icon for iOS home screen -->
+  <link rel="apple-touch-icon" href="logo.png" />
+
+  <!-- Open Graph meta tags for link previews (update the URLs to your actual domain) -->
+  <meta property="og:title" content="Video-Based EEG Curriculum" />
+  <meta property="og:description" content="Self-Assessment with Videos & Quizzes" />
+  <meta property="og:image" content="https://example.com/logo.png" />
+  <meta property="og:url" content="https://example.com" />
+
   <title>Video-Based EEG Curriculum</title>
   <style>
     /* Basic reset */
@@ -27,12 +40,12 @@
       padding: 1.5em 1em;
       margin-bottom: 1em;
     }
-    /* Logo image */
+    /* Logo styling: displays at top center */
     .logo {
       width: 80px;
       height: auto;
       display: block;
-      margin: 0 auto 0.5em; /* center horizontally, add spacing below */
+      margin: 0 auto 0.5em;
     }
     header h1 {
       font-size: 1.8rem;
@@ -90,7 +103,7 @@
       padding: 0 1em 2em;
     }
 
-    /* Info box, references, etc. */
+    /* Info box and References */
     .info-box,
     .references {
       background: #fff;
@@ -103,12 +116,11 @@
       margin-bottom: 0.75em;
     }
 
-    /* Responsive table container */
+    /* Responsive table container for Teaching Rounds */
     .table-responsive {
       width: 100%;
-      overflow-x: auto; /* enables horizontal scroll on narrower screens */
+      overflow-x: auto;
     }
-    /* Table styling for daily expectations, teaching rounds, etc. */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -124,7 +136,7 @@
       background-color: #f8f9fa;
     }
 
-    /* Buttons row for EEG Index & Milestones */
+    /* Buttons for EEG Index & Milestones */
     .btn-row {
       display: flex;
       justify-content: center;
@@ -172,7 +184,7 @@
       background-color: #e6f2ff;
     }
 
-    /* Video container */
+    /* Video container styling */
     .video-container {
       text-align: center;
       margin-bottom: 1em;
@@ -201,7 +213,7 @@
       background-color: #218838;
     }
 
-    /* Quiz container */
+    /* Quiz container styling */
     .quiz-container {
       background: #fff;
       padding: 1em;
@@ -250,7 +262,7 @@
       border: 1px solid #f5c6cb;
     }
 
-    /* Buttons for quiz navigation */
+    /* Quiz navigation buttons */
     .buttons-row {
       margin-top: 1em;
       display: flex;
@@ -295,7 +307,7 @@
       font-weight: bold;
     }
 
-    /* references spacing */
+    /* References spacing */
     .references ol {
       margin-left: 1.5rem;
       margin-top: 0.5rem;
@@ -305,7 +317,7 @@
       line-height: 1.5;
     }
 
-    /* Slightly reduce font size on narrower screens for table fit */
+    /* Slightly reduce table font size on narrow screens */
     @media (max-width: 480px) {
       table, th, td {
         font-size: 0.9rem;
@@ -316,9 +328,8 @@
 <body>
 
   <header>
-    <!-- Make sure "logo.png" is in the same folder as this HTML -->
+    <!-- Logo image; ensure logo.png is in the same folder -->
     <img src="logo.png" alt="EEG Logo" class="logo" />
-
     <h1>Video-Based EEG Curriculum</h1>
     <p>Self-Assessment with Videos & Quizzes</p>
   </header>
@@ -356,7 +367,7 @@
     });
 
     /********************************************
-     * All 10 sub-video sections with original quiz data
+     * Video Sections with Quiz Data (10 videos)
      ********************************************/
     const videoSections = [
       {
@@ -372,32 +383,32 @@
         `,
         questions: [
           {
-            question: "Which of the following landmarks is NOT a landmark used in the measurement of the head for placement of EEG electrodes?",
+            question: "Which of the following landmarks is NOT used for EEG electrode placement?",
             answers: [
-              { text: "Nasion", feedback: "Incorrect. The nasion is a standard 10-20 landmark." },
-              { text: "Mandibular notch", feedback: "Correct. The mandibular notch is not part of the standard 10-20 system." },
-              { text: "Inion", feedback: "Incorrect. The inion is a standard 10-20 landmark." },
-              { text: "Pre-auricular point", feedback: "Incorrect. Pre-auricular points are standard 10-20 landmarks." }
+              { text: "Nasion", feedback: "Incorrect. The nasion is standard." },
+              { text: "Mandibular notch", feedback: "Correct. It’s not used." },
+              { text: "Inion", feedback: "Incorrect. The inion is standard." },
+              { text: "Pre-auricular point", feedback: "Incorrect. It’s standard." }
             ],
             correct: 1
           },
           {
-            question: "Which term is used to describe a single 'line' of EEG tracing?",
+            question: "Which term describes a single EEG tracing?",
             answers: [
-              { text: "Channel", feedback: "Correct. A channel is a single EEG tracing." },
-              { text: "Chain", feedback: "Incorrect. A chain is a series of channels." },
-              { text: "Montage", feedback: "Incorrect. A montage displays multiple channels." },
-              { text: "Electrode", feedback: "Incorrect. EEG shows differences between electrodes." }
+              { text: "Channel", feedback: "Correct!" },
+              { text: "Chain", feedback: "Incorrect." },
+              { text: "Montage", feedback: "Incorrect." },
+              { text: "Electrode", feedback: "Incorrect." }
             ],
             correct: 0
           },
           {
-            question: "Which location for seizure focus would be least likely to show an interictal abnormality on scalp EEG?",
+            question: "Which area is least likely to show an interictal abnormality on scalp EEG?",
             answers: [
-              { text: "Right frontal convexity", feedback: "Incorrect. This area is superficial." },
-              { text: "Left temporal neocortex", feedback: "Incorrect. This area is superficial." },
-              { text: "Right parietal lobe", feedback: "Incorrect. This area is superficial." },
-              { text: "Left insular cortex", feedback: "Correct. The insular cortex is deep." }
+              { text: "Right frontal convexity", feedback: "Incorrect." },
+              { text: "Left temporal neocortex", feedback: "Incorrect." },
+              { text: "Right parietal lobe", feedback: "Incorrect." },
+              { text: "Left insular cortex", feedback: "Correct." }
             ],
             correct: 3
           }
@@ -408,32 +419,32 @@
         video: "EEG2.mp4",
         questions: [
           {
-            question: "Which of the following terms is an indicator of the quality of a differential amplifier?",
+            question: "Which term indicates the quality of a differential amplifier?",
             answers: [
-              { text: "Low-pass filter", feedback: "Incorrect. Refer to 1:11 in the video." },
-              { text: "Common mode rejection ratio", feedback: "Correct. It measures how well common inputs are canceled." },
-              { text: "High-pass filter", feedback: "Incorrect. Refer to 1:11 in the video." },
-              { text: "Time base", feedback: "Incorrect. Refer to 1:11 in the video." }
+              { text: "Low-pass filter", feedback: "Incorrect." },
+              { text: "Common mode rejection ratio", feedback: "Correct." },
+              { text: "High-pass filter", feedback: "Incorrect." },
+              { text: "Time base", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
-            question: "An upward deflection in an EEG channel indicates which of the following?",
+            question: "An upward deflection indicates which scenario?",
             answers: [
-              { text: "Input 1 is positive with respect to Input 2", feedback: "Incorrect. Refer to 2:17 in the video." },
-              { text: "Input 2 is negative with respect to Input 1", feedback: "Incorrect. Refer to 2:17 in the video." },
-              { text: "Input 1 is negative with respect to Input 2", feedback: "Correct. Upward deflection means Input 1 is negative." },
-              { text: "Input 1 is positive with respect to the ground", feedback: "Incorrect. EEG channels measure differences between electrodes." }
+              { text: "Input 1 positive vs. Input 2", feedback: "Incorrect." },
+              { text: "Input 2 negative vs. Input 1", feedback: "Incorrect." },
+              { text: "Input 1 negative vs. Input 2", feedback: "Correct." },
+              { text: "Input 1 positive vs. ground", feedback: "Incorrect." }
             ],
             correct: 2
           },
           {
-            question: "What is the significance of a 'phase reversal' on EEG?",
+            question: "What does a phase reversal on EEG indicate?",
             answers: [
-              { text: "It indicates the region of maximal negativity on a bipolar montage", feedback: "Correct. Phase reversal marks maximal negativity." },
-              { text: "It indicates a change from negative to positive polarity", feedback: "Incorrect. Refer to 03:28 in the video." },
-              { text: "It indicates a change from positive to negative polarity", feedback: "Incorrect. Refer to 03:28 in the video." },
-              { text: "It indicates a change in frequency of an EEG rhythm", feedback: "Incorrect. Refer to 03:28 in the video." }
+              { text: "Maximal negativity", feedback: "Correct." },
+              { text: "Polarity change (neg to pos)", feedback: "Incorrect." },
+              { text: "Polarity change (pos to neg)", feedback: "Incorrect." },
+              { text: "Frequency change", feedback: "Incorrect." }
             ],
             correct: 0
           }
@@ -444,32 +455,32 @@
         video: "EEG3.mp4",
         questions: [
           {
-            question: "Which of these montages is a bipolar montage?",
+            question: "Which montage is bipolar?",
             answers: [
-              { text: "Laplacian", feedback: "Incorrect. Laplacian compares each electrode to neighbors." },
-              { text: "Transverse", feedback: "Correct. Transverse is a bipolar arrangement." },
-              { text: "Ipsilateral mastoid", feedback: "Incorrect. This is a reference montage." },
-              { text: "Contralateral mastoid", feedback: "Incorrect. Also a reference montage." }
+              { text: "Laplacian", feedback: "Incorrect." },
+              { text: "Transverse", feedback: "Correct." },
+              { text: "Ipsilateral mastoid", feedback: "Incorrect." },
+              { text: "Contralateral mastoid", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
             question: "Which montage is most susceptible to reference contamination?",
             answers: [
-              { text: "Anterior-posterior bipolar", feedback: "Incorrect. Refer to the video." },
-              { text: "Laplacian", feedback: "Incorrect. Refer to the video." },
-              { text: "Ipsilateral mastoid", feedback: "Incorrect. Refer to the video." },
-              { text: "Common average reference", feedback: "Correct. It's most susceptible." }
+              { text: "Anterior-posterior bipolar", feedback: "Incorrect." },
+              { text: "Laplacian", feedback: "Incorrect." },
+              { text: "Ipsilateral mastoid", feedback: "Incorrect." },
+              { text: "Common average reference", feedback: "Correct." }
             ],
             correct: 3
           },
           {
             question: "What is a disadvantage of the Laplacian montage?",
             answers: [
-              { text: "Not good for focal waveforms", feedback: "Incorrect. It's good for focal issues." },
-              { text: "Not good for broadly-distributed waveforms", feedback: "Correct. Laplacian only compares neighbors." },
-              { text: "Susceptible to eye movement artifact", feedback: "Incorrect. It's less susceptible." },
-              { text: "Susceptible to reference contamination", feedback: "Incorrect. It's generally less susceptible." }
+              { text: "Poor for focal waveforms", feedback: "Incorrect." },
+              { text: "Poor for broadly-distributed waveforms", feedback: "Correct." },
+              { text: "Susceptible to eye movement artifact", feedback: "Incorrect." },
+              { text: "Susceptible to reference contamination", feedback: "Incorrect." }
             ],
             correct: 1
           }
@@ -482,30 +493,30 @@
           {
             question: "What is the polarity of the eye?",
             answers: [
-              { text: "Cornea electronegative, retina electropositive", feedback: "Incorrect. Refer to 01:00 in the video." },
+              { text: "Cornea electronegative, retina electropositive", feedback: "Incorrect." },
               { text: "Cornea electropositive, retina electronegative", feedback: "Correct." },
-              { text: "Cornea neutral, retina electronegative", feedback: "Incorrect. Refer to 01:00 in the video." },
-              { text: "Cornea electronegative, retina neutral", feedback: "Incorrect. Refer to 01:00 in the video." }
+              { text: "Cornea neutral, retina electronegative", feedback: "Incorrect." },
+              { text: "Cornea electronegative, retina neutral", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
             question: "What is Bell’s phenomenon?",
             answers: [
-              { text: "Slow lateral eye movements", feedback: "Incorrect. Refer to 01:38 in the video." },
-              { text: "Downward deviation with eye closure", feedback: "Incorrect. Refer to 01:38." },
+              { text: "Slow lateral eye movements", feedback: "Incorrect." },
+              { text: "Downward deviation with eye closure", feedback: "Incorrect." },
               { text: "Upward deviation with eye closure", feedback: "Correct." },
-              { text: "Rapid eye movements in deep sleep", feedback: "Incorrect. Refer to 01:38." }
+              { text: "Rapid eye movements in deep sleep", feedback: "Incorrect." }
             ],
             correct: 2
           },
           {
-            question: "In which electrode regions are lateral eye movements best seen?",
+            question: "In which region are lateral eye movements best seen?",
             answers: [
-              { text: "Anterior temporal", feedback: "Correct. Lateral movements best in anterior temporal." },
-              { text: "Frontal", feedback: "Incorrect. Frontal is more vertical." },
-              { text: "Central", feedback: "Incorrect. Too far from the eyes." },
-              { text: "Occipital", feedback: "Incorrect. Distal to the eyes." }
+              { text: "Anterior temporal", feedback: "Correct." },
+              { text: "Frontal", feedback: "Incorrect." },
+              { text: "Central", feedback: "Incorrect." },
+              { text: "Occipital", feedback: "Incorrect." }
             ],
             correct: 0
           }
@@ -516,32 +527,32 @@
         video: "EEG5.mp4",
         questions: [
           {
-            question: "What is the frequency range of the theta activity in EEG?",
+            question: "What is the frequency range of theta activity in EEG?",
             answers: [
-              { text: "Less than 4 Hz", feedback: "Incorrect. That's delta." },
-              { text: "4-7 Hz", feedback: "Correct. Theta is 4-7 Hz." },
-              { text: "8-13 Hz", feedback: "Incorrect. That's alpha." },
-              { text: "More than 13 Hz", feedback: "Incorrect. That's beta." }
+              { text: "Less than 4 Hz", feedback: "Incorrect." },
+              { text: "4-7 Hz", feedback: "Correct." },
+              { text: "8-13 Hz", feedback: "Incorrect." },
+              { text: "More than 13 Hz", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
-            question: "What components would a 1 Hz low-frequency filter remove?",
+            question: "What does a 1 Hz low-frequency filter remove?",
             answers: [
-              { text: "All activity below 1 Hz", feedback: "Incorrect. It removes most but not all below 1 Hz." },
+              { text: "All activity below 1 Hz", feedback: "Incorrect." },
               { text: "Most activity below 1 Hz", feedback: "Correct." },
-              { text: "All activity above 1 Hz", feedback: "Incorrect. Doesn't affect high frequencies." },
-              { text: "Most activity above 1 Hz", feedback: "Incorrect. Doesn't affect high frequencies." }
+              { text: "All activity above 1 Hz", feedback: "Incorrect." },
+              { text: "Most activity above 1 Hz", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
-            question: "What is the significance of 60 Hz artifact in a single channel?",
+            question: "What is the significance of a 60 Hz artifact?",
             answers: [
-              { text: "High impedance (poor connection)", feedback: "Correct. A poor connection can cause 60 Hz artifact." },
-              { text: "Low impedance (good connection)", feedback: "Incorrect. Refer to the video." },
-              { text: "Excessive digital interference", feedback: "Incorrect. Typically more global." },
-              { text: "Excessive muscle activity", feedback: "Incorrect. That’s a different type of artifact." }
+              { text: "High impedance (poor connection)", feedback: "Correct." },
+              { text: "Low impedance (good connection)", feedback: "Incorrect." },
+              { text: "Excessive digital interference", feedback: "Incorrect." },
+              { text: "Excessive muscle activity", feedback: "Incorrect." }
             ],
             correct: 0
           }
@@ -554,7 +565,7 @@
           {
             question: "What is the relationship of the alpha rhythm to eye closure?",
             answers: [
-              { text: "Higher-voltage with eye opening", feedback: "Incorrect. It's the opposite." },
+              { text: "Higher-voltage with eye opening", feedback: "Incorrect." },
               { text: "Lower-voltage with eye opening, higher-voltage with closure", feedback: "Correct." },
               { text: "No change", feedback: "Incorrect." },
               { text: "Higher-frequency with eye opening", feedback: "Incorrect." }
@@ -564,7 +575,7 @@
           {
             question: "What is an acceptable difference in alpha amplitude between hemispheres?",
             answers: [
-              { text: "Left up to 50% higher than right", feedback: "Incorrect. Typically right can be bigger." },
+              { text: "Left up to 50% higher than right", feedback: "Incorrect." },
               { text: "Right up to 50% higher than left", feedback: "Correct." },
               { text: "Left up to 75% higher than right", feedback: "Incorrect." },
               { text: "Right up to 75% higher than left", feedback: "Incorrect." }
@@ -572,12 +583,12 @@
             correct: 1
           },
           {
-            question: "In which electrode position is the mu rhythm best seen?",
+            question: "Where is the mu rhythm best seen?",
             answers: [
-              { text: "Fp2", feedback: "Incorrect. That's more frontal." },
-              { text: "F8", feedback: "Incorrect. Also frontal." },
-              { text: "C4", feedback: "Correct. Mu is over sensorimotor cortex." },
-              { text: "O4", feedback: "Incorrect. Occipital is alpha." }
+              { text: "Fp2", feedback: "Incorrect." },
+              { text: "F8", feedback: "Incorrect." },
+              { text: "C4", feedback: "Correct." },
+              { text: "O4", feedback: "Incorrect." }
             ],
             correct: 2
           }
@@ -588,32 +599,32 @@
         video: "EEG7.mp4",
         questions: [
           {
-            question: "Which of the following is a component of Stage I sleep?",
+            question: "Which is a component of Stage I sleep?",
             answers: [
-              { text: "POSTS", feedback: "Correct. Observed in Stage I." },
-              { text: "Sleep spindles", feedback: "Incorrect. Stage II." },
-              { text: "K-complexes", feedback: "Incorrect. Stage II." },
-              { text: "High-voltage polymorphic delta", feedback: "Incorrect. Deep sleep." }
+              { text: "POSTS", feedback: "Correct." },
+              { text: "Sleep spindles", feedback: "Incorrect." },
+              { text: "K-complexes", feedback: "Incorrect." },
+              { text: "High-voltage polymorphic delta", feedback: "Incorrect." }
             ],
             correct: 0
           },
           {
-            question: "Which is a defining component of Stage II sleep?",
+            question: "Which is defining for Stage II sleep?",
             answers: [
-              { text: "POSTS", feedback: "Incorrect. Stage I phenomenon." },
-              { text: "Sleep spindles", feedback: "Correct. Defines Stage II." },
-              { text: "High-voltage polymorphic delta", feedback: "Incorrect. Deep sleep." },
-              { text: "Slow rolling eye movements", feedback: "Incorrect. That's drowsiness." }
+              { text: "POSTS", feedback: "Incorrect." },
+              { text: "Sleep spindles", feedback: "Correct." },
+              { text: "High-voltage polymorphic delta", feedback: "Incorrect." },
+              { text: "Slow rolling eye movements", feedback: "Incorrect." }
             ],
             correct: 1
           },
           {
             question: "Which awake EEG finding is most similar to POSTS?",
             answers: [
-              { text: "Mu rhythm", feedback: "Incorrect. Different shape/location." },
-              { text: "Alpha rhythm", feedback: "Incorrect. That's continuous." },
-              { text: "Eye blinks", feedback: "Incorrect. Artifact." },
-              { text: "Lambda waves", feedback: "Correct. Waking counterpart to POSTS." }
+              { text: "Mu rhythm", feedback: "Incorrect." },
+              { text: "Alpha rhythm", feedback: "Incorrect." },
+              { text: "Eye blinks", feedback: "Incorrect." },
+              { text: "Lambda waves", feedback: "Correct." }
             ],
             correct: 3
           }
@@ -624,22 +635,22 @@
         video: "EEG8.mp4",
         questions: [
           {
-            question: "Why might some epilepsy patients not show interictal abnormalities?",
+            question: "Why might some patients not show interictal abnormalities?",
             answers: [
-              { text: "Superficial cortical region", feedback: "Incorrect. More likely to be seen if superficial." },
-              { text: "Large area of cortex", feedback: "Incorrect. That’s easier to detect." },
-              { text: "Very small area of cortex", feedback: "Correct. Might be missed by scalp EEG." },
-              { text: "Generalized activity", feedback: "Incorrect. That’s typically visible." }
+              { text: "Superficial cortical region", feedback: "Incorrect." },
+              { text: "Large area of cortex", feedback: "Incorrect." },
+              { text: "Very small area of cortex", feedback: "Correct." },
+              { text: "Generalized activity", feedback: "Incorrect." }
             ],
             correct: 2
           },
           {
-            question: "Which is a characteristic of focal epileptiform discharges?",
+            question: "Characteristic of focal epileptiform discharges?",
             answers: [
-              { text: "No disruption of background", feedback: "Incorrect. They usually disrupt background." },
-              { text: "Duration > 200 ms", feedback: "Incorrect. Typically <200 ms." },
-              { text: "Only one phase", feedback: "Incorrect. Usually multiple phases." },
-              { text: "After-coming slow wave", feedback: "Correct. Hallmark feature." }
+              { text: "No disruption of background", feedback: "Incorrect." },
+              { text: "Duration > 200 ms", feedback: "Incorrect." },
+              { text: "Only one phase", feedback: "Incorrect." },
+              { text: "After-coming slow wave", feedback: "Correct." }
             ],
             correct: 3
           }
@@ -650,31 +661,31 @@
         video: "EEG9.mp4",
         questions: [
           {
-            question: "When is continuous focal polymorphic delta activity most likely observed?",
+            question: "When is focal polymorphic delta most likely observed?",
             answers: [
-              { text: "During an absence seizure", feedback: "Incorrect. Absence is generalized 3 Hz." },
-              { text: "After an absence seizure", feedback: "Incorrect. Usually normal afterward." },
-              { text: "During a complex partial seizure", feedback: "Incorrect. That’s ictal." },
-              { text: "After a complex partial seizure", feedback: "Correct. Postictal slowing." }
+              { text: "During an absence seizure", feedback: "Incorrect." },
+              { text: "After an absence seizure", feedback: "Incorrect." },
+              { text: "During a complex partial seizure", feedback: "Incorrect." },
+              { text: "After a complex partial seizure", feedback: "Correct." }
             ],
             correct: 3
           },
           {
-            question: "What is the difference between focal rhythmic and focal polymorphic delta?",
+            question: "Difference between focal rhythmic and polymorphic delta?",
             answers: [
-              { text: "Focal rhythmic delta is more associated with epilepsy", feedback: "Correct. Rhythmic delta often implies an irritative focus." },
-              { text: "Focal polymorphic delta is more associated with epilepsy", feedback: "Incorrect." },
-              { text: "No difference", feedback: "Incorrect. They differ in morphology and significance." }
+              { text: "Rhythmic delta is more epileptogenic", feedback: "Correct." },
+              { text: "Polymorphic delta is more epileptogenic", feedback: "Incorrect." },
+              { text: "No difference", feedback: "Incorrect." }
             ],
             correct: 0
           },
           {
             question: "What is a breach rhythm?",
             answers: [
-              { text: "Focal increase in low-frequency activity", feedback: "Incorrect. It's high-frequency." },
-              { text: "Focal decrease in low-frequency activity", feedback: "Incorrect." },
-              { text: "Focal increase in high-frequency activity", feedback: "Correct. Due to skull defect." },
-              { text: "Focal decrease in high-frequency activity", feedback: "Incorrect." }
+              { text: "Increase in low-frequency activity", feedback: "Incorrect." },
+              { text: "Decrease in low-frequency activity", feedback: "Incorrect." },
+              { text: "Increase in high-frequency activity", feedback: "Correct." },
+              { text: "Decrease in high-frequency activity", feedback: "Incorrect." }
             ],
             correct: 2
           }
@@ -687,30 +698,30 @@
           {
             question: "Which finding indicates diffuse cerebral dysfunction?",
             answers: [
-              { text: "Anterior-posterior gradient", feedback: "Incorrect. That’s normal." },
-              { text: "Continuous background", feedback: "Incorrect. Also normal." },
-              { text: "Predominantly alpha waveforms", feedback: "Incorrect. Normal awake pattern." },
-              { text: "Unreactive background", feedback: "Correct. Lack of reactivity = global dysfunction." }
+              { text: "Anterior-posterior gradient", feedback: "Incorrect." },
+              { text: "Continuous background", feedback: "Incorrect." },
+              { text: "Predominantly alpha waveforms", feedback: "Incorrect." },
+              { text: "Unreactive background", feedback: "Correct." }
             ],
             correct: 3
           },
           {
             question: "Which pattern indicates the most severe dysfunction?",
             answers: [
-              { text: "Diffuse polymorphic theta", feedback: "Incorrect. Milder slowing." },
-              { text: "Diffuse polymorphic delta", feedback: "Incorrect. More severe but not the worst." },
-              { text: "Diffuse attenuation", feedback: "Correct. Very severe background suppression." },
-              { text: "Burst-suppression", feedback: "Incorrect. Also severe but different pattern." }
+              { text: "Diffuse polymorphic theta", feedback: "Incorrect." },
+              { text: "Diffuse polymorphic delta", feedback: "Incorrect." },
+              { text: "Diffuse attenuation", feedback: "Correct." },
+              { text: "Burst-suppression", feedback: "Incorrect." }
             ],
             correct: 2
           },
           {
-            question: "What is the significance of lateralized periodic discharges (LPDs)?",
+            question: "Significance of lateralized periodic discharges?",
             answers: [
-              { text: "They are a focal electrographic seizure", feedback: "Incorrect. Not necessarily seizures." },
-              { text: "They indicate increased seizure risk", feedback: "Correct. LPDs raise seizure risk." },
+              { text: "They are a focal seizure", feedback: "Incorrect." },
+              { text: "They indicate increased seizure risk", feedback: "Correct." },
               { text: "They are not associated with risk", feedback: "Incorrect." },
-              { text: "Only seen in HSV encephalitis", feedback: "Incorrect. They occur in multiple conditions." }
+              { text: "Only seen in HSV encephalitis", feedback: "Incorrect." }
             ],
             correct: 1
           }
@@ -723,11 +734,6 @@
      ********************************************/
     const sections = [
       {
-        /* 
-          Epilepsy Rotation 
-          - Daily Expectations and 
-          - Resident Survival Guide (Inpatient/Outpatient, Teaching Rounds)
-        */
         title: "Epilepsy Rotation",
         type: "info",
         content: `
@@ -762,14 +768,8 @@
             </table>
 
             <div class="btn-row">
-              <button class="upload-btn" 
-                      onclick="window.open('https://tally.so/r/mB8obR','_blank')">
-                EEG Index
-              </button>
-              <button class="upload-btn" 
-                      onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">
-                Epilepsy Milestones
-              </button>
+              <button class="upload-btn" onclick="window.open('https://tally.so/r/mB8obR','_blank')">EEG Index</button>
+              <button class="upload-btn" onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">Epilepsy Milestones</button>
             </div>
 
             <p>
@@ -792,8 +792,7 @@
 
             <p style="margin-top:0.75em;"><strong>PM Workflow (~12-5pm)</strong></p>
             <p><strong>12-1 PM:</strong> Neurology noon conference</p>
-            <p><strong>1-5 PM:</strong> Elective admission H&Ps, consults, follow-up on LTM EEG, 
-               read new inpatient EEGs, etc.</p>
+            <p><strong>1-5 PM:</strong> Elective admission H&Ps, consults, follow-up on LTM EEG, read new inpatient EEGs, etc.</p>
 
             <hr style="margin:1em 0;" />
 
@@ -855,13 +854,11 @@
         `
       },
       {
-        /* EEG Videos Tab with our full 10-video array */
         title: "EEG Videos",
         type: "videoGroup",
         videoSections: videoSections
       },
       {
-        /* References tab */
         title: "References",
         type: "references",
         content: `
@@ -890,15 +887,15 @@
       }
     ];
 
-    // Global states
-    let currentSectionIndex = 0; // 0=Epilepsy Rotation, 1=EEG Videos, 2=References
+    // Global state variables
+    let currentSectionIndex = 0; // 0: Epilepsy Rotation, 1: EEG Videos, 2: References
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
 
     const sectionContent = document.getElementById("section-content");
 
-    // Setup the top-level dropdown
+    // Set up the top-level dropdown navigation
     const menuItems = document.querySelectorAll(".dropdown-menu div");
     menuItems.forEach((item, idx) => {
       item.addEventListener("click", (e) => {
@@ -913,24 +910,19 @@
       });
     });
 
-    // Renders the chosen tab (Epilepsy Rotation, EEG Videos, References)
+    // Render the current section based on the selected tab
     function renderSection() {
       const section = sections[currentSectionIndex];
       if (section.type === "info") {
-        // Display the info content (Epilepsy Rotation + Resident Guide)
         sectionContent.innerHTML = section.content;
-      }
-      else if (section.type === "videoGroup") {
-        // Render the sub-list of EEG videos
+      } else if (section.type === "videoGroup") {
         renderVideoList();
-      }
-      else if (section.type === "references") {
-        // Show references
+      } else if (section.type === "references") {
         sectionContent.innerHTML = section.content;
       }
     }
 
-    // Renders the list of video topics
+    // Render the list of video topics
     function renderVideoList() {
       const group = sections[currentSectionIndex];
       let html = `
@@ -944,7 +936,6 @@
       html += `</ul></div>`;
       sectionContent.innerHTML = html;
 
-      // Setup clicks on each sub item
       const subList = document.getElementById("video-sub-list");
       const items = subList.querySelectorAll("li");
       items.forEach(item => {
@@ -957,14 +948,13 @@
       });
     }
 
-    // Renders the chosen video + quiz
+    // Render the chosen video and its quiz
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
       const vid = group.videoSections[videoIdx];
 
       sectionContent.innerHTML = `
         <h2 style="text-align:center; margin-bottom:1em;">${vid.title}</h2>
-        ${vid.guide ? vid.guide : ""}
         <div class="video-container" id="video-container">
           <video id="video" controls>
             <source src="${vid.video}" type="video/mp4" />
@@ -988,6 +978,7 @@
       setupVideoAndQuiz(vid);
     }
 
+    // Set up the quiz functionality for a given video
     function setupVideoAndQuiz(vid) {
       const videoEl = document.getElementById("video");
       const videoContainer = document.getElementById("video-container");
@@ -1045,18 +1036,17 @@
           });
           answersDiv.appendChild(btn);
         });
-
         questionContainer.appendChild(answersDiv);
       }
 
-      // Show quiz after video ends
+      // Show quiz when video ends
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
 
-      // "Skip to Quiz" button
+      // "Skip to Quiz" button functionality
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
@@ -1064,7 +1054,7 @@
         showQuestion();
       });
 
-      // Next question
+      // Next question button
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
@@ -1072,7 +1062,7 @@
         }
       });
 
-      // Return to Video
+      // Return to video button
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
@@ -1080,13 +1070,13 @@
         videoEl.play();
       });
 
-      // Back to Video List
+      // Back to video list button
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
     }
 
-    // Initially load the Epilepsy Rotation tab
+    // Initially load the default section (Epilepsy Rotation)
     renderSection();
   </script>
 </body>
