@@ -339,8 +339,9 @@
     <span id="dropdown-label">Select Section</span>
     <div class="dropdown-menu" id="dropdown-menu">
       <div data-index="0">Epilepsy Rotation</div>
-      <div data-index="1">EEG Videos</div>
-      <div data-index="2">References</div>
+      <div data-index="1">Natus Instructions</div>
+      <div data-index="2">EEG Videos</div>
+      <div data-index="3">References</div>
     </div>
   </div>
 
@@ -730,7 +731,7 @@
     ];
 
     /********************************************
-     * Main Sections: Epilepsy Rotation, EEG Videos, References
+     * Main Sections: Epilepsy Rotation, Natus Instructions, EEG Videos, References
      ********************************************/
     const sections = [
       {
@@ -854,6 +855,55 @@
         `
       },
       {
+        title: "Natus Instructions",
+        type: "info",
+        content: `
+          <div class="info-box">
+            <h2>Natus Instructions</h2>
+
+            <h3>Step 1: Launch and Log In</h3>
+            <p><strong>Power on the workstation</strong> and launch the Natus NeuroWorks application.<br/>
+            <strong>Log in</strong> with your secure credentials (username/password).</p>
+
+            <br/>
+
+            <h3>Step 2: Open a Patient Study</h3>
+            <p><strong>From the main dashboard</strong>, navigate to the Patient Studies list or use the search function to locate a specific patient record.<br/>
+            <strong>Select the desired EEG study</strong> to open it in review mode.</p>
+
+            <br/>
+
+            <h3>Step 3: Configure the Display</h3>
+            <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/>
+            <strong>Adjust the display parameters</strong> as follows:<br/>
+            &nbsp;&nbsp;– Set the <strong>sensitivity</strong> to 7 μV<br/>
+            &nbsp;&nbsp;– Set the <strong>time base</strong> to 30 (e.g., 30 mm/sec)<br/>
+            &nbsp;&nbsp;– Set the <strong>high-frequency filter</strong> to 70 Hz and the <strong>low-frequency filter</strong> to 1 Hz<br/>
+            &nbsp;&nbsp;– Activate any additional filters (such as a <strong>notch filter</strong>) if required</p>
+
+            <br/>
+
+            <h3>Step 4: Analyze the EEG</h3>
+            <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
+            <strong>Use built-in tools</strong> (e.g., cursors, measurement markers) to assess the amplitude, frequency, and duration of the waveforms.<br/>
+            <strong>Identify patterns</strong> such as spikes, sharp waves, or rhythmic activity that may indicate epileptiform activity.<br/>
+            <strong>Add annotations</strong> directly onto the waveform for any abnormal or clinically significant events.</p>
+
+            <br/>
+
+            <h3>Step 5: Annotate and Mark Key Events</h3>
+            <p><strong>Place event markers</strong> by clicking the <strong>Event</strong>, <strong>Seizure</strong>, or <strong>IED</strong> buttons located at the top left of the Natus screen to denote seizure onsets, interictal discharges, or other relevant findings.</p>
+
+            <br/>
+
+            <h3>Step 6: Create an EEG Report in Epic</h3>
+            <p><strong>Once the EEG review and annotations are complete</strong>, open Epic’s reporting interface.<br/>
+            <strong>Generate a new EEG report</strong> and select the attendings saved smart phrases for continuous EEG from the Attendings Saved Smart Phrases section.<br/>
+            <strong>Pend the note</strong> in Epic so that it can be reviewed with the attending.</p>
+          </div>
+        `
+      },
+      {
         title: "EEG Videos",
         type: "videoGroup",
         videoSections: videoSections
@@ -873,6 +923,7 @@
               </li>
               <li>
                 This curriculum is distributed under the Creative Commons Attribution-NonCommercial-ShareAlike license.
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">Link</a>
               </li>
               <li>
                 Additionally, see the
@@ -888,7 +939,7 @@
     ];
 
     // Global state variables
-    let currentSectionIndex = 0; // 0: Epilepsy Rotation, 1: EEG Videos, 2: References
+    let currentSectionIndex = 0; // 0: Epilepsy Rotation, 1: Natus Instructions, 2: EEG Videos, 3: References
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
