@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <!-- Responsive scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  
-  <!-- Google Fonts: Using system fonts for an Apple-like appearance -->
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  
-  <!-- Font Awesome for Navigation Icons -->
+
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <!-- Favicon / Touch Icon -->
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
-  
-  <!-- Open Graph meta tags -->
+
+  <!-- Open Graph Meta -->
   <meta property="og:title" content="EEG Curriculum" />
   <meta property="og:description" content="Engaging Videos & Self-Assessment Tools" />
   <meta property="og:image" content="https://example.com/logo.png" />
   <meta property="og:url" content="https://example.com" />
-  
+
   <title>EEG Curriculum</title>
-  
+
   <style>
     /*-----------------------------------------------
       THEME VARIABLES & TRANSITIONS
@@ -64,9 +64,9 @@
     header {
       background: linear-gradient(135deg, #003366, #00509e) !important;
     }
-  
+
     body.large-font { font-size: 1.2em; }
-  
+
     /*-----------------------------------------------
       GLOBAL RESET & BASE STYLES
     -----------------------------------------------*/
@@ -81,17 +81,16 @@
       color: var(--text-color);
       line-height: 1.6;
       transition: background var(--transition-duration), color var(--transition-duration), font-size var(--transition-duration);
-      padding-bottom: 80px;
+      padding-bottom: 80px; /* for footer */
     }
-  
+
     /*-----------------------------------------------
-      HEADER (Condensed on scroll)
+      HEADER (Sticky with Shrink Effect)
     -----------------------------------------------*/
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: linear-gradient(135deg, #003366, #00509e);
       color: var(--header-text);
       text-align: center;
       padding: 1.5em 1em;
@@ -110,25 +109,14 @@
       transition: width 0.3s;
     }
     header.shrink .logo { width: 60px; }
-    /* Shrink header text too */
+    header h1 { font-size: 1.8rem; margin-bottom: 0.3em; }
+    header p { font-size: 1rem; opacity: 0.8; }
     header.shrink h1 { font-size: 1.4rem; }
     header.shrink p { font-size: 0.8rem; }
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.3em;
-    }
-    header p {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
-    @media (max-width: 480px) {
-      header {
-        padding: 0.8em;
-      }
-    }
-  
+    @media (max-width: 480px) { header { padding: 0.8em; } }
+
     /*-----------------------------------------------
-      NAVIGATION WITH HOVER EFFECTS
+      DROPDOWN NAVIGATION
     -----------------------------------------------*/
     .dropdown {
       position: relative;
@@ -143,12 +131,8 @@
       text-align: left;
       display: block;
     }
-    .dropdown:hover {
-      background: var(--dropdown-hover-bg);
-    }
-    #dropdown-label {
-      display: inline-block;
-    }
+    .dropdown:hover { background: var(--dropdown-hover-bg); }
+    #dropdown-label { display: inline-block; }
     .dropdown::after {
       content: "▼";
       float: right;
@@ -172,25 +156,12 @@
       cursor: pointer;
       transition: background var(--transition-duration), transform 0.2s;
     }
-    .dropdown-menu div:hover {
-      background: var(--hover-bg);
-      transform: scale(1.05);
-    }
-    .dropdown.active .dropdown-menu {
-      display: block;
-    }
+    .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
+    .dropdown.active .dropdown-menu { display: block; }
     @media (min-width: 768px) {
-      .dropdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #dropdown-label {
-        display: none;
-      }
-      .dropdown::after {
-        content: none;
-      }
+      .dropdown { display: flex; justify-content: center; align-items: center; }
+      #dropdown-label { display: none; }
+      .dropdown::after { content: none; }
       .dropdown-menu {
         display: flex !important;
         position: static;
@@ -204,12 +175,9 @@
         margin: 0 5px;
         transition: background var(--transition-duration), transform 0.2s;
       }
-      .dropdown-menu div:hover {
-        background: var(--hover-bg);
-        transform: scale(1.05);
-      }
+      .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
     }
-  
+
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
@@ -218,9 +186,9 @@
       margin: 0 auto;
       padding: 0 1em 2em;
     }
-  
+
     /*-----------------------------------------------
-      CARD-STYLE INFO BOXES & REFERENCES
+      INFO BOXES & REFERENCES
     -----------------------------------------------*/
     .info-box,
     .references {
@@ -232,37 +200,23 @@
       transition: background var(--transition-duration);
     }
     .info-box h2,
-    .references h2 {
-      margin-bottom: 0.75em;
-    }
-  
+    .references h2 { margin-bottom: 0.75em; }
+
     /*-----------------------------------------------
-      TABLE STYLING (Including PM Workflow Row)
+      TABLES
     -----------------------------------------------*/
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 10px 0 20px;
     }
-    table,
-    th,
-    td {
-      border: 1px solid var(--border-color);
-    }
-    th,
-    td {
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: var(--table-header-bg);
-    }
-    .pm-workflow {
-      background: var(--table-header-bg);
-    }
-  
+    table, th, td { border: 1px solid var(--border-color); }
+    th, td { padding: 10px; text-align: left; }
+    th { background-color: var(--table-header-bg); }
+    .pm-workflow { background: var(--table-header-bg); }
+
     /*-----------------------------------------------
-      BUTTONS (Clean, Minimal)
+      BUTTONS
     -----------------------------------------------*/
     .btn-row {
       display: flex;
@@ -281,12 +235,10 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .upload-btn:hover {
-      background-color: #0069d9;
-    }
-  
+    .upload-btn:hover { background-color: #0069d9; }
+
     /*-----------------------------------------------
-      VIDEO LIST (Modern Card Look)
+      VIDEO LIST (Card Look)
     -----------------------------------------------*/
     .video-list {
       background: var(--info-bg);
@@ -295,23 +247,16 @@
       box-shadow: 0 4px 8px var(--shadow-color);
       margin-bottom: 1.5em;
     }
-    .video-list h2 {
-      margin-bottom: 0.75em;
-    }
-    .video-list ul {
-      list-style: none;
-      margin-top: 0.5em;
-    }
+    .video-list h2 { margin-bottom: 0.75em; }
+    .video-list ul { list-style: none; margin-top: 0.5em; }
     .video-list li {
       padding: 0.8em;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
       transition: background var(--transition-duration);
     }
-    .video-list li:hover {
-      background: var(--hover-bg);
-    }
-  
+    .video-list li:hover { background: var(--hover-bg); }
+
     /*-----------------------------------------------
       VIDEO CONTAINER
     -----------------------------------------------*/
@@ -337,12 +282,10 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .skip-btn:hover {
-      background-color: #218838;
-    }
-  
+    .skip-btn:hover { background-color: #218838; }
+
     /*-----------------------------------------------
-      QUIZ CONTAINER WITH PROGRESS INDICATOR
+      QUIZ CONTAINER & FEEDBACK
     -----------------------------------------------*/
     .quiz-container {
       background: var(--info-bg);
@@ -380,8 +323,6 @@
       transform: scale(1.02);
       background: var(--answer-hover-bg);
     }
-  
-    /* Make the feedback bar full width */
     .feedback {
       width: 100%;
       margin-top: 0.75em;
@@ -390,10 +331,9 @@
     }
     .correct-msg,
     .incorrect-msg {
-      width: 100%; /* Ensures feedback bars span the entire quiz width */
+      width: 100%;
       box-sizing: border-box;
     }
-  
     .correct-msg {
       color: #155724;
       background-color: #d4edda;
@@ -411,7 +351,6 @@
       border-radius: 4px;
       border: 1px solid #f5c6cb;
     }
-  
     .buttons-row {
       margin-top: 1em;
       display: flex;
@@ -431,45 +370,56 @@
       transition: background var(--transition-duration);
       text-align: center;
     }
-    .next-btn {
-      background-color: var(--primary-color);
-    }
-    .next-btn:hover {
-      background-color: #002147;
-    }
-    .return-btn {
-      background-color: #6c757d;
-    }
-    .return-btn:hover {
-      background-color: #5a6268;
-    }
-    .next-section-btn {
-      background-color: #17a2b8;
-    }
-    .next-section-btn:hover {
-      background-color: #138496;
-    }
+    .next-btn { background-color: var(--primary-color); }
+    .next-btn:hover { background-color: #002147; }
+    .return-btn { background-color: #6c757d; }
+    .return-btn:hover { background-color: #5a6268; }
+    .next-section-btn { background-color: #17a2b8; }
+    .next-section-btn:hover { background-color: #138496; }
     .final-score {
       text-align: center;
       margin-top: 1em;
       font-size: 1.1rem;
       font-weight: bold;
     }
-  
+
     /*-----------------------------------------------
-      REFERENCES
+      REFERENCES STYLING
     -----------------------------------------------*/
+    .references {
+      background: var(--info-bg);
+      padding: 1.5em;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+      margin-bottom: 1.5em;
+      font-size: 0.95rem;
+    }
+    .references h2 {
+      margin-bottom: 1em;
+      font-size: 1.4rem;
+      text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5em;
+    }
     .references ol {
-      margin-left: 1.5rem;
-      margin-top: 0.5rem;
+      list-style-type: decimal;
+      margin-left: 1.5em;
+      padding-left: 1em;
     }
     .references ol li {
-      margin-bottom: 1rem;
-      line-height: 1.5;
+      margin-bottom: 1em;
+      line-height: 1.6;
+      color: var(--text-color);
     }
-  
+    .references a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .references a:hover { color: var(--secondary-color); }
+
     /*-----------------------------------------------
-      FIXED FOOTER CONTROLS (Appear on Scroll)
+      FIXED FOOTER CONTROLS
     -----------------------------------------------*/
     footer {
       position: fixed;
@@ -504,8 +454,42 @@
       transition: background var(--transition-duration);
       font-size: 0.9rem;
     }
-    .footer-btns button:hover {
-      background: #00509e;
+    .footer-btns button:hover { background: #00509e; }
+
+    /*-----------------------------------------------
+      IMAGE STYLING (For Natus Steps)
+    -----------------------------------------------*/
+    .step-image {
+      max-width: 100%;
+      height: auto;
+      margin: 0.75em 0;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px var(--shadow-color);
+    }
+
+    /*-----------------------------------------------
+      KITTEN OVERLAY (Central Quiz Celebration)
+    -----------------------------------------------*/
+    .kitten-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.5);
+      z-index: 3000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .kitten-overlay img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -516,8 +500,8 @@
     <h1>EEG Curriculum</h1>
     <p>Engaging Videos &amp; Self-Assessment Tools</p>
   </header>
-  
-  <!-- NAVIGATION -->
+
+  <!-- DROPDOWN NAVIGATION -->
   <div class="dropdown" id="dropdown">
     <span id="dropdown-label">Select Section</span>
     <div class="dropdown-menu" id="dropdown-menu">
@@ -528,29 +512,29 @@
       <div data-index="4"><i class="fa-solid fa-book"></i> References</div>
     </div>
   </div>
-  
+
   <!-- MAIN CONTAINER -->
   <div class="container">
     <div id="section-content"></div>
   </div>
-  
-  <!-- FIXED FOOTER CONTROLS (Appear on Scroll) -->
+
+  <!-- FIXED FOOTER CONTROLS -->
   <footer id="footer">
     <div class="footer-btns">
       <button onclick="toggleFontSize()" aria-label="Toggle Large Font">A+</button>
       <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
     </div>
   </footer>
-  
+
   <!-- PPTXGenJS for Slide Generation -->
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
-  
+
   <script>
     // Auto-detect dark mode preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add("dark");
     }
-  
+
     /********************************************
      * DARK MODE & FONT SIZE FUNCTIONS
      ********************************************/
@@ -560,23 +544,31 @@
     function toggleFontSize() {
       document.body.classList.toggle("large-font");
     }
-  
+
     /********************************************
-     * KITTY ANIMATION FUNCTION (Appends to Feedback Bar)
+     * RANDOM CAT OVERLAY (2s)
      ********************************************/
-    function showKittenAnimation(targetElement) {
-      const kitten = document.createElement('img');
-      // Use a reliable online kitten GIF from CATAAS
-      kitten.src = "https://cataas.com/cat/gif";
-      kitten.alt = "Kitten Celebration!";
-      kitten.style.width = "40px";
-      kitten.style.verticalAlign = "middle";
-      kitten.style.marginLeft = "8px";
-      // Append kitten next to the correct answer feedback
-      targetElement.appendChild(kitten);
-      // The GIF remains until the next question is displayed.
+    function showKittenOverlay() {
+      const overlay = document.createElement("div");
+      overlay.className = "kitten-overlay";
+
+      // Generate a random query param for unique GIF
+      const randomParam = Date.now();
+      const catImg = document.createElement("img");
+      catImg.src = `https://cataas.com/cat/gif?${randomParam}`;
+      catImg.alt = "Kitten Celebration!";
+      overlay.appendChild(catImg);
+      document.body.appendChild(overlay);
+
+      // Remove after 2s + fade out
+      setTimeout(() => {
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+          overlay.remove();
+        }, 500);
+      }, 2000);
     }
-  
+
     /********************************************
      * NAVIGATION LOGIC
      ********************************************/
@@ -591,6 +583,12 @@
         dropdown.classList.remove("active");
       }
     });
+
+    let currentSectionIndex = 0;
+    let currentVideoIndex = -1;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
     const menuItems = document.querySelectorAll(".dropdown-menu div");
     menuItems.forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -605,7 +603,7 @@
         renderSection();
       });
     });
-  
+
     /********************************************
      * VIDEO SECTIONS (All 10 Videos)
      ********************************************/
@@ -960,9 +958,9 @@
         ]
       }
     ];
-  
+
     /********************************************
-     * MAIN SECTIONS ARRAY
+     * MAIN SECTIONS (Epilepsy Rotation, Natus, ACNS, EEG Videos, References)
      ********************************************/
     const sections = [
       {
@@ -1006,7 +1004,7 @@
               The <strong>Epilepsy Milestones</strong> document outlines the key competencies and expectations during your rotation.
             </p>
           </div>
-  
+
           <div class="info-box">
             <h2>Rotation Schedule</h2>
             <h3>Inpatient Rotation (MSH &amp; MSW EMU)</h3>
@@ -1047,7 +1045,7 @@
                 </tr>
               </tbody>
             </table>
-  
+
             <h3>Outpatient Rotation</h3>
             <table style="width:100%; border-collapse:collapse;">
               <thead>
@@ -1075,7 +1073,7 @@
               </tbody>
             </table>
           </div>
-  
+
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
@@ -1094,7 +1092,7 @@
                     <td>Epilepsy Surgery Conference (mandatory)</td>
                     <td>Wed 4-5:30 PM</td>
                     <td>Levy Library (MSH) / Zoom</td>
-                    <td>Epilepsy surgery cases, comprehensive team</td>
+                    <td>Epilepsy surgery cases, comprehensive epilepsy team</td>
                   </tr>
                   <tr>
                     <td>Teaching Rounds / Interesting EEGs (mandatory)</td>
@@ -1128,10 +1126,12 @@
             <h3>Step 1: Launch and Log In</h3>
             <p><strong>Power on the workstation</strong> and launch the Natus NeuroWorks application.<br/>
             <strong>Log in</strong> with your secure credentials (username/password).</p>
+            <img src="Step1.png" alt="Step 1 Screenshot" class="step-image" />
             <br/>
             <h3>Step 2: Open a Patient Study</h3>
             <p><strong>From the main dashboard</strong>, navigate to the Patient Studies list or use the search function to locate a patient record.<br/>
             <strong>Select the desired EEG study</strong> to open it in review mode.</p>
+            <img src="Step2.png" alt="Step 2 Screenshot" class="step-image" />
             <br/>
             <h3>Step 3: Configure the Display</h3>
             <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/>
@@ -1140,6 +1140,7 @@
             &nbsp;&nbsp;– Time base: 30 (e.g., 30 mm/sec)<br/>
             &nbsp;&nbsp;– High-frequency filter: 70 Hz; Low-frequency filter: 1 Hz<br/>
             &nbsp;&nbsp;– Activate additional filters if required</p>
+            <img src="Step3.png" alt="Step 3 Screenshot" class="step-image" />
             <br/>
             <h3>Step 4: Analyze the EEG</h3>
             <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
@@ -1148,6 +1149,7 @@
             <br/>
             <h3>Step 5: Annotate and Mark Key Events</h3>
             <p><strong>Place event markers</strong> by clicking the relevant buttons at the top of the screen.</p>
+            <img src="Step5.png" alt="Step 5 Screenshot" class="step-image" />
             <br/>
             <h3>Step 6: Create an EEG Report in Epic</h3>
             <p><strong>Once the EEG review is complete</strong>, open Epic’s reporting interface, generate a new report, and pend the note for review.</p>
@@ -1160,11 +1162,10 @@
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <!-- PDF is now full size -->
             <object
               data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf"
               type="application/pdf"
-              style="width: 100%; height: 90vh;"
+              style="width: 100%; height: 100vh;"
             >
               <p>Your browser does not support embedded PDFs.
                  <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
@@ -1189,52 +1190,51 @@
                 <strong>Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM.</strong>
                 A video-based introductory EEG curriculum for neurology residents.
                 <em>MedEdPORTAL</em>. 2017;13:10570.
-                <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">Link</a>
+                <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
+                  <i class="fa-solid fa-link"></i> Link
+                </a>
               </li>
               <li>
                 Distributed under the Creative Commons Attribution-NonCommercial-ShareAlike license.
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">Link</a>
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">
+                  <i class="fa-solid fa-link"></i> License Info
+                </a>
               </li>
               <li>
                 See also the
-                <a href="https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf" target="_blank">Epilepsy Milestones</a>
+                <a href="https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf" target="_blank">
+                  <i class="fa-solid fa-link"></i> Epilepsy Milestones
+                </a>
                 for rotation expectations.
               </li>
               <li>
                 <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart.
-                <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Link</a>
+                <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">
+                  <i class="fa-solid fa-link"></i> Download PDF
+                </a>
               </li>
             </ol>
           </div>
         `
       }
     ];
-  
-    // Global state variables
-    let currentSectionIndex = 0;
-    let currentVideoIndex = -1;
-    let currentQuestionIndex = 0;
-    let score = 0;
+
     const sectionContent = document.getElementById("section-content");
-  
+
     /********************************************
      * RENDER SECTION FUNCTION
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
-      if (section.type === "info") {
+      if (section.type === "info" || section.type === "references") {
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
         renderVideoList();
-      } else if (section.type === "acns") {
-        // If you want the ACNS tab recognized differently, can do so,
-        // but here "info" is fine. We'll just set content:
-        sectionContent.innerHTML = section.content;
-      } else if (section.type === "references") {
+      } else {
         sectionContent.innerHTML = section.content;
       }
     }
-  
+
     /********************************************
      * RENDER VIDEO LIST FUNCTION
      ********************************************/
@@ -1250,9 +1250,7 @@
       });
       html += `</ul></div>`;
       sectionContent.innerHTML = html;
-      const subList = document.getElementById("video-sub-list");
-      const items = subList.querySelectorAll("li");
-      items.forEach(item => {
+      document.querySelectorAll("#video-sub-list li").forEach(item => {
         item.addEventListener("click", () => {
           currentVideoIndex = parseInt(item.getAttribute("data-vid-index"));
           currentQuestionIndex = 0;
@@ -1261,7 +1259,7 @@
         });
       });
     }
-  
+
     /********************************************
      * RENDER VIDEO SECTION FUNCTION
      ********************************************/
@@ -1292,7 +1290,7 @@
       `;
       setupVideoQuiz(vid);
     }
-  
+
     /********************************************
      * SETUP VIDEO QUIZ FUNCTION
      ********************************************/
@@ -1308,24 +1306,24 @@
       const returnBtn = document.getElementById("return-btn");
       const nextSectionBtn = document.getElementById("next-section-btn");
       const finalScoreDiv = document.getElementById("final-score");
-  
+
       currentQuestionIndex = 0;
       score = 0;
       quizContainer.style.display = "none";
-  
+
       function showQuestion() {
-        // Clear any previous feedback (and kitten images)
+        // Clear feedback
         feedbackDiv.innerHTML = "";
         progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
         finalScoreDiv.textContent = "";
-  
+
         const currentQ = vid.questions[currentQuestionIndex];
         questionContainer.innerHTML = `<h2 style="color: var(--text-color);">${currentQ.question}</h2>`;
-  
+
         let correctChosen = false;
         const answersDiv = document.createElement("div");
         answersDiv.className = "answers";
-  
+
         currentQ.answers.forEach((ansObj, idx) => {
           const btn = document.createElement("button");
           btn.textContent = ansObj.text;
@@ -1335,9 +1333,10 @@
               score++;
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
-              // Append kitten GIF in the feedback bar
-              showKittenAnimation(feedbackDiv);
-  
+
+              // Show random cat overlay in the center for 2 seconds
+              showKittenOverlay();
+
               if (currentQuestionIndex < vid.questions.length - 1) {
                 nextBtn.style.display = "inline-block";
               } else {
@@ -1355,38 +1354,42 @@
           });
           answersDiv.appendChild(btn);
         });
-  
         questionContainer.appendChild(answersDiv);
       }
-  
+
+      // Show quiz when video ends
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
+      // "Skip to Quiz" button
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
+      // Next question
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
           showQuestion();
         }
       });
+      // Return to video
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
         videoEl.currentTime = 0;
         videoEl.play();
       });
+      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
     }
-  
+
     /********************************************
      * EEG SLIDE GENERATOR FUNCTION
      ********************************************/
@@ -1399,9 +1402,9 @@
         <div class="content" style="padding:20px;">
           <form id="slideForm">
             <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
+            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
             <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
-            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
+            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
             <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
             <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
             <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
@@ -1421,7 +1424,7 @@
       document.getElementById("section-content").innerHTML = generatorHTML;
       attachEEGSlideFormListener();
     }
-  
+
     function attachEEGSlideFormListener() {
       document.getElementById("slideForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -1441,62 +1444,18 @@
           try {
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
-            slide.addText("EEG Slide Submission", {
-              x: 0.5,
-              y: 0.3,
-              w: 9,
-              fontSize: 24,
-              bold: true,
-              align: "center"
-            });
-            slide.addText(`Submitted by: ${fullName} (${residency})`, {
-              x: 0.5,
-              y: 1,
-              w: 9,
-              fontSize: 16,
-              color: "555555",
-              align: "center"
-            });
+            slide.addText("EEG Slide Submission", { x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center" });
+            slide.addText(`Submitted by: ${fullName} (${residency})`, { x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center" });
             slide.addImage({ data: imageData, x: "3", y: "1.5", w: "4", h: "3" });
-            slide.addText("EEG Pattern Description:", {
-              x: 0.5,
-              y: 4.8,
-              w: 9,
-              fontSize: 18,
-              bold: true,
-              color: "363636"
-            });
-            slide.addText(description, {
-              x: 0.5,
-              y: 5.3,
-              w: 9,
-              fontSize: 16,
-              color: "363636"
-            });
+            slide.addText("EEG Pattern Description:", { x: 0.5, y: 4.8, w: 9, fontSize: 18, bold: true, color: "363636" });
+            slide.addText(description, { x: 0.5, y: 5.3, w: 9, fontSize: 16, color: "363636" });
             if (additionalComments.trim() !== "") {
-              slide.addText("Additional Comments:", {
-                x: 0.5,
-                y: 6.2,
-                w: 9,
-                fontSize: 18,
-                bold: true,
-                color: "363636"
-              });
-              slide.addText(additionalComments, {
-                x: 0.5,
-                y: 6.7,
-                w: 9,
-                fontSize: 16,
-                color: "363636"
-              });
+              slide.addText("Additional Comments:", { x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636" });
+              slide.addText(additionalComments, { x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636" });
             }
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
-              .then(() => {
-                alert("PowerPoint slide generated and downloaded!");
-              })
-              .catch((err) => {
-                alert("Error generating PPT. Check console for details.");
-              });
+              .then(() => { alert("PowerPoint slide generated and downloaded!"); })
+              .catch(err => { alert("Error generating PPT. Check console for details."); });
           } catch (err) {
             alert("An unexpected error occurred. Check console for details.");
           }
@@ -1504,15 +1463,11 @@
         reader.readAsDataURL(file);
       });
     }
-  
-    /********************************************
-     * INITIAL LOAD: Render Default Section
-     ********************************************/
+
+    // INITIAL LOAD: Epilepsy Rotation
     renderSection();
-  
-    /********************************************
-     * FIXED FOOTER CONTROLS: Show on Scroll
-     ********************************************/
+
+    // FIXED FOOTER CONTROLS: Show on Scroll
     const footer = document.getElementById("footer");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
@@ -1521,10 +1476,8 @@
         footer.classList.remove("show-footer");
       }
     });
-  
-    /********************************************
-     * SHRINK HEADER ON SCROLL (Modern, Minimal)
-     ********************************************/
+
+    // SHRINK HEADER ON SCROLL
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
       if (window.scrollY > 100) {
