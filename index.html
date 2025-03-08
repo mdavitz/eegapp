@@ -41,6 +41,8 @@
       --table-header-bg: #f8f8f8;
       --dropdown-hover-bg: #f9f9f9;
       --transition-duration: 0.3s;
+      --answer-bg: #e9ecef;
+      --answer-hover-bg: #d6d8db;
     }
     .dark {
       --primary-color: #1a1a1a;
@@ -55,8 +57,10 @@
       --shadow-color: rgba(0, 0, 0, 0.3);
       --table-header-bg: #333;
       --dropdown-hover-bg: #2a2a2a;
+      --answer-bg: #333;
+      --answer-hover-bg: #444;
     }
-    /* Ensure header is always blue */
+    /* Always use blue header */
     header {
       background: linear-gradient(135deg, #003366, #00509e) !important;
     }
@@ -66,7 +70,11 @@
     /*-----------------------------------------------
       GLOBAL RESET & BASE STYLES
     -----------------------------------------------*/
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
       background: var(--bg-color);
@@ -102,9 +110,22 @@
       transition: width 0.3s;
     }
     header.shrink .logo { width: 60px; }
-    header h1 { font-size: 1.8rem; margin-bottom: 0.3em; }
-    header p { font-size: 1rem; opacity: 0.8; }
-    @media (max-width: 480px) { header { padding: 0.8em; } }
+    /* Shrink header text too */
+    header.shrink h1 { font-size: 1.4rem; }
+    header.shrink p { font-size: 0.8rem; }
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.3em;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8em;
+      }
+    }
   
     /*-----------------------------------------------
       NAVIGATION WITH HOVER EFFECTS
@@ -122,8 +143,12 @@
       text-align: left;
       display: block;
     }
-    .dropdown:hover { background: var(--dropdown-hover-bg); }
-    #dropdown-label { display: inline-block; }
+    .dropdown:hover {
+      background: var(--dropdown-hover-bg);
+    }
+    #dropdown-label {
+      display: inline-block;
+    }
     .dropdown::after {
       content: "▼";
       float: right;
@@ -147,16 +172,25 @@
       cursor: pointer;
       transition: background var(--transition-duration), transform 0.2s;
     }
-    .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
-    .dropdown.active .dropdown-menu { display: block; }
+    .dropdown-menu div:hover {
+      background: var(--hover-bg);
+      transform: scale(1.05);
+    }
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
     @media (min-width: 768px) {
       .dropdown {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      #dropdown-label { display: none; }
-      .dropdown::after { content: none; }
+      #dropdown-label {
+        display: none;
+      }
+      .dropdown::after {
+        content: none;
+      }
       .dropdown-menu {
         display: flex !important;
         position: static;
@@ -170,18 +204,26 @@
         margin: 0 5px;
         transition: background var(--transition-duration), transform 0.2s;
       }
-      .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
+      .dropdown-menu div:hover {
+        background: var(--hover-bg);
+        transform: scale(1.05);
+      }
     }
   
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
-    .container { max-width: 650px; margin: 0 auto; padding: 0 1em 2em; }
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 0 1em 2em;
+    }
   
     /*-----------------------------------------------
       CARD-STYLE INFO BOXES & REFERENCES
     -----------------------------------------------*/
-    .info-box, .references {
+    .info-box,
+    .references {
       background: var(--info-bg);
       padding: 1.2em;
       border-radius: 8px;
@@ -189,7 +231,10 @@
       margin-bottom: 1.5em;
       transition: background var(--transition-duration);
     }
-    .info-box h2, .references h2 { margin-bottom: 0.75em; }
+    .info-box h2,
+    .references h2 {
+      margin-bottom: 0.75em;
+    }
   
     /*-----------------------------------------------
       TABLE STYLING (Including PM Workflow Row)
@@ -199,10 +244,22 @@
       border-collapse: collapse;
       margin: 10px 0 20px;
     }
-    table, th, td { border: 1px solid var(--border-color); }
-    th, td { padding: 10px; text-align: left; }
-    th { background-color: var(--table-header-bg); }
-    .pm-workflow { background: var(--table-header-bg); }
+    table,
+    th,
+    td {
+      border: 1px solid var(--border-color);
+    }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--table-header-bg);
+    }
+    .pm-workflow {
+      background: var(--table-header-bg);
+    }
   
     /*-----------------------------------------------
       BUTTONS (Clean, Minimal)
@@ -224,7 +281,9 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .upload-btn:hover { background-color: #0069d9; }
+    .upload-btn:hover {
+      background-color: #0069d9;
+    }
   
     /*-----------------------------------------------
       VIDEO LIST (Modern Card Look)
@@ -236,20 +295,30 @@
       box-shadow: 0 4px 8px var(--shadow-color);
       margin-bottom: 1.5em;
     }
-    .video-list h2 { margin-bottom: 0.75em; }
-    .video-list ul { list-style: none; margin-top: 0.5em; }
+    .video-list h2 {
+      margin-bottom: 0.75em;
+    }
+    .video-list ul {
+      list-style: none;
+      margin-top: 0.5em;
+    }
     .video-list li {
       padding: 0.8em;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
       transition: background var(--transition-duration);
     }
-    .video-list li:hover { background: var(--hover-bg); }
+    .video-list li:hover {
+      background: var(--hover-bg);
+    }
   
     /*-----------------------------------------------
       VIDEO CONTAINER
     -----------------------------------------------*/
-    .video-container { text-align: center; margin-bottom: 1.5em; }
+    .video-container {
+      text-align: center;
+      margin-bottom: 1.5em;
+    }
     video {
       width: 100%;
       max-width: 650px;
@@ -268,7 +337,9 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .skip-btn:hover { background-color: #218838; }
+    .skip-btn:hover {
+      background-color: #218838;
+    }
   
     /*-----------------------------------------------
       QUIZ CONTAINER WITH PROGRESS INDICATOR
@@ -280,7 +351,11 @@
       box-shadow: 0 4px 8px var(--shadow-color);
       display: none;
     }
-    .quiz-container h2 { font-size: 1.15rem; margin-bottom: 0.75em; }
+    .quiz-container h2 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75em;
+      color: var(--text-color);
+    }
     .progress-indicator {
       font-size: 0.9rem;
       color: var(--text-color);
@@ -295,20 +370,39 @@
       font-size: 1rem;
       text-align: left;
       color: var(--text-color);
-      background-color: #e9ecef;
+      background-color: var(--answer-bg);
       border: 1px solid var(--border-color);
       border-radius: 4px;
       cursor: pointer;
       transition: transform 0.1s, background var(--transition-duration);
     }
-    .answers button:hover { transform: scale(1.02); background: #d6d8db; }
-    .feedback { margin-top: 0.75em; font-size: 1rem; min-height: 1.5em; }
+    .answers button:hover {
+      transform: scale(1.02);
+      background: var(--answer-hover-bg);
+    }
+  
+    /* Make the feedback bar full width */
+    .feedback {
+      width: 100%;
+      margin-top: 0.75em;
+      font-size: 1rem;
+      min-height: 1.5em;
+    }
+    .correct-msg,
+    .incorrect-msg {
+      width: 100%; /* Ensures feedback bars span the entire quiz width */
+      box-sizing: border-box;
+    }
+  
     .correct-msg {
       color: #155724;
       background-color: #d4edda;
       padding: 0.5em;
       border-radius: 4px;
       border: 1px solid #c3e6cb;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
     .incorrect-msg {
       color: #721c24;
@@ -317,13 +411,16 @@
       border-radius: 4px;
       border: 1px solid #f5c6cb;
     }
+  
     .buttons-row {
       margin-top: 1em;
       display: flex;
       justify-content: space-between;
       gap: 1%;
     }
-    .next-btn, .return-btn, .next-section-btn {
+    .next-btn,
+    .return-btn,
+    .next-section-btn {
       width: 32%;
       padding: 0.8em;
       font-size: 1rem;
@@ -334,19 +431,42 @@
       transition: background var(--transition-duration);
       text-align: center;
     }
-    .next-btn { background-color: var(--primary-color); }
-    .next-btn:hover { background-color: #002147; }
-    .return-btn { background-color: #6c757d; }
-    .return-btn:hover { background-color: #5a6268; }
-    .next-section-btn { background-color: #17a2b8; }
-    .next-section-btn:hover { background-color: #138496; }
-    .final-score { text-align: center; margin-top: 1em; font-size: 1.1rem; font-weight: bold; }
+    .next-btn {
+      background-color: var(--primary-color);
+    }
+    .next-btn:hover {
+      background-color: #002147;
+    }
+    .return-btn {
+      background-color: #6c757d;
+    }
+    .return-btn:hover {
+      background-color: #5a6268;
+    }
+    .next-section-btn {
+      background-color: #17a2b8;
+    }
+    .next-section-btn:hover {
+      background-color: #138496;
+    }
+    .final-score {
+      text-align: center;
+      margin-top: 1em;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
   
     /*-----------------------------------------------
       REFERENCES
     -----------------------------------------------*/
-    .references ol { margin-left: 1.5rem; margin-top: 0.5rem; }
-    .references ol li { margin-bottom: 1rem; line-height: 1.5; }
+    .references ol {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+    .references ol li {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
   
     /*-----------------------------------------------
       FIXED FOOTER CONTROLS (Appear on Scroll)
@@ -365,7 +485,10 @@
       pointer-events: none;
       transition: opacity var(--transition-duration);
     }
-    footer.show-footer { opacity: 1; pointer-events: auto; }
+    footer.show-footer {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .footer-btns {
       display: inline-flex;
       gap: 1em;
@@ -381,7 +504,9 @@
       transition: background var(--transition-duration);
       font-size: 0.9rem;
     }
-    .footer-btns button:hover { background: #00509e; }
+    .footer-btns button:hover {
+      background: #00509e;
+    }
   </style>
 </head>
 <body>
@@ -429,8 +554,28 @@
     /********************************************
      * DARK MODE & FONT SIZE FUNCTIONS
      ********************************************/
-    function toggleDarkMode() { document.body.classList.toggle("dark"); }
-    function toggleFontSize() { document.body.classList.toggle("large-font"); }
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+    function toggleFontSize() {
+      document.body.classList.toggle("large-font");
+    }
+  
+    /********************************************
+     * KITTY ANIMATION FUNCTION (Appends to Feedback Bar)
+     ********************************************/
+    function showKittenAnimation(targetElement) {
+      const kitten = document.createElement('img');
+      // Use a reliable online kitten GIF from CATAAS
+      kitten.src = "https://cataas.com/cat/gif";
+      kitten.alt = "Kitten Celebration!";
+      kitten.style.width = "40px";
+      kitten.style.verticalAlign = "middle";
+      kitten.style.marginLeft = "8px";
+      // Append kitten next to the correct answer feedback
+      targetElement.appendChild(kitten);
+      // The GIF remains until the next question is displayed.
+    }
   
     /********************************************
      * NAVIGATION LOGIC
@@ -442,7 +587,9 @@
       dropdown.classList.toggle("active");
     });
     document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) { dropdown.classList.remove("active"); }
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("active");
+      }
     });
     const menuItems = document.querySelectorAll(".dropdown-menu div");
     menuItems.forEach((item) => {
@@ -1009,11 +1156,16 @@
       },
       {
         title: "ACNS Criteria",
-        type: "acns",
+        type: "info",
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <object data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
+            <!-- PDF is now full size -->
+            <object
+              data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf"
+              type="application/pdf"
+              style="width: 100%; height: 90vh;"
+            >
               <p>Your browser does not support embedded PDFs.
                  <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
               </p>
@@ -1070,10 +1222,14 @@
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
-      if (section.type === "info" || section.type === "acns") {
+      if (section.type === "info") {
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
         renderVideoList();
+      } else if (section.type === "acns") {
+        // If you want the ACNS tab recognized differently, can do so,
+        // but here "info" is fine. We'll just set content:
+        sectionContent.innerHTML = section.content;
       } else if (section.type === "references") {
         sectionContent.innerHTML = section.content;
       }
@@ -1158,17 +1314,18 @@
       quizContainer.style.display = "none";
   
       function showQuestion() {
-        progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
+        // Clear any previous feedback (and kitten images)
         feedbackDiv.innerHTML = "";
-        feedbackDiv.className = "";
-        nextBtn.style.display = "none";
-        nextSectionBtn.style.display = "none";
+        progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
         finalScoreDiv.textContent = "";
+  
         const currentQ = vid.questions[currentQuestionIndex];
-        questionContainer.innerHTML = `<h2>${currentQ.question}</h2>`;
+        questionContainer.innerHTML = `<h2 style="color: var(--text-color);">${currentQ.question}</h2>`;
+  
         let correctChosen = false;
         const answersDiv = document.createElement("div");
         answersDiv.className = "answers";
+  
         currentQ.answers.forEach((ansObj, idx) => {
           const btn = document.createElement("button");
           btn.textContent = ansObj.text;
@@ -1178,6 +1335,9 @@
               score++;
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
+              // Append kitten GIF in the feedback bar
+              showKittenAnimation(feedbackDiv);
+  
               if (currentQuestionIndex < vid.questions.length - 1) {
                 nextBtn.style.display = "inline-block";
               } else {
@@ -1195,6 +1355,7 @@
           });
           answersDiv.appendChild(btn);
         });
+  
         questionContainer.appendChild(answersDiv);
       }
   
@@ -1211,7 +1372,9 @@
       });
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
-        if (currentQuestionIndex < vid.questions.length) { showQuestion(); }
+        if (currentQuestionIndex < vid.questions.length) {
+          showQuestion();
+        }
       });
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
@@ -1219,7 +1382,127 @@
         videoEl.currentTime = 0;
         videoEl.play();
       });
-      nextSectionBtn.addEventListener("click", () => { renderVideoList(); });
+      nextSectionBtn.addEventListener("click", () => {
+        renderVideoList();
+      });
+    }
+  
+    /********************************************
+     * EEG SLIDE GENERATOR FUNCTION
+     ********************************************/
+    function openEEGIndexApp() {
+      const generatorHTML = `
+      <div id="generator" style="max-width:400px; width:90%; margin:0 auto; box-shadow:0 4px 8px var(--shadow-color); border-radius:8px; overflow:hidden; background: var(--info-bg);">
+        <header style="background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); padding:30px; text-align:center;">
+          <h2 style="font-size:28px; margin:0;">EEG Slide Generator</h2>
+        </header>
+        <div class="content" style="padding:20px;">
+          <form id="slideForm">
+            <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
+            <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
+            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
+            <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
+            <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+            <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
+            <textarea id="patternDescription" rows="4" placeholder="Enter the description of the pattern" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
+            <label for="additionalComments" style="font-size:20px; margin-top:15px;">Additional Comments (Optional):</label>
+            <textarea id="additionalComments" rows="3" placeholder="Enter any additional comments" style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
+            <button type="submit" style="margin-top:20px; padding:16px; background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); border:none; border-radius:4px; width:100%; font-size:22px; cursor:pointer;">
+              Generate PowerPoint Slide
+            </button>
+          </form>
+        </div>
+        <p class="footer-tip" style="text-align:center; font-size:16px; color: var(--text-color); margin-top:10px;">
+          Tip: Run this page on a local web server and use PNG/JPG images.
+        </p>
+      </div>
+      `;
+      document.getElementById("section-content").innerHTML = generatorHTML;
+      attachEEGSlideFormListener();
+    }
+  
+    function attachEEGSlideFormListener() {
+      document.getElementById("slideForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const fullName = document.getElementById("fullName").value;
+        const residency = document.getElementById("residency").value;
+        const description = document.getElementById("patternDescription").value;
+        const additionalComments = document.getElementById("additionalComments").value;
+        const fileInput = document.getElementById("eegImage");
+        const file = fileInput.files[0];
+        if (!file) {
+          alert("Please choose a PNG or JPG file first!");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const imageData = event.target.result;
+          try {
+            let pptx = new PptxGenJS();
+            let slide = pptx.addSlide();
+            slide.addText("EEG Slide Submission", {
+              x: 0.5,
+              y: 0.3,
+              w: 9,
+              fontSize: 24,
+              bold: true,
+              align: "center"
+            });
+            slide.addText(`Submitted by: ${fullName} (${residency})`, {
+              x: 0.5,
+              y: 1,
+              w: 9,
+              fontSize: 16,
+              color: "555555",
+              align: "center"
+            });
+            slide.addImage({ data: imageData, x: "3", y: "1.5", w: "4", h: "3" });
+            slide.addText("EEG Pattern Description:", {
+              x: 0.5,
+              y: 4.8,
+              w: 9,
+              fontSize: 18,
+              bold: true,
+              color: "363636"
+            });
+            slide.addText(description, {
+              x: 0.5,
+              y: 5.3,
+              w: 9,
+              fontSize: 16,
+              color: "363636"
+            });
+            if (additionalComments.trim() !== "") {
+              slide.addText("Additional Comments:", {
+                x: 0.5,
+                y: 6.2,
+                w: 9,
+                fontSize: 18,
+                bold: true,
+                color: "363636"
+              });
+              slide.addText(additionalComments, {
+                x: 0.5,
+                y: 6.7,
+                w: 9,
+                fontSize: 16,
+                color: "363636"
+              });
+            }
+            pptx.writeFile({ fileName: "EEG_Slide.pptx" })
+              .then(() => {
+                alert("PowerPoint slide generated and downloaded!");
+              })
+              .catch((err) => {
+                alert("Error generating PPT. Check console for details.");
+              });
+          } catch (err) {
+            alert("An unexpected error occurred. Check console for details.");
+          }
+        };
+        reader.readAsDataURL(file);
+      });
     }
   
     /********************************************
@@ -1232,8 +1515,11 @@
      ********************************************/
     const footer = document.getElementById("footer");
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) { footer.classList.add("show-footer"); }
-      else { footer.classList.remove("show-footer"); }
+      if (window.scrollY > 300) {
+        footer.classList.add("show-footer");
+      } else {
+        footer.classList.remove("show-footer");
+      }
     });
   
     /********************************************
@@ -1241,8 +1527,11 @@
      ********************************************/
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
-      if (window.scrollY > 100) { header.classList.add("shrink"); }
-      else { header.classList.remove("shrink"); }
+      if (window.scrollY > 100) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
     });
   </script>
 </body>
