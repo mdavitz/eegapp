@@ -36,6 +36,7 @@
       --hover-bg: #e6f2ff;
       --shadow-color: rgba(0, 0, 0, 0.2);
       --table-header-bg: #f8f9fa; /* Table header background (light mode) */
+      --dropdown-hover-bg: #f9f9f9; /* Dropdown hover background (light mode) */
     }
     .dark {
       --primary-color: #1a1a1a;
@@ -49,6 +50,7 @@
       --hover-bg: #333;
       --shadow-color: rgba(0, 0, 0, 0.8);
       --table-header-bg: #333; /* Table header background (dark mode) */
+      --dropdown-hover-bg: #2a2a2a; /* Dropdown hover background (dark mode) */
     }
 
     /*=====================================================
@@ -97,7 +99,6 @@
       font-size: 1rem;
       opacity: 0.9;
     }
-    /* Smaller header padding on mobile */
     @media (max-width: 480px) {
       header {
         padding: 0.8em 0.5em;
@@ -120,7 +121,7 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
     .dropdown:hover {
-      background: #f9f9f9;
+      background: var(--dropdown-hover-bg);
     }
     #dropdown-label {
       display: inline-block;
@@ -410,7 +411,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
       font-size: 0.9rem;
-      z-index: 2000; /* ensure it's above other elements */
+      z-index: 2000;
     }
     .dark-mode-float-btn:hover {
       background: #00509e;
@@ -836,7 +837,7 @@
     ];
 
     /********************************************
-     * MAIN SECTIONS: Epilepsy Rotation, etc.
+     * MAIN SECTIONS: Epilepsy Rotation, Natus Instructions, ACNS Criteria, EEG Videos, References
      ********************************************/
     const sections = [
       {
@@ -918,7 +919,7 @@
                 </tr>
                 <tr>
                   <td style="padding:8px; border:1px solid var(--border-color);">1-5 PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Elective admission H&Ps, consults, follow-up on LTM EEG, read new inpatient EEGs, etc.</td>
+                  <td style="padding:8px; border:1px solid var(--border-color);">Elective admission H&amp;Ps, consults, follow-up on LTM EEG, read new inpatient EEGs, etc.</td>
                 </tr>
               </tbody>
             </table>
@@ -945,7 +946,7 @@
                   <td style="padding:8px; border:1px solid var(--border-color);">Resident continuity clinic or faculty clinic, ambulatory EEG readings, etc.</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="padding:8px; border:1px solid var(--border-color);">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics & EEG readings.</td>
+                  <td colspan="2" style="padding:8px; border:1px solid var(--border-color);">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings.</td>
                 </tr>
               </tbody>
             </table>
@@ -998,7 +999,6 @@
         title: "Natus Instructions",
         type: "info",
         content: `
-          <!-- FULL HTML for Natus Instructions -->
           <div class="info-box">
             <h2>Natus Instructions</h2>
             <h3>Step 1: Launch and Log In</h3>
@@ -1037,7 +1037,6 @@
         title: "ACNS Criteria",
         type: "acns",
         content: `
-          <!-- FULL HTML for ACNS Criteria with embedded PDF -->
           <div class="acns-content" style="padding:20px;">
             <h2 style="text-align:center; margin-bottom:20px;">ACNS Criteria</h2>
             <object data="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
@@ -1057,7 +1056,6 @@
         title: "References",
         type: "references",
         content: `
-          <!-- FULL HTML for References -->
           <div class="references">
             <h2>References</h2>
             <ol>
@@ -1088,12 +1086,11 @@
       }
     ];
 
-    // Global state
+    // Global state variables
     let currentSectionIndex = 0; 
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
-
     const sectionContent = document.getElementById("section-content");
 
     // Setup the top-level dropdown navigation
@@ -1179,7 +1176,7 @@
       setupVideoAndQuiz(vid);
     }
 
-    // Setup the quiz functionality
+    // Setup the quiz functionality for a given video
     function setupVideoAndQuiz(vid) {
       const videoEl = document.getElementById("video");
       const videoContainer = document.getElementById("video-container");
@@ -1240,14 +1237,12 @@
         questionContainer.appendChild(answersDiv);
       }
 
-      // Show quiz when video ends
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
 
-      // "Skip to Quiz" button
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
@@ -1255,7 +1250,6 @@
         showQuestion();
       });
 
-      // Next question
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
@@ -1263,7 +1257,6 @@
         }
       });
 
-      // Return to video
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
@@ -1271,7 +1264,6 @@
         videoEl.play();
       });
 
-      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
@@ -1377,7 +1369,6 @@
               });
             }
 
-            // Generate and download
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
               .then(() => {
                 console.log("PowerPoint file generated and downloaded.");
