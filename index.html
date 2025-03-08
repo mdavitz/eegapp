@@ -215,10 +215,9 @@
     }
   
     /*-----------------------------------------------
-      INFO BOXES & REFERENCES
+      INFO BOXES & STYLING
     -----------------------------------------------*/
-    .info-box,
-    .references {
+    .info-box {
       background: var(--info-bg);
       padding: 1.2em;
       border-radius: 8px;
@@ -226,8 +225,7 @@
       margin-bottom: 1.5em;
       transition: background var(--transition-duration);
     }
-    .info-box h2,
-    .references h2 {
+    .info-box h2 {
       margin-bottom: 0.75em;
     }
   
@@ -254,30 +252,6 @@
     }
     .pm-workflow {
       background: var(--table-header-bg);
-    }
-  
-    /*-----------------------------------------------
-      BUTTONS
-    -----------------------------------------------*/
-    .btn-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1em;
-      margin: 1em 0;
-    }
-    .upload-btn {
-      padding: 0.75em 1.5em;
-      font-size: 1rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background var(--transition-duration);
-    }
-    .upload-btn:hover {
-      background-color: #0069d9;
     }
   
     /*-----------------------------------------------
@@ -448,84 +422,42 @@
     }
   
     /*-----------------------------------------------
-      REFERENCES STYLING
+      RESPONSIVE CARD LAYOUT (Teaching Rounds Table)
     -----------------------------------------------*/
-    .references {
-      background: var(--info-bg);
-      padding: 1.5em;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px var(--shadow-color);
-      margin-bottom: 1.5em;
-      font-size: 0.95rem;
-    }
-    .references h2 {
-      margin-bottom: 1em;
-      font-size: 1.4rem;
-      text-align: center;
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 0.5em;
-    }
-    .references ol {
-      list-style-type: decimal;
-      margin-left: 1.5em;
-      padding-left: 1em;
-    }
-    .references ol li {
-      margin-bottom: 1em;
-      line-height: 1.6;
-      color: var(--text-color);
-    }
-    .references a {
-      color: var(--accent-color);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .references a:hover {
-      color: var(--secondary-color);
+    @media (max-width: 600px) {
+      .responsive-table thead {
+        display: none;
+      }
+      .responsive-table,
+      .responsive-table tbody,
+      .responsive-table tr,
+      .responsive-table td {
+        display: block;
+        width: 100%;
+      }
+      .responsive-table tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+      .responsive-table td {
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .responsive-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.8rem;
+        width: 45%;
+        font-weight: bold;
+        white-space: nowrap;
+      }
     }
   
     /*-----------------------------------------------
-      FIXED FOOTER CONTROLS
-    -----------------------------------------------*/
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--info-bg);
-      border-top: 1px solid var(--border-color);
-      padding: 1em;
-      text-align: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-duration);
-    }
-    footer.show-footer {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .footer-btns {
-      display: inline-flex;
-      gap: 1em;
-      align-items: center;
-    }
-    .footer-btns button {
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background var(--transition-duration);
-      font-size: 0.9rem;
-    }
-    .footer-btns button:hover {
-      background: #00509e;
-    }
-  
-    /*-----------------------------------------------
-      IMAGE STYLING (For Natus Steps)
+      IMAGE STYLING (For Natus Steps, ACNS, etc.)
     -----------------------------------------------*/
     .step-image {
       display: block;
@@ -568,41 +500,66 @@
       position: relative;
       z-index: 0;
     }
-    
+
     /*-----------------------------------------------
-      Responsive Card Layout for the Teaching Rounds Table
-      (Modified table only)
+      MODERN BUTTON STYLE (for EEG Index & Milestones)
     -----------------------------------------------*/
-    @media (max-width: 600px) {
-      .responsive-table thead {
-        display: none;
-      }
-      .responsive-table,
-      .responsive-table tbody,
-      .responsive-table tr,
-      .responsive-table td {
-        display: block;
-        width: 100%;
-      }
-      .responsive-table tr {
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--border-color);
-      }
-      .responsive-table td {
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-        border: none;
-        border-bottom: 1px solid var(--border-color);
-      }
-      .responsive-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0.8rem;
-        width: 45%;
-        font-weight: bold;
-        white-space: nowrap;
-      }
+    .btn-modern {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      padding: 0.75em 1.5em;
+      cursor: pointer;
+      transition: background var(--transition-duration), transform 0.2s;
+    }
+    .btn-modern:hover {
+      background-color: #0059d9;
+      transform: translateY(-2px);
+    }
+
+    /*-----------------------------------------------
+      FIXED FOOTER CONTROLS
+    -----------------------------------------------*/
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--info-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 1em;
+      text-align: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-duration);
+    }
+    footer.show-footer {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .footer-btns {
+      display: inline-flex;
+      gap: 1em;
+      align-items: center;
+    }
+    .footer-btns button {
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background var(--transition-duration);
+      font-size: 0.9rem;
+    }
+    .footer-btns button:hover {
+      background: #00509e;
     }
   </style>
 </head>
@@ -622,7 +579,6 @@
       <div data-index="1"><i class="fa-solid fa-info-circle"></i> Natus Instructions</div>
       <div data-index="2"><i class="fa-solid fa-file-pdf"></i> ACNS Criteria</div>
       <div data-index="3"><i class="fa-solid fa-video"></i> EEG Videos</div>
-      <div data-index="4"><i class="fa-solid fa-book"></i> References</div>
     </div>
   </div>
 
@@ -634,10 +590,11 @@
   <!-- FIXED FOOTER CONTROLS -->
   <footer id="footer">
     <div class="footer-btns">
-      <!-- Updated Font Size Button: Big "A" / Small "a" -->
+      <!-- Font Size Toggle Button -->
       <button onclick="toggleFontSize()" aria-label="Toggle Font Size">
         <span style="font-size:1.4em;">A</span>/<span style="font-size:0.8em;">a</span>
       </button>
+      <!-- Dark Mode Toggle Button -->
       <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
     </div>
   </footer>
@@ -1069,7 +1026,7 @@
     ];
 
     /********************************************
-     * MAIN SECTIONS ARRAY (Epilepsy Rotation, Natus, ACNS, EEG Videos, References)
+     * SECTIONS ARRAY
      ********************************************/
     const sections = [
       {
@@ -1105,11 +1062,16 @@
                 </tr>
               </tbody>
             </table>
-            <div class="btn-row">
-              <button class="upload-btn" onclick="openEEGIndexApp()">EEG Index</button>
-              <button class="upload-btn" onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">Epilepsy Milestones</button>
+            <!-- Modernized Buttons -->
+            <div class="btn-row" style="margin-top:1em; display:flex; gap:1em; justify-content:center;">
+              <button class="btn-modern" onclick="openEEGIndexApp()">
+                <i class="fa-solid fa-brain"></i> EEG Index
+              </button>
+              <button class="btn-modern" onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">
+                <i class="fa-solid fa-file-pdf"></i> Epilepsy Milestones
+              </button>
             </div>
-            <p>
+            <p style="margin-top:1em;">
               The <strong>Epilepsy Milestones</strong> document outlines the key competencies and expectations during your rotation.
             </p>
           </div>
@@ -1154,12 +1116,38 @@
                 </tr>
               </tbody>
             </table>
-          </div>
 
+            <h3>Outpatient Rotation</h3>
+            <table style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr style="background:var(--table-header-bg);">
+                  <th style="padding:8px; border:1px solid var(--border-color);">Time</th>
+                  <th style="padding:8px; border:1px solid var(--border-color);">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:8px; border:1px solid var(--border-color);">8-9 AM</td>
+                  <td style="padding:8px; border:1px solid var(--border-color);">Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid var(--border-color);">AM</td>
+                  <td style="padding:8px; border:1px solid var(--border-color);">Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid var(--border-color);">PM</td>
+                  <td style="padding:8px; border:1px solid var(--border-color);">Resident continuity clinic or faculty clinic, ambulatory EEG readings</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding:8px; border:1px solid var(--border-color);">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
-            <!-- Modified table: Responsive Card Layout -->
             <table class="responsive-table">
               <thead>
                 <tr>
@@ -1196,7 +1184,7 @@
               </tbody>
             </table>
           </div>
-        `,
+        `
       },
       {
         title: "Natus Instructions",
@@ -1243,58 +1231,32 @@
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <object
-              data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf"
-              type="application/pdf"
-              style="width: 100%; height: 100vh;"
-            >
-              <p>Your browser does not support embedded PDFs.
-                 <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
-              </p>
-            </object>
+            <!-- ACNS PNG images replacing PDF -->
+            <img src="ACNS1.png" alt="ACNS Criteria 1" class="step-image" />
+            <img src="ACNS2.png" alt="ACNS Criteria 2" class="step-image" />
+            <img src="ACNS3.png" alt="ACNS Criteria 3" class="step-image" />
+            <img src="ACNS4.png" alt="ACNS Criteria 4" class="step-image" />
+            <p style="text-align:center; margin-top:1em;">
+              <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart. 
+              <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">
+                <i class="fa-solid fa-link"></i> Download PDF
+              </a>
+            </p>
           </div>
         `
       },
       {
         title: "EEG Videos",
         type: "videoGroup",
-        videoSections: videoSections
-      },
-      {
-        title: "References",
-        type: "references",
-        content: `
-          <div class="references">
-            <h2>References</h2>
-            <ol>
-              <li>
-                <strong>Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM.</strong>
-                A video-based introductory EEG curriculum for neurology residents.
-                <em>MedEdPORTAL</em>. 2017;13:10570.
-                <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
-                  <i class="fa-solid fa-link"></i> Link
-                </a>
-              </li>
-              <li>
-                Distributed under the Creative Commons Attribution-NonCommercial-ShareAlike license.
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">
-                  <i class="fa-solid fa-link"></i> License Info
-                </a>
-              </li>
-              <li>
-                See also the
-                <a href="https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf" target="_blank">
-                  <i class="fa-solid fa-link"></i> Epilepsy Milestones
-                </a>
-                for rotation expectations.
-              </li>
-              <li>
-                <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart.
-                <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">
-                  <i class="fa-solid fa-link"></i> Download PDF
-                </a>
-              </li>
-            </ol>
+        videoSections: videoSections,
+        reference: `
+          <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
+            <p>
+              <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570. 
+              <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
+                <i class="fa-solid fa-link"></i> Link
+              </a>
+            </p>
           </div>
         `
       }
@@ -1307,7 +1269,7 @@
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
-      if (section.type === "info" || section.type === "references") {
+      if (section.type === "info") {
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
         renderVideoList();
@@ -1330,6 +1292,10 @@
         html += `<li data-vid-index="${i}">${vid.title}</li>`;
       });
       html += `</ul></div>`;
+      // Append the curriculum reference below the video list
+      if (group.reference) {
+        html += group.reference;
+      }
       sectionContent.innerHTML = html;
 
       const subList = document.getElementById("video-sub-list");
@@ -1370,6 +1336,15 @@
             <button class="next-section-btn" id="next-section-btn" style="display:none;">Back to Video List</button>
           </div>
           <div class="final-score" id="final-score"></div>
+        </div>
+        <!-- Curriculum reference appended to each video -->
+        <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
+          <p>
+            <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570. 
+            <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
+              <i class="fa-solid fa-link"></i> Link
+            </a>
+          </p>
         </div>
       `;
       setupVideoQuiz(vid);
@@ -1598,7 +1573,7 @@
     // Initially load the default section (Epilepsy Rotation)
     renderSection();
 
-    // FIXED FOOTER CONTROLS: Show on Scroll
+    // Show the fixed footer on scroll
     const footer = document.getElementById("footer");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
@@ -1608,7 +1583,7 @@
       }
     });
 
-    // SHRINK HEADER ON SCROLL
+    // Shrink header on scroll
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
       if (window.scrollY > 100) {
