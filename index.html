@@ -568,6 +568,42 @@
       position: relative;
       z-index: 0;
     }
+    
+    /*-----------------------------------------------
+      Responsive Card Layout for the Teaching Rounds Table
+      (Modified table only)
+    -----------------------------------------------*/
+    @media (max-width: 600px) {
+      .responsive-table thead {
+        display: none;
+      }
+      .responsive-table,
+      .responsive-table tbody,
+      .responsive-table tr,
+      .responsive-table td {
+        display: block;
+        width: 100%;
+      }
+      .responsive-table tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+      .responsive-table td {
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .responsive-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.8rem;
+        width: 45%;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1118,77 +1154,49 @@
                 </tr>
               </tbody>
             </table>
-
-            <h3>Outpatient Rotation</h3>
-            <table style="width:100%; border-collapse:collapse;">
-              <thead>
-                <tr style="background:var(--table-header-bg);">
-                  <th style="padding:8px; border:1px solid var(--border-color);">Time</th>
-                  <th style="padding:8px; border:1px solid var(--border-color);">Activity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">8-9 AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
-                </tr>
-                <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
-                </tr>
-                <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Resident continuity clinic or faculty clinic, ambulatory EEG readings</td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="padding:8px; border:1px solid var(--border-color);">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
 
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
-            <div class="table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Seminar</th>
-                    <th>Day/Time</th>
-                    <th>Location</th>
-                    <th>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Epilepsy Surgery Conference (mandatory)</td>
-                    <td>Wed 4-5:30 PM</td>
-                    <td>Levy Library (MSH) / Zoom</td>
-                    <td>Epilepsy surgery cases, comprehensive team</td>
-                  </tr>
-                  <tr>
-                    <td>Teaching Rounds / Interesting EEGs (mandatory)</td>
-                    <td>Wed 1-2 PM</td>
-                    <td>Zoom</td>
-                    <td>
-                      1st Wed: ICU EEGs (joint with NSICU)<br/>
-                      2nd &amp; 4th Wed: Faculty lecture series<br/>
-                      3rd Wed: Interesting EEGs<br/>
-                      5th Wed: Other topics
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Grand Rounds</td>
-                    <td>Fri 8-9 AM</td>
-                    <td>Hess Center / Remote Access</td>
-                    <td>Neurology Grand Rounds (faculty, fellows, residents, students)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <!-- Modified table: Responsive Card Layout -->
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Seminar</th>
+                  <th>Day/Time</th>
+                  <th>Location</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Seminar">Epilepsy Surgery Conference (mandatory)</td>
+                  <td data-label="Day/Time">Wed 4-5:30 PM</td>
+                  <td data-label="Location">Levy Library (MSH) / Zoom</td>
+                  <td data-label="Notes">Epilepsy surgery cases, comprehensive team</td>
+                </tr>
+                <tr>
+                  <td data-label="Seminar">Teaching Rounds / Interesting EEGs (mandatory)</td>
+                  <td data-label="Day/Time">Wed 1-2 PM</td>
+                  <td data-label="Location">Zoom</td>
+                  <td data-label="Notes">
+                    1st Wed: ICU EEGs (joint with NSICU)<br/>
+                    2nd &amp; 4th Wed: Faculty lecture series<br/>
+                    3rd Wed: Interesting EEGs<br/>
+                    5th Wed: Other topics
+                  </td>
+                </tr>
+                <tr>
+                  <td data-label="Seminar">Grand Rounds</td>
+                  <td data-label="Day/Time">Fri 8-9 AM</td>
+                  <td data-label="Location">Hess Center / Remote Access</td>
+                  <td data-label="Notes">Neurology Grand Rounds (faculty, fellows, residents, students)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        `
+        `,
       },
       {
         title: "Natus Instructions",
@@ -1232,17 +1240,18 @@
       {
         title: "ACNS Criteria",
         type: "info",
-        /* 
-          REPLACED the PDF embed with the four images:
-          ACNS1.png, ACNS2.png, ACNS3.png, ACNS4.png
-        */
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <img src="ACNS1.png" alt="ACNS Criteria 1" class="step-image" />
-            <img src="ACNS2.png" alt="ACNS Criteria 2" class="step-image" />
-            <img src="ACNS3.png" alt="ACNS Criteria 3" class="step-image" />
-            <img src="ACNS4.png" alt="ACNS Criteria 4" class="step-image" />
+            <object
+              data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf"
+              type="application/pdf"
+              style="width: 100%; height: 100vh;"
+            >
+              <p>Your browser does not support embedded PDFs.
+                 <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
+              </p>
+            </object>
           </div>
         `
       },
