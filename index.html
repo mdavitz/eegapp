@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <!-- Ensures responsive scaling on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+  
+  <!-- Google Fonts: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  
   <!-- Favicon for browser tabs -->
   <link rel="icon" type="image/png" href="logo.png" />
-
   <!-- Apple Touch Icon for iOS home screen -->
   <link rel="apple-touch-icon" href="logo.png" />
 
-  <!-- Open Graph meta tags for link previews (update the URLs to your actual domain) -->
+  <!-- Open Graph meta tags for link previews -->
   <meta property="og:title" content="Video-Based EEG Curriculum" />
   <meta property="og:description" content="Self-Assessment with Videos & Quizzes" />
   <meta property="og:image" content="https://example.com/logo.png" />
@@ -19,24 +21,29 @@
 
   <title>Video-Based EEG Curriculum</title>
   <style>
-    /* Basic reset */
+    /* Basic reset and global styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: #f0f2f5;
       color: #333;
-      line-height: 1.5;
+      line-height: 1.6;
     }
-    /* Header styling */
+    
+    /* Sticky header with drop shadow */
     header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       background: linear-gradient(135deg, #003366, #00509e);
       color: #fff;
       text-align: center;
       padding: 1.5em 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       margin-bottom: 1em;
     }
     .logo {
@@ -53,6 +60,7 @@
       font-size: 1rem;
       opacity: 0.9;
     }
+    
     /* Dropdown Navigation */
     .dropdown {
       position: relative;
@@ -63,6 +71,10 @@
       padding: 0.8em 1em;
       font-size: 0.9rem;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .dropdown:hover {
+      background: #f9f9f9;
     }
     #dropdown-label {
       display: inline-block;
@@ -80,11 +92,13 @@
       width: 100%;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       z-index: 100;
+      transition: opacity 0.3s ease;
     }
     .dropdown-menu div {
       padding: 0.8em 1em;
       border-bottom: 1px solid #eee;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     .dropdown-menu div:hover {
       background: #e6f2ff;
@@ -92,13 +106,15 @@
     .dropdown.active .dropdown-menu {
       display: block;
     }
+    
     /* Main container */
     .container {
       max-width: 650px;
       margin: 0 auto;
       padding: 0 1em 2em;
     }
-    /* Info box and References */
+    
+    /* Info box and References styling */
     .info-box,
     .references {
       background: #fff;
@@ -110,12 +126,12 @@
     .info-box h2, .references h2 {
       margin-bottom: 0.75em;
     }
+    
     /* Table styling */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
-      margin-bottom: 20px;
+      margin: 10px 0 20px;
     }
     table, th, td {
       border: 1px solid #ccc;
@@ -127,7 +143,8 @@
     th {
       background-color: #f8f9fa;
     }
-    /* Buttons for EEG Index & Milestones */
+    
+    /* Button styling */
     .btn-row {
       display: flex;
       justify-content: center;
@@ -136,21 +153,20 @@
       margin: 1em 0;
     }
     .upload-btn {
-      display: inline-block;
       padding: 0.75em 1.5em;
-      margin: 0.5em;
       font-size: 1rem;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
     .upload-btn:hover {
       background-color: #0069d9;
     }
-    /* EEG Videos sub-list styling */
+    
+    /* Video list styling */
     .video-list {
       background: #fff;
       padding: 1em;
@@ -169,10 +185,12 @@
       padding: 0.6em 0;
       cursor: pointer;
       border-bottom: 1px solid #eee;
+      transition: background 0.3s ease;
     }
     .video-list li:hover {
       background-color: #e6f2ff;
     }
+    
     /* Video container styling */
     .video-container {
       text-align: center;
@@ -187,20 +205,19 @@
       border: 1px solid #ccc;
     }
     .skip-btn {
-      display: inline-block;
       padding: 0.7em 1.2em;
-      margin: 0.5em 0;
       font-size: 1rem;
       background-color: #28a745;
       border: none;
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
     .skip-btn:hover {
       background-color: #218838;
     }
+    
     /* Quiz container styling */
     .quiz-container {
       background: #fff;
@@ -225,7 +242,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
     .answers button:hover {
       background-color: #d6d8db;
@@ -249,6 +266,7 @@
       border-radius: 4px;
       border: 1px solid #f5c6cb;
     }
+    
     /* Quiz navigation buttons */
     .buttons-row {
       margin-top: 1em;
@@ -266,7 +284,7 @@
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
       text-align: center;
     }
     .next-btn {
@@ -293,7 +311,8 @@
       font-size: 1.1rem;
       font-weight: bold;
     }
-    /* References spacing */
+    
+    /* References styling */
     .references ol {
       margin-left: 1.5rem;
       margin-top: 0.5rem;
@@ -302,23 +321,22 @@
       margin-bottom: 1rem;
       line-height: 1.5;
     }
-    /* Slightly reduce table font size on narrow screens */
+    
+    /* Responsive adjustments for narrow screens */
     @media (max-width: 480px) {
       table, th, td {
         font-size: 0.9rem;
       }
     }
   </style>
-  <!-- Include PptxGenJS from jsDelivr for the EEG Slide Generator application -->
+  <!-- Include PptxGenJS from jsDelivr -->
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
 </head>
 <body>
-
   <header>
-    <!-- Logo image; ensure logo.png is in the same folder -->
     <img src="logo.png" alt="EEG Logo" class="logo" />
     <h1>Video-Based EEG Curriculum</h1>
-    <p>Self-Assessment with Videos & Quizzes</p>
+    <p>Self-Assessment with Videos &amp; Quizzes</p>
   </header>
 
   <!-- Dropdown Navigation -->
@@ -338,9 +356,7 @@
   </div>
 
   <script>
-    /********************************************
-     * Dropdown Toggle Logic
-     ********************************************/
+    // Dropdown Toggle Logic
     const dropdown = document.getElementById("dropdown");
     const dropdownMenu = document.getElementById("dropdown-menu");
 
@@ -348,16 +364,13 @@
       e.stopPropagation();
       dropdown.classList.toggle("active");
     });
-
     document.addEventListener("click", (e) => {
       if (!dropdown.contains(e.target)) {
         dropdown.classList.remove("active");
       }
     });
 
-    /********************************************
-     * Video Sections with Quiz Data (10 videos)
-     ********************************************/
+    // Video Sections with Quiz Data (10 videos)
     const videoSections = [
       {
         title: "Introduction to EEG",
@@ -718,9 +731,7 @@
       }
     ];
 
-    /********************************************
-     * Main Sections: Epilepsy Rotation, Natus Instructions, ACNS Criteria, EEG Videos, References
-     ********************************************/
+    // Main Sections: Epilepsy Rotation, Natus Instructions, ACNS Criteria, EEG Videos, References
     const sections = [
       {
         title: "Epilepsy Rotation",
@@ -859,7 +870,7 @@
                     <td>Zoom</td>
                     <td>
                       1st Wed: ICU EEGs (joint with NSICU)<br/>
-                      2nd & 4th Wed: Faculty lecture series<br/>
+                      2nd &amp; 4th Wed: Faculty lecture series<br/>
                       3rd Wed: Interesting EEGs<br/>
                       5th Wed: Other topics
                     </td>
@@ -921,7 +932,7 @@
           <div class="acns-content" style="padding:20px;">
             <h2 style="text-align:center; margin-bottom:20px;">ACNS Criteria</h2>
             <object data="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
-              <p>Your browser does not support PDFs. <a href="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.</p>
+              <p>Your browser does not support embedded PDFs. <a href="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.</p>
             </object>
           </div>
         `
@@ -970,10 +981,9 @@
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
-
     const sectionContent = document.getElementById("section-content");
 
-    // Set up the top-level dropdown navigation
+    // Setup dropdown navigation event listeners
     const menuItems = document.querySelectorAll(".dropdown-menu div");
     menuItems.forEach((item, idx) => {
       item.addEventListener("click", (e) => {
@@ -988,7 +998,7 @@
       });
     });
 
-    // Render the current section based on the selected tab
+    // Render the current section
     function renderSection() {
       const section = sections[currentSectionIndex];
       if (section.type === "info" || section.type === "acns") {
@@ -1000,7 +1010,7 @@
       }
     }
 
-    // Render the list of video topics
+    // Render the video topics list
     function renderVideoList() {
       const group = sections[currentSectionIndex];
       let html = `
@@ -1013,7 +1023,6 @@
       });
       html += `</ul></div>`;
       sectionContent.innerHTML = html;
-
       const subList = document.getElementById("video-sub-list");
       const items = subList.querySelectorAll("li");
       items.forEach(item => {
@@ -1026,11 +1035,10 @@
       });
     }
 
-    // Render the chosen video and its quiz
+    // Render the selected video and its quiz
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
       const vid = group.videoSections[videoIdx];
-
       sectionContent.innerHTML = `
         <h2 style="text-align:center; margin-bottom:1em;">${vid.title}</h2>
         <div class="video-container" id="video-container">
@@ -1052,11 +1060,10 @@
           <div class="final-score" id="final-score"></div>
         </div>
       `;
-
       setupVideoAndQuiz(vid);
     }
 
-    // Set up the quiz functionality for a given video
+    // Setup quiz functionality for a video
     function setupVideoAndQuiz(vid) {
       const videoEl = document.getElementById("video");
       const videoContainer = document.getElementById("video-container");
@@ -1068,25 +1075,20 @@
       const returnBtn = document.getElementById("return-btn");
       const nextSectionBtn = document.getElementById("next-section-btn");
       const finalScoreDiv = document.getElementById("final-score");
-
       currentQuestionIndex = 0;
       score = 0;
       quizContainer.style.display = "none";
-
       function showQuestion() {
         feedbackDiv.innerHTML = "";
         feedbackDiv.className = "";
         nextBtn.style.display = "none";
         nextSectionBtn.style.display = "none";
         finalScoreDiv.textContent = "";
-
         const currentQ = vid.questions[currentQuestionIndex];
         questionContainer.innerHTML = `<h2>${currentQ.question}</h2>`;
-
         let correctChosen = false;
         const answersDiv = document.createElement("div");
         answersDiv.className = "answers";
-
         currentQ.answers.forEach((ansObj, idx) => {
           const btn = document.createElement("button");
           btn.textContent = ansObj.text;
@@ -1096,7 +1098,6 @@
               score++;
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
-
               if (currentQuestionIndex < vid.questions.length - 1) {
                 nextBtn.style.display = "inline-block";
               } else {
@@ -1116,43 +1117,38 @@
         });
         questionContainer.appendChild(answersDiv);
       }
-
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
           showQuestion();
         }
       });
-
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
         videoEl.currentTime = 0;
         videoEl.play();
       });
-
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
     }
-
+    
     renderSection();
   </script>
 
-  <!-- New script: EEG Slide Generator application integrated into the EEG Index button -->
+  <!-- EEG Slide Generator -->
   <script>
     function openEEGIndexApp() {
       const generatorHTML = `
@@ -1175,30 +1171,29 @@
             <button type="submit" style="margin-top:20px; padding:16px; background: linear-gradient(135deg, #003366, #00509e); color:#fff; border:none; border-radius:4px; width:100%; font-size:22px; cursor:pointer;">Generate PowerPoint Slide</button>
           </form>
         </div>
-        <p class="footer-tip" style="text-align:center; font-size:16px; color:#555; margin-top:10px;">Tip: Run this page on a local web server (e.g., VS Code Live Server) and use PNG/JPG images.</p>
+        <p class="footer-tip" style="text-align:center; font-size:16px; color:#555; margin-top:10px;">
+          Tip: Run this page on a local web server (e.g., VS Code Live Server) and use PNG/JPG images.
+        </p>
       </div>
       `;
       document.getElementById("section-content").innerHTML = generatorHTML;
       attachEEGSlideFormListener();
     }
-
+    
     function attachEEGSlideFormListener() {
       document.getElementById("slideForm").addEventListener("submit", function(e) {
         e.preventDefault();
         console.log("EEG Slide Generator form submitted.");
-
         const fullName = document.getElementById("fullName").value;
         const residency = document.getElementById("residency").value;
         const description = document.getElementById("patternDescription").value;
         const additionalComments = document.getElementById("additionalComments").value;
         const fileInput = document.getElementById("eegImage");
         const file = fileInput.files[0];
-
         if (!file) {
           alert("Please choose a PNG or JPG file first!");
           return;
         }
-
         const reader = new FileReader();
         reader.onload = function(event) {
           console.log("Image loaded in EEG Slide Generator.");
@@ -1206,7 +1201,6 @@
           try {
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
-
             slide.addText("EEG Slide Submission", { x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center" });
             slide.addText(`Submitted by: ${fullName} (${residency})`, { x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center" });
             slide.addImage({
@@ -1222,7 +1216,6 @@
               slide.addText("Additional Comments:", { x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636" });
               slide.addText(additionalComments, { x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636" });
             }
-
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
               .then(() => {
                 console.log("PowerPoint file generated and downloaded from EEG Slide Generator.");
