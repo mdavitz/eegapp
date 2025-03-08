@@ -240,13 +240,54 @@
     }
 
     /*-----------------------------------------------
-      TABLES
+      CUSTOM TABLE (Improved Styling)
     -----------------------------------------------*/
-    table {
+    .custom-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 10px 0 20px;
+      margin: 1em 0;
+      background-color: #fff;
+      border: 1px solid var(--border-color);
+      font-size: 1rem;
+      border-radius: 8px;
+      overflow: hidden; /* So border-radius applies to table rows */
     }
+    .custom-table thead tr {
+      background-color: #f2f2f2;
+    }
+    .custom-table thead th {
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .custom-table th,
+    .custom-table td {
+      padding: 16px;
+      border-bottom: 1px solid #ddd;
+    }
+    .custom-table tr:hover td {
+      background-color: #fafafa;
+    }
+
+    /* Table links (replacing buttons) */
+    .table-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      color: #007bff;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+      margin-left: 0.5em;
+    }
+    .table-link:hover {
+      text-decoration: underline;
+      color: #0056b3;
+    }
+
+    /*-----------------------------------------------
+      TABLES (for schedule, etc.)
+    -----------------------------------------------*/
     table,
     th,
     td {
@@ -512,7 +553,7 @@
     }
 
     /*-----------------------------------------------
-      MODERN BUTTON STYLE (EEG Index & Milestones)
+      MODERN BUTTON STYLE (legacy references)
       Adapts to dark mode automatically by using
       var(--accent-color).
     -----------------------------------------------*/
@@ -1039,7 +1080,7 @@
 
     /********************************************
      * SECTIONS ARRAY (4 Tabs)
-     ********************************************/
+    ********************************************/
     const sections = [
       {
         title: "Epilepsy Rotation",
@@ -1048,7 +1089,7 @@
           <div class="info-box">
             <h2>Epilepsy Rotation</h2>
             <h3>Daily Expectations and Goals</h3>
-            <table>
+            <table class="custom-table">
               <thead>
                 <tr>
                   <th>Activity</th>
@@ -1066,25 +1107,32 @@
                 </tr>
                 <tr>
                   <td>Upload EEG</td>
-                  <td>Submit one interesting EEG finding using the EEG Index button.</td>
+                  <td>
+                    Submit one interesting EEG finding.
+                    <a href="#" onclick="openEEGIndexApp()" class="table-link">
+                      <i class="fa-solid fa-brain"></i> EEG Index
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>EEG Reading</td>
+                  <td>
+                    Every day you are expected to read both routine and continuous EEGs as described below.
+                  </td>
                 </tr>
                 <tr>
                   <td>Review Milestones</td>
-                  <td>Use the Epilepsy Milestones button to review rotation expectations.</td>
+                  <td>
+                    Review your rotation expectations.
+                    <a href="https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf"
+                       target="_blank"
+                       class="table-link">
+                      <i class="fa-solid fa-file-pdf"></i> Epilepsy Milestones
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <div class="btn-row" style="margin-top:1em; display:flex; gap:1em; justify-content:center;">
-              <button class="btn-modern" onclick="openEEGIndexApp()">
-                <i class="fa-solid fa-brain"></i> EEG Index
-              </button>
-              <button class="btn-modern" onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">
-                <i class="fa-solid fa-file-pdf"></i> Epilepsy Milestones
-              </button>
-            </div>
-            <p style="margin-top:1em;">
-              The <strong>Epilepsy Milestones</strong> document outlines the key competencies and expectations during your rotation.
-            </p>
           </div>
 
           <div class="info-box">
@@ -1604,7 +1652,7 @@
       }
     });
 
-    // Shrink header and fade out text as user scrolls
+    // Shrink header, fade out text, and decrease header opacity as user scrolls
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
       const scroll = window.scrollY;
@@ -1614,11 +1662,13 @@
       } else {
         header.classList.remove("shrink");
       }
-      // Fade out the h1/p from 1 -> 0 over the first 100px
+      // Fade out the header's h1 and p text from 1 -> 0 over the first 100px
       const fade = 1 - Math.min(scroll / 100, 1);
       header.querySelectorAll("h1, p").forEach(el => {
         el.style.opacity = fade;
       });
+      // Slightly decrease overall header opacity (max reduction ~10%)
+      header.style.opacity = 1 - Math.min(scroll / 1000, 0.1);
     });
   </script>
 </body>
