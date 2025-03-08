@@ -31,7 +31,6 @@
       color: #333;
       line-height: 1.5;
     }
-
     /* Header styling */
     header {
       background: linear-gradient(135deg, #003366, #00509e);
@@ -40,7 +39,6 @@
       padding: 1.5em 1em;
       margin-bottom: 1em;
     }
-    /* Logo styling: displays at top center */
     .logo {
       width: 80px;
       height: auto;
@@ -55,7 +53,6 @@
       font-size: 1rem;
       opacity: 0.9;
     }
-
     /* Dropdown Navigation */
     .dropdown {
       position: relative;
@@ -95,14 +92,12 @@
     .dropdown.active .dropdown-menu {
       display: block;
     }
-
     /* Main container */
     .container {
       max-width: 650px;
       margin: 0 auto;
       padding: 0 1em 2em;
     }
-
     /* Info box and References */
     .info-box,
     .references {
@@ -115,27 +110,23 @@
     .info-box h2, .references h2 {
       margin-bottom: 0.75em;
     }
-
-    /* Responsive table container for Teaching Rounds */
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-    }
+    /* Table styling */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1em;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
     }
     th, td {
-      border: 1px solid #ccc;
-      padding: 0.5em;
+      padding: 8px;
       text-align: left;
-      vertical-align: top;
     }
     th {
       background-color: #f8f9fa;
     }
-
     /* Buttons for EEG Index & Milestones */
     .btn-row {
       display: flex;
@@ -159,7 +150,6 @@
     .upload-btn:hover {
       background-color: #0069d9;
     }
-
     /* EEG Videos sub-list styling */
     .video-list {
       background: #fff;
@@ -183,7 +173,6 @@
     .video-list li:hover {
       background-color: #e6f2ff;
     }
-
     /* Video container styling */
     .video-container {
       text-align: center;
@@ -212,7 +201,6 @@
     .skip-btn:hover {
       background-color: #218838;
     }
-
     /* Quiz container styling */
     .quiz-container {
       background: #fff;
@@ -261,7 +249,6 @@
       border-radius: 4px;
       border: 1px solid #f5c6cb;
     }
-
     /* Quiz navigation buttons */
     .buttons-row {
       margin-top: 1em;
@@ -306,7 +293,6 @@
       font-size: 1.1rem;
       font-weight: bold;
     }
-
     /* References spacing */
     .references ol {
       margin-left: 1.5rem;
@@ -316,7 +302,6 @@
       margin-bottom: 1rem;
       line-height: 1.5;
     }
-
     /* Slightly reduce table font size on narrow screens */
     @media (max-width: 480px) {
       table, th, td {
@@ -342,8 +327,9 @@
     <div class="dropdown-menu" id="dropdown-menu">
       <div data-index="0">Epilepsy Rotation</div>
       <div data-index="1">Natus Instructions</div>
-      <div data-index="2">EEG Videos</div>
-      <div data-index="3">References</div>
+      <div data-index="2">ACNS Criteria</div>
+      <div data-index="3">EEG Videos</div>
+      <div data-index="4">References</div>
     </div>
   </div>
 
@@ -733,7 +719,7 @@
     ];
 
     /********************************************
-     * Main Sections: Epilepsy Rotation, Natus Instructions, EEG Videos, References
+     * Main Sections: Epilepsy Rotation, Natus Instructions, ACNS Criteria, EEG Videos, References
      ********************************************/
     const sections = [
       {
@@ -769,47 +755,86 @@
                 </tr>
               </tbody>
             </table>
-
             <div class="btn-row">
-              <!-- EEG Index button now opens our integrated EEG Slide Generator application -->
               <button class="upload-btn" onclick="openEEGIndexApp()">EEG Index</button>
               <button class="upload-btn" onclick="window.open('https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf','_blank')">Epilepsy Milestones</button>
             </div>
-
             <p>
-              The <strong>Epilepsy Milestones</strong> document outlines the key competencies
-              and expectations during your rotation. It serves as a guide to help you track
-              your progress, ensuring that you meet the educational benchmarks required for
-              your training.
+              The <strong>Epilepsy Milestones</strong> document outlines the key competencies and expectations during your rotation. It serves as a guide to help you track your progress, ensuring that you meet the educational benchmarks required for your training.
             </p>
           </div>
 
           <div class="info-box">
-            <h2>Resident Survival Guide (Key Info)</h2>
-
+            <h2>Rotation Schedule</h2>
             <h3>Inpatient Rotation (MSH & MSW EMU)</h3>
-            <p><strong>AM Workflow (~7am-12pm)</strong></p>
-            <p><strong>7-8 AM:</strong> Arrive and preround on EMU/epilepsy consult patients</p>
-            <p><strong>8-9 AM:</strong> Attend morning report</p>
-            <p><strong>9-10 AM:</strong> Read at least one LTM EEG, draft EEG reports</p>
-            <p><strong>10 AM-12 PM:</strong> Round with epilepsy fellow/attending</p>
-
-            <p style="margin-top:0.75em;"><strong>PM Workflow (~12-5pm)</strong></p>
-            <p><strong>12-1 PM:</strong> Neurology noon conference</p>
-            <p><strong>1-5 PM:</strong> Elective admission H&Ps, consults, follow-up on LTM EEG, read new inpatient EEGs, etc.</p>
-
-            <hr style="margin:1em 0;" />
-
+            <table style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr style="background:#f8f9fa;">
+                  <th style="padding:8px; border:1px solid #ccc;">Time</th>
+                  <th style="padding:8px; border:1px solid #ccc;">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">7-8 AM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Arrive and preround on EMU/epilepsy consult patients</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">8-9 AM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Attend morning report</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">9-10 AM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Read at least one LTM EEG, draft EEG reports</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">10 AM-12 PM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Round with epilepsy fellow/attending</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding:8px; text-align:center; background:#e9ecef; border:1px solid #ccc;">PM Workflow (~12-5pm)</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">12-1 PM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Neurology noon conference</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">1-5 PM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Elective admission H&Ps, consults, follow-up on LTM EEG, read new inpatient EEGs, etc.</td>
+                </tr>
+              </tbody>
+            </table>
+            
             <h3>Outpatient Rotation</h3>
-            <p><strong>MSH Ambulatory EEG / Outpatient (PGY-2)</strong></p>
-            <p><strong>8-9 AM:</strong> Morning report</p>
-            <p><strong>AM:</strong> Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</p>
-            <p><strong>PM:</strong> Resident continuity clinic or faculty clinic, ambulatory EEG readings, etc.</p>
-            <p><strong>MSW Outpatient (PGY-2):</strong> Similar schedule with assigned epilepsy clinics & EEG readings.</p>
+            <table style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr style="background:#f8f9fa;">
+                  <th style="padding:8px; border:1px solid #ccc;">Time</th>
+                  <th style="padding:8px; border:1px solid #ccc;">Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">8-9 AM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">AM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px; border:1px solid #ccc;">PM</td>
+                  <td style="padding:8px; border:1px solid #ccc;">Resident continuity clinic or faculty clinic, ambulatory EEG readings, etc.</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding:8px; border:1px solid #ccc;">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics & EEG readings.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-            <hr style="margin:1em 0;" />
-
-            <h3>Teaching Rounds & Conferences</h3>
+          <div class="info-box">
+            <h2>Teaching Rounds & Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
             <div class="table-responsive">
               <table>
@@ -845,12 +870,6 @@
                     <td>Hess Center / Remote Access</td>
                     <td>Neurology Grand Rounds (faculty, fellows, residents, students)</td>
                   </tr>
-                  <tr>
-                    <td>EEG Conference with Residents</td>
-                    <td>Biweekly (2nd Fri), 12-1 PM</td>
-                    <td>Anbg 14th floor conf room</td>
-                    <td>Attending/fellow present interesting EEG cases</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -863,19 +882,14 @@
         content: `
           <div class="info-box">
             <h2>Natus Instructions</h2>
-
             <h3>Step 1: Launch and Log In</h3>
             <p><strong>Power on the workstation</strong> and launch the Natus NeuroWorks application.<br/>
             <strong>Log in</strong> with your secure credentials (username/password).</p>
-
             <br/>
-
             <h3>Step 2: Open a Patient Study</h3>
             <p><strong>From the main dashboard</strong>, navigate to the Patient Studies list or use the search function to locate a specific patient record.<br/>
             <strong>Select the desired EEG study</strong> to open it in review mode.</p>
-
             <br/>
-
             <h3>Step 3: Configure the Display</h3>
             <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/>
             <strong>Adjust the display parameters</strong> as follows:<br/>
@@ -883,26 +897,32 @@
             &nbsp;&nbsp;– Set the <strong>time base</strong> to 30 (e.g., 30 mm/sec)<br/>
             &nbsp;&nbsp;– Set the <strong>high-frequency filter</strong> to 70 Hz and the <strong>low-frequency filter</strong> to 1 Hz<br/>
             &nbsp;&nbsp;– Activate any additional filters (such as a <strong>notch filter</strong>) if required</p>
-
             <br/>
-
             <h3>Step 4: Analyze the EEG</h3>
             <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
             <strong>Use built-in tools</strong> (e.g., cursors, measurement markers) to assess the amplitude, frequency, and duration of the waveforms.<br/>
             <strong>Identify patterns</strong> such as spikes, sharp waves, or rhythmic activity that may indicate epileptiform activity.<br/>
             <strong>Add annotations</strong> directly onto the waveform for any abnormal or clinically significant events.</p>
-
             <br/>
-
             <h3>Step 5: Annotate and Mark Key Events</h3>
             <p><strong>Place event markers</strong> by clicking the <strong>Event</strong>, <strong>Seizure</strong>, or <strong>IED</strong> buttons located at the top left of the Natus screen to denote seizure onsets, interictal discharges, or other relevant findings.</p>
-
             <br/>
-
             <h3>Step 6: Create an EEG Report in Epic</h3>
             <p><strong>Once the EEG review and annotations are complete</strong>, open Epic’s reporting interface.<br/>
             <strong>Generate a new EEG report</strong> and select the attendings saved smart phrases for continuous EEG from the Attendings Saved Smart Phrases section.<br/>
             <strong>Pend the note</strong> in Epic so that it can be reviewed with the attending.</p>
+          </div>
+        `
+      },
+      {
+        title: "ACNS Criteria",
+        type: "acns",
+        content: `
+          <div class="acns-content" style="padding:20px;">
+            <h2 style="text-align:center; margin-bottom:20px;">ACNS Criteria</h2>
+            <object data="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
+              <p>Your browser does not support PDFs. <a href="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.</p>
+            </object>
           </div>
         `
       },
@@ -935,6 +955,10 @@
                 </a>
                 for rotation expectations.
               </li>
+              <li>
+                <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart.
+                <a href="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Link</a>
+              </li>
             </ol>
           </div>
         `
@@ -942,7 +966,7 @@
     ];
 
     // Global state variables
-    let currentSectionIndex = 0; // 0: Epilepsy Rotation, 1: Natus Instructions, 2: EEG Videos, 3: References
+    let currentSectionIndex = 0; // 0: Epilepsy Rotation, 1: Natus Instructions, 2: ACNS Criteria, 3: EEG Videos, 4: References
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
@@ -967,7 +991,7 @@
     // Render the current section based on the selected tab
     function renderSection() {
       const section = sections[currentSectionIndex];
-      if (section.type === "info") {
+      if (section.type === "info" || section.type === "acns") {
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
         renderVideoList();
@@ -1093,14 +1117,12 @@
         questionContainer.appendChild(answersDiv);
       }
 
-      // Show quiz when video ends
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
 
-      // "Skip to Quiz" button functionality
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
@@ -1108,7 +1130,6 @@
         showQuestion();
       });
 
-      // Next question button
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
@@ -1116,7 +1137,6 @@
         }
       });
 
-      // Return to video button
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
@@ -1124,41 +1144,38 @@
         videoEl.play();
       });
 
-      // Back to video list button
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
     }
 
-    // Initially load the default section (Epilepsy Rotation)
     renderSection();
   </script>
 
   <!-- New script: EEG Slide Generator application integrated into the EEG Index button -->
   <script>
     function openEEGIndexApp() {
-      // Updated generator HTML for an ergonomic layout on an iPhone:
       const generatorHTML = `
-      <div id="generator" style="max-width:350px; margin: 0 auto;">
-        <header style="background: linear-gradient(135deg, #003366, #00509e); color: #fff; padding: 20px; text-align: center;">
-          <h2>EEG Slide Generator</h2>
+      <div id="generator" style="max-width:400px; width:90%; margin:0 auto; box-shadow:0 4px 8px rgba(0,0,0,0.15); border-radius:8px; overflow:hidden; background-color:#fff;">
+        <header style="background: linear-gradient(135deg, #003366, #00509e); color:#fff; padding:30px; text-align:center;">
+          <h2 style="font-size:28px; margin:0;">EEG Slide Generator</h2>
         </header>
-        <div class="content" style="padding: 20px;">
+        <div class="content" style="padding:20px;">
           <form id="slideForm">
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%;">
-            <label for="residency">Residency Program:</label>
-            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%;">
-            <label for="eegImage">Upload EEG Screenshot:</label>
-            <input type="file" id="eegImage" accept="image/*" required style="width:100%;">
-            <label for="patternDescription">Describe the EEG Pattern:</label>
-            <textarea id="patternDescription" rows="4" placeholder="Enter the description of the pattern" required style="width:100%;"></textarea>
-            <label for="additionalComments">Additional Comments (Optional):</label>
-            <textarea id="additionalComments" rows="3" placeholder="Enter any additional comments" style="width:100%;"></textarea>
-            <button type="submit" style="margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #003366, #00509e); color: #fff; border: none; border-radius: 4px; width: 100%; font-size: 16px; cursor: pointer;">Generate PowerPoint Slide</button>
+            <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid #ccc; border-radius:4px; margin-top:5px;">
+            <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
+            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid #ccc; border-radius:4px; margin-top:5px;">
+            <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
+            <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid #ccc; border-radius:4px; margin-top:5px;">
+            <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
+            <textarea id="patternDescription" rows="4" placeholder="Enter the description of the pattern" required style="width:100%; padding:14px; font-size:20px; border:1px solid #ccc; border-radius:4px; margin-top:5px;"></textarea>
+            <label for="additionalComments" style="font-size:20px; margin-top:15px;">Additional Comments (Optional):</label>
+            <textarea id="additionalComments" rows="3" placeholder="Enter any additional comments" style="width:100%; padding:14px; font-size:20px; border:1px solid #ccc; border-radius:4px; margin-top:5px;"></textarea>
+            <button type="submit" style="margin-top:20px; padding:16px; background: linear-gradient(135deg, #003366, #00509e); color:#fff; border:none; border-radius:4px; width:100%; font-size:22px; cursor:pointer;">Generate PowerPoint Slide</button>
           </form>
         </div>
-        <p class="footer-tip" style="text-align:center; font-size:12px; color:#555; margin-top: 10px;">Tip: Run this page on a local web server (e.g., VS Code Live Server) and use PNG/JPG images.</p>
+        <p class="footer-tip" style="text-align:center; font-size:16px; color:#555; margin-top:10px;">Tip: Run this page on a local web server (e.g., VS Code Live Server) and use PNG/JPG images.</p>
       </div>
       `;
       document.getElementById("section-content").innerHTML = generatorHTML;
@@ -1190,11 +1207,8 @@
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
 
-            // Add header text
             slide.addText("EEG Slide Submission", { x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center" });
             slide.addText(`Submitted by: ${fullName} (${residency})`, { x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center" });
-
-            // Add the image centered on the slide.
             slide.addImage({
               data: imageData,
               x: "3",
@@ -1202,15 +1216,11 @@
               w: "4",
               h: "3"
             });
-
-            // Add the EEG pattern description below the image.
-            slide.addText("EEG Pattern Description:", { x: 0.5, y: "5", w: 9, fontSize: 18, bold: true, color: "363636" });
-            slide.addText(description, { x: 0.5, y: "5.7", w: 9, fontSize: 16, color: "363636" });
-
-            // Add additional comments if provided.
+            slide.addText("EEG Pattern Description:", { x: 0.5, y: 4.8, w: 9, fontSize: 18, bold: true, color: "363636" });
+            slide.addText(description, { x: 0.5, y: 5.3, w: 9, fontSize: 16, color: "363636" });
             if (additionalComments.trim() !== "") {
-              slide.addText("Additional Comments:", { x: 0.5, y: "7", w: 9, fontSize: 18, bold: true, color: "363636" });
-              slide.addText(additionalComments, { x: 0.5, y: "7.7", w: 9, fontSize: 16, color: "363636" });
+              slide.addText("Additional Comments:", { x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636" });
+              slide.addText(additionalComments, { x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636" });
             }
 
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
