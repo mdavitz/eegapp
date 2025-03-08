@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <!-- Responsive scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+  
   <!-- Google Fonts: Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome for Icons in navigation -->
+  
+  <!-- Font Awesome for Navigation Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  
   <!-- Favicon / Touch Icon -->
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
-
+  
   <!-- Open Graph meta tags -->
   <meta property="og:title" content="EEG Curriculum" />
   <meta property="og:description" content="Engaging Videos & Self-Assessment Tools" />
   <meta property="og:image" content="https://example.com/logo.png" />
   <meta property="og:url" content="https://example.com" />
-
+  
   <title>EEG Curriculum</title>
-
+  
   <style>
     /*-----------------------------------------------
       THEME VARIABLES
@@ -55,28 +55,21 @@
       --table-header-bg: #333;
       --dropdown-hover-bg: #2a2a2a;
     }
-    body.large-font {
-      font-size: 1.2em;
-    }
-
+    body.large-font { font-size: 1.2em; }
+  
     /*-----------------------------------------------
       GLOBAL RESET
     -----------------------------------------------*/
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
       transition: background 0.3s, color 0.3s, font-size 0.3s;
-      /* Prevent content from being hidden by fixed footer */
-      padding-bottom: 80px;
+      padding-bottom: 80px; /* space for fixed footer */
     }
-
+  
     /*-----------------------------------------------
       HEADER
     -----------------------------------------------*/
@@ -99,22 +92,12 @@
       margin-left: auto;
       margin-right: auto;
     }
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 0.3em;
-    }
-    header p {
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-    @media (max-width: 480px) {
-      header {
-        padding: 1em;
-      }
-    }
-
+    header h1 { font-size: 1.8rem; margin-bottom: 0.3em; }
+    header p { font-size: 1rem; opacity: 0.9; }
+    @media (max-width: 480px) { header { padding: 1em; } }
+  
     /*-----------------------------------------------
-      NAVIGATION: Dropdown on Small, Horizontal on Large
+      NAVIGATION
     -----------------------------------------------*/
     .dropdown {
       position: relative;
@@ -129,12 +112,8 @@
       text-align: left;
       display: block;
     }
-    .dropdown:hover {
-      background: var(--dropdown-hover-bg);
-    }
-    #dropdown-label {
-      display: inline-block;
-    }
+    .dropdown:hover { background: var(--dropdown-hover-bg); }
+    #dropdown-label { display: inline-block; }
     .dropdown::after {
       content: "▼";
       float: right;
@@ -149,31 +128,28 @@
       color: var(--text-color);
       box-shadow: 0 2px 4px var(--shadow-color);
       z-index: 100;
+      transition: opacity 0.3s ease;
     }
     .dropdown-menu div {
       padding: 0.8em 1em;
       border-bottom: 1px solid var(--border-color);
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
+    /* New hover effect: scale slightly on hover */
     .dropdown-menu div:hover {
       background: var(--hover-bg);
+      transform: scale(1.05);
     }
-    .dropdown.active .dropdown-menu {
-      display: block;
-    }
+    .dropdown.active .dropdown-menu { display: block; }
     @media (min-width: 768px) {
       .dropdown {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      #dropdown-label {
-        display: none;
-      }
-      .dropdown::after {
-        content: none;
-      }
+      #dropdown-label { display: none; }
+      .dropdown::after { content: none; }
       .dropdown-menu {
         display: flex !important;
         position: static;
@@ -184,26 +160,20 @@
         border: none;
         padding: 10px 20px;
         margin: 0 5px;
+        transition: background 0.3s, transform 0.2s;
       }
-      .dropdown-menu div:hover {
-        background: var(--hover-bg);
-      }
+      .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
     }
-
+  
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
-    .container {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 0 1em 2em;
-    }
-
+    .container { max-width: 650px; margin: 0 auto; padding: 0 1em 2em; }
+  
     /*-----------------------------------------------
       INFO BOXES & REFERENCES
     -----------------------------------------------*/
-    .info-box,
-    .references {
+    .info-box, .references {
       background: var(--info-bg);
       padding: 1em;
       border-radius: 6px;
@@ -211,10 +181,8 @@
       margin-bottom: 1em;
       transition: background 0.3s;
     }
-    .info-box h2, .references h2 {
-      margin-bottom: 0.75em;
-    }
-
+    .info-box h2, .references h2 { margin-bottom: 0.75em; }
+  
     /*-----------------------------------------------
       TABLE STYLING
     -----------------------------------------------*/
@@ -223,17 +191,10 @@
       border-collapse: collapse;
       margin: 10px 0 20px;
     }
-    table, th, td {
-      border: 1px solid var(--border-color);
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: var(--table-header-bg);
-    }
-
+    table, th, td { border: 1px solid var(--border-color); }
+    th, td { padding: 8px; text-align: left; }
+    th { background-color: var(--table-header-bg); }
+  
     /*-----------------------------------------------
       BUTTONS
     -----------------------------------------------*/
@@ -254,10 +215,8 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .upload-btn:hover {
-      background-color: #0069d9;
-    }
-
+    .upload-btn:hover { background-color: #0069d9; }
+  
     /*-----------------------------------------------
       VIDEO LIST
     -----------------------------------------------*/
@@ -268,30 +227,20 @@
       box-shadow: 0 2px 6px var(--shadow-color);
       margin-bottom: 1em;
     }
-    .video-list h2 {
-      margin-bottom: 0.75em;
-    }
-    .video-list ul {
-      list-style: none;
-      margin-top: 0.5em;
-    }
+    .video-list h2 { margin-bottom: 0.75em; }
+    .video-list ul { list-style: none; margin-top: 0.5em; }
     .video-list li {
       padding: 0.6em 0;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
       transition: background 0.3s;
     }
-    .video-list li:hover {
-      background: var(--hover-bg);
-    }
-
+    .video-list li:hover { background: var(--hover-bg); }
+  
     /*-----------------------------------------------
       VIDEO CONTAINER
     -----------------------------------------------*/
-    .video-container {
-      text-align: center;
-      margin-bottom: 1em;
-    }
+    .video-container { text-align: center; margin-bottom: 1em; }
     video {
       width: 100%;
       max-width: 650px;
@@ -310,10 +259,8 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    .skip-btn:hover {
-      background-color: #218838;
-    }
-
+    .skip-btn:hover { background-color: #218838; }
+  
     /*-----------------------------------------------
       QUIZ CONTAINER
     -----------------------------------------------*/
@@ -324,9 +271,12 @@
       box-shadow: 0 2px 6px var(--shadow-color);
       display: none;
     }
-    .quiz-container h2 {
-      font-size: 1.15rem;
-      margin-bottom: 0.75em;
+    .quiz-container h2 { font-size: 1.15rem; margin-bottom: 0.75em; }
+    .progress-indicator {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      text-align: right;
     }
     .answers button {
       display: block;
@@ -340,16 +290,10 @@
       border: 1px solid var(--border-color);
       border-radius: 4px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: transform 0.1s, background 0.3s;
     }
-    .answers button:hover {
-      background: #d6d8db;
-    }
-    .feedback {
-      margin-top: 0.75em;
-      font-size: 1rem;
-      min-height: 1.5em;
-    }
+    .answers button:hover { transform: scale(1.02); background: #d6d8db; }
+    .feedback { margin-top: 0.75em; font-size: 1rem; min-height: 1.5em; }
     .correct-msg {
       color: #155724;
       background-color: #d4edda;
@@ -370,9 +314,7 @@
       justify-content: space-between;
       gap: 1%;
     }
-    .next-btn,
-    .return-btn,
-    .next-section-btn {
+    .next-btn, .return-btn, .next-section-btn {
       width: 32%;
       padding: 0.75em;
       font-size: 1rem;
@@ -383,45 +325,22 @@
       transition: background 0.3s;
       text-align: center;
     }
-    .next-btn {
-      background-color: var(--primary-color);
-    }
-    .next-btn:hover {
-      background-color: #002147;
-    }
-    .return-btn {
-      background-color: #6c757d;
-    }
-    .return-btn:hover {
-      background-color: #5a6268;
-    }
-    .next-section-btn {
-      background-color: #17a2b8;
-    }
-    .next-section-btn:hover {
-      background-color: #138496;
-    }
-    .final-score {
-      text-align: center;
-      margin-top: 1em;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
+    .next-btn { background-color: var(--primary-color); }
+    .next-btn:hover { background-color: #002147; }
+    .return-btn { background-color: #6c757d; }
+    .return-btn:hover { background-color: #5a6268; }
+    .next-section-btn { background-color: #17a2b8; }
+    .next-section-btn:hover { background-color: #138496; }
+    .final-score { text-align: center; margin-top: 1em; font-size: 1.1rem; font-weight: bold; }
+  
     /*-----------------------------------------------
       REFERENCES
     -----------------------------------------------*/
-    .references ol {
-      margin-left: 1.5rem;
-      margin-top: 0.5rem;
-    }
-    .references ol li {
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-
+    .references ol { margin-left: 1.5rem; margin-top: 0.5rem; }
+    .references ol li { margin-bottom: 1rem; line-height: 1.5; }
+  
     /*-----------------------------------------------
-      FIXED FOOTER CONTROLS
+      FIXED FOOTER CONTROLS (Appear on Scroll)
     -----------------------------------------------*/
     footer {
       position: fixed;
@@ -433,7 +352,11 @@
       padding: 1em;
       text-align: center;
       z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
+    footer.show-footer { opacity: 1; pointer-events: auto; }
     .footer-btns {
       display: inline-flex;
       gap: 1em;
@@ -449,9 +372,7 @@
       transition: background 0.3s;
       font-size: 0.9rem;
     }
-    .footer-btns button:hover {
-      background: #00509e;
-    }
+    .footer-btns button:hover { background: #00509e; }
   </style>
 </head>
 <body>
@@ -461,7 +382,7 @@
     <h1>EEG Curriculum</h1>
     <p>Engaging Videos &amp; Self-Assessment Tools</p>
   </header>
-
+  
   <!-- NAVIGATION -->
   <div class="dropdown" id="dropdown">
     <span id="dropdown-label">Select Section</span>
@@ -473,24 +394,29 @@
       <div data-index="4"><i class="fa-solid fa-book"></i> References</div>
     </div>
   </div>
-
+  
   <!-- MAIN CONTAINER -->
   <div class="container">
     <div id="section-content"></div>
   </div>
-
-  <!-- FIXED FOOTER with Dark Mode & Font Size Buttons -->
-  <footer>
+  
+  <!-- FIXED FOOTER CONTROLS (Appear on Scroll) -->
+  <footer id="footer">
     <div class="footer-btns">
       <button onclick="toggleFontSize()" aria-label="Toggle Large Font">A+</button>
       <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
     </div>
   </footer>
-
-  <!-- PPTXGenJS for Slide Generation (if used in EEG Index) -->
+  
+  <!-- PPTXGenJS for Slide Generation -->
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
-
+  
   <script>
+    // Auto-detect dark mode preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add("dark");
+    }
+  
     /********************************************
      * DARK MODE & FONT SIZE FUNCTIONS
      ********************************************/
@@ -500,7 +426,7 @@
     function toggleFontSize() {
       document.body.classList.toggle("large-font");
     }
-
+  
     /********************************************
      * NAVIGATION LOGIC
      ********************************************/
@@ -511,11 +437,8 @@
       dropdown.classList.toggle("active");
     });
     document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove("active");
-      }
+      if (!dropdown.contains(e.target)) { dropdown.classList.remove("active"); }
     });
-    // Tab click listeners
     const menuItems = document.querySelectorAll(".dropdown-menu div");
     menuItems.forEach((item) => {
       item.addEventListener("click", (e) => {
@@ -530,9 +453,9 @@
         renderSection();
       });
     });
-
+  
     /********************************************
-     * VIDEO SECTIONS (10 Videos)
+     * VIDEO SECTIONS (All 10 Videos)
      ********************************************/
     const videoSections = [
       {
@@ -885,7 +808,7 @@
         ]
       }
     ];
-
+  
     /********************************************
      * MAIN SECTIONS ARRAY
      ********************************************/
@@ -931,7 +854,7 @@
               The <strong>Epilepsy Milestones</strong> document outlines the key competencies and expectations during your rotation.
             </p>
           </div>
-
+  
           <div class="info-box">
             <h2>Rotation Schedule</h2>
             <h3>Inpatient Rotation (MSH &amp; MSW EMU)</h3>
@@ -972,7 +895,7 @@
                 </tr>
               </tbody>
             </table>
-
+  
             <h3>Outpatient Rotation</h3>
             <table style="width:100%; border-collapse:collapse;">
               <thead>
@@ -1000,7 +923,7 @@
               </tbody>
             </table>
           </div>
-
+  
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
@@ -1064,21 +987,18 @@
             &nbsp;&nbsp;– Sensitivity: 7 μV<br/>
             &nbsp;&nbsp;– Time base: 30 (e.g., 30 mm/sec)<br/>
             &nbsp;&nbsp;– High-frequency filter: 70 Hz; Low-frequency filter: 1 Hz<br/>
-            &nbsp;&nbsp;– Activate additional filters (e.g., notch filter) if required</p>
+            &nbsp;&nbsp;– Activate additional filters if required</p>
             <br/>
             <h3>Step 4: Analyze the EEG</h3>
             <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
-            <strong>Use built-in tools</strong> (cursors, measurement markers) to assess amplitude, frequency, and duration.<br/>
-            <strong>Identify patterns</strong> such as spikes, sharp waves, or rhythmic activity.<br/>
-            <strong>Add annotations</strong> for any abnormal or significant events.</p>
+            <strong>Use built-in tools</strong> to assess amplitude, frequency, and duration.<br/>
+            <strong>Identify patterns</strong> and add annotations for significant events.</p>
             <br/>
             <h3>Step 5: Annotate and Mark Key Events</h3>
-            <p><strong>Place event markers</strong> by clicking the <strong>Event</strong>, <strong>Seizure</strong>, or <strong>IED</strong> buttons at the top left of the Natus screen.</p>
+            <p><strong>Place event markers</strong> by clicking the relevant buttons at the top of the screen.</p>
             <br/>
             <h3>Step 6: Create an EEG Report in Epic</h3>
-            <p><strong>Once the EEG review is complete</strong>, open Epic’s reporting interface.<br/>
-            <strong>Generate a new EEG report</strong> and select the attending’s saved smart phrases for continuous EEG.<br/>
-            <strong>Pend the note</strong> in Epic for review.</p>
+            <p><strong>Once the EEG review is complete</strong>, open Epic’s reporting interface, generate a new report, and pend the note for review.</p>
           </div>
         `
       },
@@ -1116,11 +1036,11 @@
                 <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">Link</a>
               </li>
               <li>
-                This curriculum is distributed under the Creative Commons Attribution-NonCommercial-ShareAlike license.
+                Distributed under the Creative Commons Attribution-NonCommercial-ShareAlike license.
                 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank">Link</a>
               </li>
               <li>
-                Additionally, see the
+                See also the
                 <a href="https://www.acgme.org/globalassets/pdfs/milestones/epilepsymilestones.pdf" target="_blank">Epilepsy Milestones</a>
                 for rotation expectations.
               </li>
@@ -1133,14 +1053,14 @@
         `
       }
     ];
-
+  
     // Global state variables
     let currentSectionIndex = 0;
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
     const sectionContent = document.getElementById("section-content");
-
+  
     /********************************************
      * RENDER SECTION FUNCTION
      ********************************************/
@@ -1154,7 +1074,7 @@
         sectionContent.innerHTML = section.content;
       }
     }
-
+  
     /********************************************
      * RENDER VIDEO LIST FUNCTION
      ********************************************/
@@ -1181,7 +1101,7 @@
         });
       });
     }
-
+  
     /********************************************
      * RENDER VIDEO SECTION FUNCTION
      ********************************************/
@@ -1199,6 +1119,7 @@
           <button class="skip-btn" id="skip-btn">Skip to Quiz</button>
         </div>
         <div class="quiz-container" id="quiz-container">
+          <div class="progress-indicator" id="progress-indicator"></div>
           <div id="question-container"></div>
           <div class="feedback" id="feedback"></div>
           <div class="buttons-row">
@@ -1211,7 +1132,7 @@
       `;
       setupVideoQuiz(vid);
     }
-
+  
     /********************************************
      * SETUP VIDEO QUIZ FUNCTION
      ********************************************/
@@ -1222,16 +1143,18 @@
       const quizContainer = document.getElementById("quiz-container");
       const questionContainer = document.getElementById("question-container");
       const feedbackDiv = document.getElementById("feedback");
+      const progressIndicator = document.getElementById("progress-indicator");
       const nextBtn = document.getElementById("next-btn");
       const returnBtn = document.getElementById("return-btn");
       const nextSectionBtn = document.getElementById("next-section-btn");
       const finalScoreDiv = document.getElementById("final-score");
-
+  
       currentQuestionIndex = 0;
       score = 0;
       quizContainer.style.display = "none";
-
+  
       function showQuestion() {
+        progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
         feedbackDiv.innerHTML = "";
         feedbackDiv.className = "";
         nextBtn.style.display = "none";
@@ -1270,7 +1193,7 @@
         });
         questionContainer.appendChild(answersDiv);
       }
-
+  
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
@@ -1284,9 +1207,7 @@
       });
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
-        if (currentQuestionIndex < vid.questions.length) {
-          showQuestion();
-        }
+        if (currentQuestionIndex < vid.questions.length) { showQuestion(); }
       });
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
@@ -1294,16 +1215,14 @@
         videoEl.currentTime = 0;
         videoEl.play();
       });
-      nextSectionBtn.addEventListener("click", () => {
-        renderVideoList();
-      });
+      nextSectionBtn.addEventListener("click", () => { renderVideoList(); });
     }
-
+  
     /********************************************
      * INITIAL LOAD: Render Default Section
      ********************************************/
     renderSection();
-
+  
     /********************************************
      * EEG SLIDE GENERATOR (if needed)
      ********************************************/
@@ -1316,9 +1235,9 @@
         <div class="content" style="padding:20px;">
           <form id="slideForm">
             <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
             <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
-            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;" loading="lazy">
             <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
             <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
             <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
@@ -1331,7 +1250,7 @@
           </form>
         </div>
         <p class="footer-tip" style="text-align:center; font-size:16px; color: var(--text-color); margin-top:10px;">
-          Tip: Run this page on a local web server (e.g., VS Code Live Server) and use PNG/JPG images.
+          Tip: Run this page on a local web server and use PNG/JPG images.
         </p>
       </div>
       `;
@@ -1341,20 +1260,15 @@
     function attachEEGSlideFormListener() {
       document.getElementById("slideForm").addEventListener("submit", function(e) {
         e.preventDefault();
-        console.log("EEG Slide Generator form submitted.");
         const fullName = document.getElementById("fullName").value;
         const residency = document.getElementById("residency").value;
         const description = document.getElementById("patternDescription").value;
         const additionalComments = document.getElementById("additionalComments").value;
         const fileInput = document.getElementById("eegImage");
         const file = fileInput.files[0];
-        if (!file) {
-          alert("Please choose a PNG or JPG file first!");
-          return;
-        }
+        if (!file) { alert("Please choose a PNG or JPG file first!"); return; }
         const reader = new FileReader();
         reader.onload = function(event) {
-          console.log("Image loaded in EEG Slide Generator.");
           const imageData = event.target.result;
           try {
             let pptx = new PptxGenJS();
@@ -1369,22 +1283,27 @@
               slide.addText(additionalComments, { x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636" });
             }
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
-              .then(() => {
-                console.log("PowerPoint file generated and downloaded.");
-                alert("PowerPoint slide generated and downloaded!");
-              })
-              .catch(err => {
-                console.error("PPT generation error:", err);
-                alert("Error generating PPT. Check console for details.");
-              });
-          } catch (err) {
-            console.error("Exception in EEG Slide Generator:", err);
-            alert("An unexpected error occurred. Check console for details.");
-          }
+              .then(() => { alert("PowerPoint slide generated and downloaded!"); })
+              .catch(err => { alert("Error generating PPT. Check console for details."); });
+          } catch (err) { alert("An unexpected error occurred. Check console for details."); }
         };
         reader.readAsDataURL(file);
       });
     }
+  
+    /********************************************
+     * INITIAL LOAD: Render Default Section
+     ********************************************/
+    renderSection();
+  
+    /********************************************
+     * SHOW/HIDE FOOTER ON SCROLL
+     ********************************************/
+    const footer = document.getElementById("footer");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) { footer.classList.add("show-footer"); }
+      else { footer.classList.remove("show-footer"); }
+    });
   </script>
 </body>
 </html>
