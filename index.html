@@ -30,7 +30,7 @@
     :root {
       --primary-color: #003366;
       --secondary-color: #00509e;
-      --accent-color: #007bff;
+      --accent-color: #007bff; /* used by .btn-modern */
       --bg-color: #fafafa;
       --text-color: #333;
       --info-bg: #fff;
@@ -47,7 +47,7 @@
     .dark {
       --primary-color: #1a1a1a;
       --secondary-color: #333;
-      --accent-color: #0099ff;
+      --accent-color: #0099ff; /* accent changes in dark mode */
       --bg-color: #121212;
       --text-color: #eee;
       --info-bg: #1e1e1e;
@@ -67,9 +67,9 @@
       -webkit-backface-visibility: hidden;
       transform: translateZ(0);
     }
-  
+
     body.large-font { font-size: 1.2em; }
-  
+
     /*-----------------------------------------------
       GLOBAL RESET & BASE STYLES
     -----------------------------------------------*/
@@ -86,9 +86,9 @@
       transition: background var(--transition-duration), color var(--transition-duration), font-size var(--transition-duration);
       padding-bottom: 80px; /* for footer */
     }
-  
+
     /*-----------------------------------------------
-      HEADER (Sticky with Shrink Effect)
+      HEADER (Sticky with Shrink + Fade Out)
     -----------------------------------------------*/
     header {
       position: sticky;
@@ -101,7 +101,14 @@
       margin-bottom: 1em;
       transition: padding 0.3s ease;
     }
-    header.shrink { padding: 0.75em 1em; }
+    /* On shrink, remove text from flow & reduce vertical padding. */
+    header.shrink {
+      padding: 0.2em 1em;
+    }
+    header.shrink h1,
+    header.shrink p {
+      display: none; /* so it doesn't occupy vertical space */
+    }
     .logo {
       width: 80px;
       height: auto;
@@ -111,17 +118,20 @@
       margin-right: auto;
       transition: width 0.3s;
     }
-    header.shrink .logo { width: 60px; }
-    header h1 { font-size: 1.8rem; margin-bottom: 0.3em; }
-    header p { font-size: 1rem; opacity: 0.8; }
-    header.shrink h1 { font-size: 1.4rem; }
-    header.shrink p { font-size: 0.8rem; }
+    header.shrink .logo {
+      width: 60px;
+      margin-bottom: 0;
+    }
+    /* Fade out the text from 1 -> 0 over scroll=0->100px. */
+    header h1, header p {
+      transition: opacity 0.3s ease;
+    }
     @media (max-width: 480px) {
       header {
         padding: 0.8em;
       }
     }
-  
+
     /*-----------------------------------------------
       DROPDOWN NAVIGATION
     -----------------------------------------------*/
@@ -204,7 +214,7 @@
         transform: scale(1.05);
       }
     }
-  
+
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
@@ -213,7 +223,7 @@
       margin: 0 auto;
       padding: 0 1em 2em;
     }
-  
+
     /*-----------------------------------------------
       INFO BOXES & STYLING
     -----------------------------------------------*/
@@ -228,7 +238,7 @@
     .info-box h2 {
       margin-bottom: 0.75em;
     }
-  
+
     /*-----------------------------------------------
       TABLES
     -----------------------------------------------*/
@@ -253,7 +263,7 @@
     .pm-workflow {
       background: var(--table-header-bg);
     }
-  
+
     /*-----------------------------------------------
       VIDEO LIST (Card Look)
     -----------------------------------------------*/
@@ -280,7 +290,7 @@
     .video-list li:hover {
       background: var(--hover-bg);
     }
-  
+
     /*-----------------------------------------------
       VIDEO CONTAINER
     -----------------------------------------------*/
@@ -309,7 +319,7 @@
     .skip-btn:hover {
       background-color: #218838;
     }
-  
+
     /*-----------------------------------------------
       QUIZ CONTAINER & FEEDBACK
     -----------------------------------------------*/
@@ -420,7 +430,7 @@
       font-size: 1.1rem;
       font-weight: bold;
     }
-  
+
     /*-----------------------------------------------
       RESPONSIVE CARD LAYOUT (Teaching Rounds Table)
     -----------------------------------------------*/
@@ -455,7 +465,7 @@
         white-space: nowrap;
       }
     }
-  
+
     /*-----------------------------------------------
       IMAGE STYLING (For Natus Steps, ACNS, etc.)
     -----------------------------------------------*/
@@ -468,7 +478,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
     }
-  
+
     /*-----------------------------------------------
       KITTEN OVERLAY (Click to Dismiss)
     -----------------------------------------------*/
@@ -492,7 +502,7 @@
       object-fit: cover;
       border-radius: 50%;
     }
-  
+
     /*-----------------------------------------------
       EEG SLIDE GENERATOR (Behind Header/Tabs)
     -----------------------------------------------*/
@@ -502,7 +512,9 @@
     }
 
     /*-----------------------------------------------
-      MODERN BUTTON STYLE (for EEG Index & Milestones)
+      MODERN BUTTON STYLE (EEG Index & Milestones)
+      Adapts to dark mode automatically by using
+      var(--accent-color).
     -----------------------------------------------*/
     .btn-modern {
       display: inline-flex;
@@ -515,11 +527,11 @@
       font-size: 1rem;
       padding: 0.75em 1.5em;
       cursor: pointer;
-      transition: background var(--transition-duration), transform 0.2s;
+      transition: filter var(--transition-duration), transform 0.2s;
     }
     .btn-modern:hover {
-      background-color: #0059d9;
       transform: translateY(-2px);
+      filter: brightness(0.9);
     }
 
     /*-----------------------------------------------
@@ -671,7 +683,7 @@
     });
 
     /********************************************
-     * VIDEO SECTIONS (All 10 Videos)
+     * VIDEO SECTIONS (All 10 Videos + Quizzes)
      ********************************************/
     const videoSections = [
       {
@@ -1026,7 +1038,7 @@
     ];
 
     /********************************************
-     * SECTIONS ARRAY
+     * SECTIONS ARRAY (4 Tabs)
      ********************************************/
     const sections = [
       {
@@ -1062,7 +1074,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- Modernized Buttons -->
             <div class="btn-row" style="margin-top:1em; display:flex; gap:1em; justify-content:center;">
               <button class="btn-modern" onclick="openEEGIndexApp()">
                 <i class="fa-solid fa-brain"></i> EEG Index
@@ -1144,7 +1155,7 @@
               </tbody>
             </table>
           </div>
-          
+
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
@@ -1237,7 +1248,7 @@
             <img src="ACNS3.png" alt="ACNS Criteria 3" class="step-image" />
             <img src="ACNS4.png" alt="ACNS Criteria 4" class="step-image" />
             <p style="text-align:center; margin-top:1em;">
-              <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart. 
+              <strong>ACNS Criteria.</strong> ACNS Nomenclature Reference Chart.
               <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">
                 <i class="fa-solid fa-link"></i> Download PDF
               </a>
@@ -1252,7 +1263,7 @@
         reference: `
           <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
             <p>
-              <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570. 
+              <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570.
               <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
                 <i class="fa-solid fa-link"></i> Link
               </a>
@@ -1270,8 +1281,10 @@
     function renderSection() {
       const section = sections[currentSectionIndex];
       if (section.type === "info") {
+        // Show info content
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
+        // Show the video list
         renderVideoList();
       } else {
         sectionContent.innerHTML = section.content;
@@ -1292,7 +1305,8 @@
         html += `<li data-vid-index="${i}">${vid.title}</li>`;
       });
       html += `</ul></div>`;
-      // Append the curriculum reference below the video list
+
+      // If there's a reference property, append it
       if (group.reference) {
         html += group.reference;
       }
@@ -1340,7 +1354,7 @@
         <!-- Curriculum reference appended to each video -->
         <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
           <p>
-            <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570. 
+            <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570.
             <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
               <i class="fa-solid fa-link"></i> Link
             </a>
@@ -1370,6 +1384,7 @@
       score = 0;
       quizContainer.style.display = "none";
 
+      // Display each question
       function showQuestion() {
         feedbackDiv.innerHTML = "";
         progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
@@ -1392,12 +1407,13 @@
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
 
-              // Show random cat overlay (click to dismiss)
+              // Show cat overlay
               showKittenOverlay();
 
               if (currentQuestionIndex < vid.questions.length - 1) {
                 nextBtn.style.display = "inline-block";
               } else {
+                // Quiz done
                 finalScoreDiv.textContent = `Your score: ${score} out of ${vid.questions.length}`;
                 nextSectionBtn.textContent = "Back to Video List";
                 nextSectionBtn.style.display = "inline-block";
@@ -1415,17 +1431,20 @@
         questionContainer.appendChild(answersDiv);
       }
 
+      // If video ends, show quiz
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
+      // Skip to quiz
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
+      // Next question
       nextBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
@@ -1435,6 +1454,7 @@
           showQuestion();
         }
       });
+      // Return to video
       returnBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
@@ -1444,6 +1464,7 @@
         videoEl.currentTime = 0;
         videoEl.play();
       });
+      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
@@ -1583,14 +1604,21 @@
       }
     });
 
-    // Shrink header on scroll
+    // Shrink header and fade out text as user scrolls
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
-      if (window.scrollY > 100) {
+      const scroll = window.scrollY;
+      // If scrolled >100px, add "shrink"
+      if (scroll > 100) {
         header.classList.add("shrink");
       } else {
         header.classList.remove("shrink");
       }
+      // Fade out the h1/p from 1 -> 0 over the first 100px
+      const fade = 1 - Math.min(scroll / 100, 1);
+      header.querySelectorAll("h1, p").forEach(el => {
+        el.style.opacity = fade;
+      });
     });
   </script>
 </body>
