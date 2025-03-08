@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Ensures responsive scaling on mobile devices -->
+  <!-- Responsive scaling on mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-  <!-- Google Fonts: Roboto -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <!-- Favicon and Touch Icon -->
+  <!-- Font Awesome (for icons in horizontal nav) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Favicon / Touch Icon -->
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
 
-  <!-- Open Graph meta tags for link previews -->
+  <!-- Open Graph tags -->
   <meta property="og:title" content="Video-Based EEG Curriculum" />
   <meta property="og:description" content="Self-Assessment with Videos & Quizzes" />
   <meta property="og:image" content="https://example.com/logo.png" />
@@ -21,9 +24,9 @@
   <title>Video-Based EEG Curriculum</title>
 
   <style>
-    /*=====================================================
+    /*===============================================
       THEME VARIABLES
-    =====================================================*/
+    ===============================================*/
     :root {
       --primary-color: #003366;
       --secondary-color: #00509e;
@@ -35,8 +38,8 @@
       --header-text: #fff;
       --hover-bg: #e6f2ff;
       --shadow-color: rgba(0, 0, 0, 0.2);
-      --table-header-bg: #f8f9fa; /* Table header background (light mode) */
-      --dropdown-hover-bg: #f9f9f9; /* Dropdown hover background (light mode) */
+      --table-header-bg: #f8f9fa;
+      --dropdown-hover-bg: #f9f9f9;
     }
     .dark {
       --primary-color: #1a1a1a;
@@ -49,13 +52,17 @@
       --header-text: #eee;
       --hover-bg: #333;
       --shadow-color: rgba(0, 0, 0, 0.8);
-      --table-header-bg: #333; /* Table header background (dark mode) */
-      --dropdown-hover-bg: #2a2a2a; /* Dropdown hover background (dark mode) */
+      --table-header-bg: #333;
+      --dropdown-hover-bg: #2a2a2a;
+    }
+    /* Toggle large font size */
+    body.large-font {
+      font-size: 1.2em;
     }
 
-    /*=====================================================
-      GLOBAL STYLES
-    =====================================================*/
+    /*===============================================
+      GLOBAL RESETS
+    ===============================================*/
     * {
       margin: 0;
       padding: 0;
@@ -66,12 +73,12 @@
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease, font-size 0.3s ease;
     }
 
-    /*=====================================================
+    /*===============================================
       HEADER
-    =====================================================*/
+    ===============================================*/
     header {
       position: sticky;
       top: 0;
@@ -82,9 +89,6 @@
       padding: 1.5em 1em;
       box-shadow: 0 2px 6px var(--shadow-color);
       margin-bottom: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
     .logo {
       width: 80px;
@@ -101,16 +105,15 @@
     }
     @media (max-width: 480px) {
       header {
-        padding: 0.8em 0.5em;
+        padding: 1em;
       }
     }
 
-    /*=====================================================
-      DROPDOWN NAVIGATION
-    =====================================================*/
+    /*===============================================
+      NAVIGATION
+    ===============================================*/
     .dropdown {
       position: relative;
-      display: inline-block;
       width: 100%;
       background: var(--info-bg);
       color: var(--text-color);
@@ -118,7 +121,9 @@
       padding: 0.8em 1em;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s ease;
+      text-align: left;
+      display: block;
     }
     .dropdown:hover {
       background: var(--dropdown-hover-bg);
@@ -135,12 +140,11 @@
     .dropdown-menu {
       display: none;
       position: absolute;
+      width: 100%;
       background: var(--info-bg);
       color: var(--text-color);
-      width: 100%;
       box-shadow: 0 2px 4px var(--shadow-color);
       z-index: 100;
-      transition: opacity 0.3s ease;
     }
     .dropdown-menu div {
       padding: 0.8em 1em;
@@ -154,19 +158,47 @@
     .dropdown.active .dropdown-menu {
       display: block;
     }
+    /* Larger screens => horizontal nav */
+    @media (min-width: 768px) {
+      .dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #dropdown-label {
+        display: none;
+      }
+      .dropdown::after {
+        content: none;
+      }
+      .dropdown-menu {
+        display: flex !important;
+        position: static;
+        box-shadow: none;
+        width: auto;
+      }
+      .dropdown-menu div {
+        border: none;
+        padding: 10px 20px;
+        margin: 0 5px;
+      }
+      .dropdown-menu div:hover {
+        background: var(--hover-bg);
+      }
+    }
 
-    /*=====================================================
+    /*===============================================
       MAIN CONTAINER
-    =====================================================*/
+    ===============================================*/
     .container {
       max-width: 650px;
       margin: 0 auto;
       padding: 0 1em 2em;
     }
 
-    /*=====================================================
+    /*===============================================
       INFO BOXES & REFERENCES
-    =====================================================*/
+    ===============================================*/
     .info-box,
     .references {
       background: var(--info-bg);
@@ -174,15 +206,15 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
       margin-bottom: 1em;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      transition: background 0.3s ease;
     }
     .info-box h2, .references h2 {
       margin-bottom: 0.75em;
     }
 
-    /*=====================================================
+    /*===============================================
       TABLE STYLING
-    =====================================================*/
+    ===============================================*/
     table {
       width: 100%;
       border-collapse: collapse;
@@ -197,12 +229,11 @@
     }
     th {
       background-color: var(--table-header-bg);
-      transition: background-color 0.3s ease;
     }
 
-    /*=====================================================
+    /*===============================================
       BUTTONS
-    =====================================================*/
+    ===============================================*/
     .btn-row {
       display: flex;
       justify-content: center;
@@ -224,16 +255,15 @@
       background-color: #0069d9;
     }
 
-    /*=====================================================
+    /*===============================================
       VIDEO LIST
-    =====================================================*/
+    ===============================================*/
     .video-list {
       background: var(--info-bg);
       padding: 1em;
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
       margin-bottom: 1em;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .video-list h2 {
       margin-bottom: 0.75em;
@@ -249,12 +279,12 @@
       transition: background 0.3s ease;
     }
     .video-list li:hover {
-      background-color: var(--hover-bg);
+      background: var(--hover-bg);
     }
 
-    /*=====================================================
+    /*===============================================
       VIDEO CONTAINER
-    =====================================================*/
+    ===============================================*/
     .video-container {
       text-align: center;
       margin-bottom: 1em;
@@ -281,16 +311,15 @@
       background-color: #218838;
     }
 
-    /*=====================================================
+    /*===============================================
       QUIZ CONTAINER
-    =====================================================*/
+    ===============================================*/
     .quiz-container {
       background: var(--info-bg);
       padding: 1em;
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
       display: none;
-      animation: fadeIn 0.5s ease;
     }
     .quiz-container h2 {
       font-size: 1.15rem;
@@ -376,9 +405,9 @@
       font-weight: bold;
     }
 
-    /*=====================================================
+    /*===============================================
       REFERENCES
-    =====================================================*/
+    ===============================================*/
     .references ol {
       margin-left: 1.5rem;
       margin-top: 0.5rem;
@@ -388,21 +417,13 @@
       line-height: 1.5;
     }
 
-    /*=====================================================
-      FADE-IN ANIMATION
-    =====================================================*/
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /*=====================================================
-      DARK MODE FLOATING BUTTON
-    =====================================================*/
-    .dark-mode-float-btn {
+    /*===============================================
+      FLOATING BUTTONS
+    ===============================================*/
+    .dark-mode-float-btn,
+    .font-toggle-btn {
       position: fixed;
       bottom: 20px;
-      right: 20px;
       background: var(--accent-color);
       border: none;
       color: #fff;
@@ -413,56 +434,66 @@
       font-size: 0.9rem;
       z-index: 2000;
     }
-    .dark-mode-float-btn:hover {
+    .dark-mode-float-btn:hover,
+    .font-toggle-btn:hover {
       background: #00509e;
+    }
+    .dark-mode-float-btn {
+      right: 20px;
+    }
+    .font-toggle-btn {
+      right: 80px;
     }
   </style>
 </head>
 <body>
-  <!-- Sticky Header -->
+  <!-- HEADER -->
   <header>
     <img src="logo.png" alt="EEG Logo" class="logo" />
     <h1>Video-Based EEG Curriculum</h1>
     <p>Self-Assessment with Videos &amp; Quizzes</p>
   </header>
 
-  <!-- Dropdown Navigation -->
+  <!-- NAVIGATION -->
   <div class="dropdown" id="dropdown">
     <span id="dropdown-label">Select Section</span>
     <div class="dropdown-menu" id="dropdown-menu">
-      <div data-index="0">Epilepsy Rotation</div>
-      <div data-index="1">Natus Instructions</div>
-      <div data-index="2">ACNS Criteria</div>
-      <div data-index="3">EEG Videos</div>
-      <div data-index="4">References</div>
+      <div data-index="0"><i class="fa-solid fa-heart-pulse"></i> Epilepsy Rotation</div>
+      <div data-index="1"><i class="fa-solid fa-gear"></i> Natus Instructions</div>
+      <div data-index="2"><i class="fa-solid fa-file-pdf"></i> ACNS Criteria</div>
+      <div data-index="3"><i class="fa-solid fa-video"></i> EEG Videos</div>
+      <div data-index="4"><i class="fa-solid fa-book"></i> References</div>
     </div>
   </div>
 
-  <!-- Main Container -->
+  <!-- MAIN CONTAINER -->
   <div class="container">
     <div id="section-content"></div>
   </div>
 
-  <!-- Dark Mode Floating Button -->
-  <button class="dark-mode-float-btn" onclick="toggleDarkMode()">Dark Mode</button>
+  <!-- FLOATING BUTTONS: DARK MODE & FONT SIZE -->
+  <button class="font-toggle-btn" onclick="toggleFontSize()" aria-label="Toggle Large Font">A+</button>
+  <button class="dark-mode-float-btn" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
 
   <!-- PPTXGenJS for Slide Generation -->
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
 
   <script>
     /********************************************
-     * DARK MODE TOGGLE
+     * DARK MODE & FONT SIZE
      ********************************************/
     function toggleDarkMode() {
       document.body.classList.toggle("dark");
     }
+    function toggleFontSize() {
+      document.body.classList.toggle("large-font");
+    }
 
     /********************************************
-     * DROPDOWN NAVIGATION
+     * NAV MENU LOGIC
      ********************************************/
     const dropdown = document.getElementById("dropdown");
     const dropdownMenu = document.getElementById("dropdown-menu");
-
     dropdown.addEventListener("click", (e) => {
       e.stopPropagation();
       dropdown.classList.toggle("active");
@@ -473,8 +504,27 @@
       }
     });
 
+    // When user clicks a tab item
+    const menuItems = document.querySelectorAll(".dropdown-menu div");
+    menuItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdown.classList.remove("active");
+        // Update label to the text after icon
+        let textWithoutIcon = item.textContent.replace(/^[^ ]+ /, "");
+        document.getElementById("dropdown-label").textContent = textWithoutIcon;
+
+        // Set current section
+        currentSectionIndex = parseInt(item.getAttribute("data-index"));
+        currentVideoIndex = -1;
+        currentQuestionIndex = 0;
+        score = 0;
+        renderSection();
+      });
+    });
+
     /********************************************
-     * VIDEO SECTIONS WITH QUIZ DATA (10 videos)
+     * VIDEO SECTIONS (10 videos)
      ********************************************/
     const videoSections = [
       {
@@ -837,14 +887,13 @@
     ];
 
     /********************************************
-     * MAIN SECTIONS: Epilepsy Rotation, Natus Instructions, ACNS Criteria, EEG Videos, References
+     * MAIN SECTIONS
      ********************************************/
     const sections = [
       {
         title: "Epilepsy Rotation",
         type: "info",
         content: `
-          <!-- FULL HTML for Epilepsy Rotation -->
           <div class="info-box">
             <h2>Epilepsy Rotation</h2>
             <h3>Daily Expectations and Goals</h3>
@@ -885,7 +934,7 @@
 
           <div class="info-box">
             <h2>Rotation Schedule</h2>
-            <h3>Inpatient Rotation (MSH & MSW EMU)</h3>
+            <h3>Inpatient Rotation (MSH &amp; MSW EMU)</h3>
             <table style="width:100%; border-collapse:collapse;">
               <thead>
                 <tr style="background:var(--table-header-bg);">
@@ -953,7 +1002,7 @@
           </div>
 
           <div class="info-box">
-            <h2>Teaching Rounds & Conferences</h2>
+            <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
             <div class="table-responsive">
               <table>
@@ -1015,21 +1064,21 @@
             &nbsp;&nbsp;– Set the <strong>sensitivity</strong> to 7 μV<br/>
             &nbsp;&nbsp;– Set the <strong>time base</strong> to 30 (e.g., 30 mm/sec)<br/>
             &nbsp;&nbsp;– Set the <strong>high-frequency filter</strong> to 70 Hz and the <strong>low-frequency filter</strong> to 1 Hz<br/>
-            &nbsp;&nbsp;– Activate any additional filters (such as a <strong>notch filter</strong>) if required</p>
+            &nbsp;&nbsp;– Activate any additional filters (e.g., <strong>notch filter</strong>) if required</p>
             <br/>
             <h3>Step 4: Analyze the EEG</h3>
             <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
-            <strong>Use built-in tools</strong> (e.g., cursors, measurement markers) to assess the amplitude, frequency, and duration of the waveforms.<br/>
+            <strong>Use built-in tools</strong> (e.g., cursors, measurement markers) to assess amplitude, frequency, duration, etc.<br/>
             <strong>Identify patterns</strong> such as spikes, sharp waves, or rhythmic activity that may indicate epileptiform activity.<br/>
-            <strong>Add annotations</strong> directly onto the waveform for any abnormal or clinically significant events.</p>
+            <strong>Add annotations</strong> for any abnormal or clinically significant events.</p>
             <br/>
             <h3>Step 5: Annotate and Mark Key Events</h3>
-            <p><strong>Place event markers</strong> by clicking the <strong>Event</strong>, <strong>Seizure</strong>, or <strong>IED</strong> buttons located at the top left of the Natus screen to denote seizure onsets, interictal discharges, or other relevant findings.</p>
+            <p><strong>Place event markers</strong> by clicking the <strong>Event</strong>, <strong>Seizure</strong>, or <strong>IED</strong> buttons at the top left of the Natus screen.</p>
             <br/>
             <h3>Step 6: Create an EEG Report in Epic</h3>
             <p><strong>Once the EEG review and annotations are complete</strong>, open Epic’s reporting interface.<br/>
-            <strong>Generate a new EEG report</strong> and select the attendings saved smart phrases for continuous EEG from the Attendings Saved Smart Phrases section.<br/>
-            <strong>Pend the note</strong> in Epic so that it can be reviewed with the attending.</p>
+            <strong>Generate a new EEG report</strong> and select the attending’s saved smart phrases for continuous EEG.<br/>
+            <strong>Pend the note</strong> in Epic for attending review.</p>
           </div>
         `
       },
@@ -1037,8 +1086,8 @@
         title: "ACNS Criteria",
         type: "acns",
         content: `
-          <div class="acns-content" style="padding:20px;">
-            <h2 style="text-align:center; margin-bottom:20px;">ACNS Criteria</h2>
+          <div class="info-box">
+            <h2 style="text-align:center;">ACNS Criteria</h2>
             <object data="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
               <p>Your browser does not support embedded PDFs. 
                  <a href="https://www.acns.org/UserFiles/file/ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
@@ -1086,29 +1135,15 @@
       }
     ];
 
-    // Global state variables
-    let currentSectionIndex = 0; 
+    // Global states
+    let currentSectionIndex = 0;
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
+
     const sectionContent = document.getElementById("section-content");
 
-    // Setup the top-level dropdown navigation
-    const menuItems = document.querySelectorAll(".dropdown-menu div");
-    menuItems.forEach((item, idx) => {
-      item.addEventListener("click", (e) => {
-        e.stopPropagation();
-        dropdown.classList.remove("active");
-        currentSectionIndex = idx;
-        currentVideoIndex = -1;
-        currentQuestionIndex = 0;
-        score = 0;
-        document.getElementById("dropdown-label").textContent = item.textContent;
-        renderSection();
-      });
-    });
-
-    // Render the current section based on the selected tab
+    // RENDER THE CURRENT SECTION
     function renderSection() {
       const section = sections[currentSectionIndex];
       if (section.type === "info" || section.type === "acns") {
@@ -1120,7 +1155,7 @@
       }
     }
 
-    // Render the list of video topics
+    // RENDER THE VIDEO LIST
     function renderVideoList() {
       const group = sections[currentSectionIndex];
       let html = `
@@ -1146,7 +1181,7 @@
       });
     }
 
-    // Render the chosen video and its quiz
+    // RENDER A SPECIFIC VIDEO & QUIZ
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
       const vid = group.videoSections[videoIdx];
@@ -1173,11 +1208,11 @@
         </div>
       `;
 
-      setupVideoAndQuiz(vid);
+      setupVideoQuiz(vid);
     }
 
-    // Setup the quiz functionality for a given video
-    function setupVideoAndQuiz(vid) {
+    // SETUP QUIZ LOGIC
+    function setupVideoQuiz(vid) {
       const videoEl = document.getElementById("video");
       const videoContainer = document.getElementById("video-container");
       const skipBtn = document.getElementById("skip-btn");
@@ -1237,12 +1272,14 @@
         questionContainer.appendChild(answersDiv);
       }
 
+      // Show quiz on video end
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
 
+      // "Skip to Quiz"
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
@@ -1250,6 +1287,7 @@
         showQuestion();
       });
 
+      // Next question
       nextBtn.addEventListener("click", () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
@@ -1257,6 +1295,7 @@
         }
       });
 
+      // Return to video
       returnBtn.addEventListener("click", () => {
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
@@ -1264,12 +1303,13 @@
         videoEl.play();
       });
 
+      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
         renderVideoList();
       });
     }
 
-    // Initially load the default section
+    // INITIAL RENDER
     renderSection();
 
     /********************************************
@@ -1306,7 +1346,6 @@
       document.getElementById("section-content").innerHTML = generatorHTML;
       attachEEGSlideFormListener();
     }
-
     function attachEEGSlideFormListener() {
       document.getElementById("slideForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -1332,17 +1371,12 @@
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
 
-            // Slide Title
             slide.addText("EEG Slide Submission", {
               x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center"
             });
-
-            // Submitted by info
             slide.addText(`Submitted by: ${fullName} (${residency})`, {
               x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center"
             });
-
-            // EEG Image
             slide.addImage({
               data: imageData,
               x: "3",
@@ -1350,16 +1384,12 @@
               w: "4",
               h: "3"
             });
-
-            // Pattern Description
             slide.addText("EEG Pattern Description:", {
               x: 0.5, y: 4.8, w: 9, fontSize: 18, bold: true, color: "363636"
             });
             slide.addText(description, {
               x: 0.5, y: 5.3, w: 9, fontSize: 16, color: "363636"
             });
-
-            // Additional Comments
             if (additionalComments.trim() !== "") {
               slide.addText("Additional Comments:", {
                 x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636"
