@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <!-- Responsive scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-
+  
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- Favicon -->
+  
+  <!-- Favicon (for browser tab icon) -->
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
-
-  <!-- Open Graph Meta -->
+  
+  <!-- Open Graph meta tags -->
   <meta property="og:title" content="EEG Curriculum" />
   <meta property="og:description" content="Engaging Videos & Self-Assessment Tools" />
   <meta property="og:image" content="https://example.com/logo.png" />
   <meta property="og:url" content="https://example.com" />
-
+  
   <title>EEG Curriculum</title>
-
+  
   <style>
     /*-----------------------------------------------
       THEME VARIABLES & TRANSITIONS
@@ -63,10 +63,13 @@
     /* Always use blue header */
     header {
       background: linear-gradient(135deg, #003366, #00509e) !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
     }
-
+  
     body.large-font { font-size: 1.2em; }
-
+  
     /*-----------------------------------------------
       GLOBAL RESET & BASE STYLES
     -----------------------------------------------*/
@@ -83,7 +86,7 @@
       transition: background var(--transition-duration), color var(--transition-duration), font-size var(--transition-duration);
       padding-bottom: 80px; /* for footer */
     }
-
+  
     /*-----------------------------------------------
       HEADER (Sticky with Shrink Effect)
     -----------------------------------------------*/
@@ -113,8 +116,12 @@
     header p { font-size: 1rem; opacity: 0.8; }
     header.shrink h1 { font-size: 1.4rem; }
     header.shrink p { font-size: 0.8rem; }
-    @media (max-width: 480px) { header { padding: 0.8em; } }
-
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8em;
+      }
+    }
+  
     /*-----------------------------------------------
       DROPDOWN NAVIGATION
     -----------------------------------------------*/
@@ -131,8 +138,12 @@
       text-align: left;
       display: block;
     }
-    .dropdown:hover { background: var(--dropdown-hover-bg); }
-    #dropdown-label { display: inline-block; }
+    .dropdown:hover {
+      background: var(--dropdown-hover-bg);
+    }
+    #dropdown-label {
+      display: inline-block;
+    }
     .dropdown::after {
       content: "▼";
       float: right;
@@ -156,12 +167,25 @@
       cursor: pointer;
       transition: background var(--transition-duration), transform 0.2s;
     }
-    .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
-    .dropdown.active .dropdown-menu { display: block; }
+    .dropdown-menu div:hover {
+      background: var(--hover-bg);
+      transform: scale(1.05);
+    }
+    .dropdown.active .dropdown-menu {
+      display: block;
+    }
     @media (min-width: 768px) {
-      .dropdown { display: flex; justify-content: center; align-items: center; }
-      #dropdown-label { display: none; }
-      .dropdown::after { content: none; }
+      .dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #dropdown-label {
+        display: none;
+      }
+      .dropdown::after {
+        content: none;
+      }
       .dropdown-menu {
         display: flex !important;
         position: static;
@@ -175,9 +199,12 @@
         margin: 0 5px;
         transition: background var(--transition-duration), transform 0.2s;
       }
-      .dropdown-menu div:hover { background: var(--hover-bg); transform: scale(1.05); }
+      .dropdown-menu div:hover {
+        background: var(--hover-bg);
+        transform: scale(1.05);
+      }
     }
-
+  
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
@@ -186,7 +213,7 @@
       margin: 0 auto;
       padding: 0 1em 2em;
     }
-
+  
     /*-----------------------------------------------
       INFO BOXES & REFERENCES
     -----------------------------------------------*/
@@ -200,8 +227,10 @@
       transition: background var(--transition-duration);
     }
     .info-box h2,
-    .references h2 { margin-bottom: 0.75em; }
-
+    .references h2 {
+      margin-bottom: 0.75em;
+    }
+  
     /*-----------------------------------------------
       TABLES
     -----------------------------------------------*/
@@ -210,11 +239,23 @@
       border-collapse: collapse;
       margin: 10px 0 20px;
     }
-    table, th, td { border: 1px solid var(--border-color); }
-    th, td { padding: 10px; text-align: left; }
-    th { background-color: var(--table-header-bg); }
-    .pm-workflow { background: var(--table-header-bg); }
-
+    table,
+    th,
+    td {
+      border: 1px solid var(--border-color);
+    }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--table-header-bg);
+    }
+    .pm-workflow {
+      background: var(--table-header-bg);
+    }
+  
     /*-----------------------------------------------
       BUTTONS
     -----------------------------------------------*/
@@ -235,8 +276,10 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .upload-btn:hover { background-color: #0069d9; }
-
+    .upload-btn:hover {
+      background-color: #0069d9;
+    }
+  
     /*-----------------------------------------------
       VIDEO LIST (Card Look)
     -----------------------------------------------*/
@@ -247,16 +290,23 @@
       box-shadow: 0 4px 8px var(--shadow-color);
       margin-bottom: 1.5em;
     }
-    .video-list h2 { margin-bottom: 0.75em; }
-    .video-list ul { list-style: none; margin-top: 0.5em; }
+    .video-list h2 {
+      margin-bottom: 0.75em;
+    }
+    .video-list ul {
+      list-style: none;
+      margin-top: 0.5em;
+    }
     .video-list li {
       padding: 0.8em;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
       transition: background var(--transition-duration);
     }
-    .video-list li:hover { background: var(--hover-bg); }
-
+    .video-list li:hover {
+      background: var(--hover-bg);
+    }
+  
     /*-----------------------------------------------
       VIDEO CONTAINER
     -----------------------------------------------*/
@@ -282,8 +332,10 @@
       cursor: pointer;
       transition: background var(--transition-duration);
     }
-    .skip-btn:hover { background-color: #218838; }
-
+    .skip-btn:hover {
+      background-color: #218838;
+    }
+  
     /*-----------------------------------------------
       QUIZ CONTAINER & FEEDBACK
     -----------------------------------------------*/
@@ -370,19 +422,31 @@
       transition: background var(--transition-duration);
       text-align: center;
     }
-    .next-btn { background-color: var(--primary-color); }
-    .next-btn:hover { background-color: #002147; }
-    .return-btn { background-color: #6c757d; }
-    .return-btn:hover { background-color: #5a6268; }
-    .next-section-btn { background-color: #17a2b8; }
-    .next-section-btn:hover { background-color: #138496; }
+    .next-btn {
+      background-color: var(--primary-color);
+    }
+    .next-btn:hover {
+      background-color: #002147;
+    }
+    .return-btn {
+      background-color: #6c757d;
+    }
+    .return-btn:hover {
+      background-color: #5a6268;
+    }
+    .next-section-btn {
+      background-color: #17a2b8;
+    }
+    .next-section-btn:hover {
+      background-color: #138496;
+    }
     .final-score {
       text-align: center;
       margin-top: 1em;
       font-size: 1.1rem;
       font-weight: bold;
     }
-
+  
     /*-----------------------------------------------
       REFERENCES STYLING
     -----------------------------------------------*/
@@ -416,8 +480,10 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    .references a:hover { color: var(--secondary-color); }
-
+    .references a:hover {
+      color: var(--secondary-color);
+    }
+  
     /*-----------------------------------------------
       FIXED FOOTER CONTROLS
     -----------------------------------------------*/
@@ -454,12 +520,15 @@
       transition: background var(--transition-duration);
       font-size: 0.9rem;
     }
-    .footer-btns button:hover { background: #00509e; }
-
+    .footer-btns button:hover {
+      background: #00509e;
+    }
+  
     /*-----------------------------------------------
       IMAGE STYLING (For Natus Steps)
     -----------------------------------------------*/
     .step-image {
+      display: block;
       max-width: 100%;
       height: auto;
       margin: 0.75em 0;
@@ -467,9 +536,9 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
     }
-
+  
     /*-----------------------------------------------
-      KITTEN OVERLAY (Central Quiz Celebration)
+      KITTEN OVERLAY (Click to Dismiss)
     -----------------------------------------------*/
     .kitten-overlay {
       position: fixed;
@@ -481,7 +550,7 @@
       justify-content: center;
       align-items: center;
       background: rgba(0,0,0,0.5);
-      z-index: 3000;
+      z-index: 9999;
       opacity: 1;
       transition: opacity 0.5s ease;
     }
@@ -490,6 +559,14 @@
       height: 200px;
       object-fit: cover;
       border-radius: 50%;
+    }
+  
+    /*-----------------------------------------------
+      EEG SLIDE GENERATOR (Behind Header/Tabs)
+    -----------------------------------------------*/
+    #generator {
+      position: relative;
+      z-index: 0;
     }
   </style>
 </head>
@@ -521,7 +598,10 @@
   <!-- FIXED FOOTER CONTROLS -->
   <footer id="footer">
     <div class="footer-btns">
-      <button onclick="toggleFontSize()" aria-label="Toggle Large Font">A+</button>
+      <!-- Updated Font Size Button: Big "A" / Small "a" -->
+      <button onclick="toggleFontSize()" aria-label="Toggle Font Size">
+        <span style="font-size:1.4em;">A</span>/<span style="font-size:0.8em;">a</span>
+      </button>
       <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
     </div>
   </footer>
@@ -546,27 +626,20 @@
     }
 
     /********************************************
-     * RANDOM CAT OVERLAY (2s)
+     * RANDOM CAT OVERLAY (User clicks to remove)
      ********************************************/
     function showKittenOverlay() {
       const overlay = document.createElement("div");
       overlay.className = "kitten-overlay";
-
-      // Generate a random query param for unique GIF
+      overlay.addEventListener("click", () => {
+        overlay.remove();
+      });
       const randomParam = Date.now();
       const catImg = document.createElement("img");
       catImg.src = `https://cataas.com/cat/gif?${randomParam}`;
       catImg.alt = "Kitten Celebration!";
       overlay.appendChild(catImg);
       document.body.appendChild(overlay);
-
-      // Remove after 2s + fade out
-      setTimeout(() => {
-        overlay.style.opacity = "0";
-        setTimeout(() => {
-          overlay.remove();
-        }, 500);
-      }, 2000);
     }
 
     /********************************************
@@ -960,7 +1033,7 @@
     ];
 
     /********************************************
-     * MAIN SECTIONS (Epilepsy Rotation, Natus, ACNS, EEG Videos, References)
+     * MAIN SECTIONS ARRAY (Epilepsy Rotation, Natus, ACNS, EEG Videos, References)
      ********************************************/
     const sections = [
       {
@@ -1092,7 +1165,7 @@
                     <td>Epilepsy Surgery Conference (mandatory)</td>
                     <td>Wed 4-5:30 PM</td>
                     <td>Levy Library (MSH) / Zoom</td>
-                    <td>Epilepsy surgery cases, comprehensive epilepsy team</td>
+                    <td>Epilepsy surgery cases, comprehensive team</td>
                   </tr>
                   <tr>
                     <td>Teaching Rounds / Interesting EEGs (mandatory)</td>
@@ -1250,7 +1323,10 @@
       });
       html += `</ul></div>`;
       sectionContent.innerHTML = html;
-      document.querySelectorAll("#video-sub-list li").forEach(item => {
+
+      const subList = document.getElementById("video-sub-list");
+      const items = subList.querySelectorAll("li");
+      items.forEach(item => {
         item.addEventListener("click", () => {
           currentVideoIndex = parseInt(item.getAttribute("data-vid-index"));
           currentQuestionIndex = 0;
@@ -1312,7 +1388,6 @@
       quizContainer.style.display = "none";
 
       function showQuestion() {
-        // Clear feedback
         feedbackDiv.innerHTML = "";
         progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
         finalScoreDiv.textContent = "";
@@ -1334,7 +1409,7 @@
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
 
-              // Show random cat overlay in the center for 2 seconds
+              // Show random cat overlay (click to dismiss)
               showKittenOverlay();
 
               if (currentQuestionIndex < vid.questions.length - 1) {
@@ -1357,35 +1432,39 @@
         questionContainer.appendChild(answersDiv);
       }
 
-      // Show quiz when video ends
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-      // "Skip to Quiz" button
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-      // Next question
       nextBtn.addEventListener("click", () => {
+        const overlay = document.querySelector(".kitten-overlay");
+        if (overlay) overlay.remove();
+
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
           showQuestion();
         }
       });
-      // Return to video
       returnBtn.addEventListener("click", () => {
+        const overlay = document.querySelector(".kitten-overlay");
+        if (overlay) overlay.remove();
+
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
         videoEl.currentTime = 0;
         videoEl.play();
       });
-      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
+        const overlay = document.querySelector(".kitten-overlay");
+        if (overlay) overlay.remove();
+
         renderVideoList();
       });
     }
@@ -1444,18 +1523,62 @@
           try {
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
-            slide.addText("EEG Slide Submission", { x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center" });
-            slide.addText(`Submitted by: ${fullName} (${residency})`, { x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center" });
+            slide.addText("EEG Slide Submission", {
+              x: 0.5,
+              y: 0.3,
+              w: 9,
+              fontSize: 24,
+              bold: true,
+              align: "center"
+            });
+            slide.addText(`Submitted by: ${fullName} (${residency})`, {
+              x: 0.5,
+              y: 1,
+              w: 9,
+              fontSize: 16,
+              color: "555555",
+              align: "center"
+            });
             slide.addImage({ data: imageData, x: "3", y: "1.5", w: "4", h: "3" });
-            slide.addText("EEG Pattern Description:", { x: 0.5, y: 4.8, w: 9, fontSize: 18, bold: true, color: "363636" });
-            slide.addText(description, { x: 0.5, y: 5.3, w: 9, fontSize: 16, color: "363636" });
+            slide.addText("EEG Pattern Description:", {
+              x: 0.5,
+              y: 4.8,
+              w: 9,
+              fontSize: 18,
+              bold: true,
+              color: "363636"
+            });
+            slide.addText(description, {
+              x: 0.5,
+              y: 5.3,
+              w: 9,
+              fontSize: 16,
+              color: "363636"
+            });
             if (additionalComments.trim() !== "") {
-              slide.addText("Additional Comments:", { x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636" });
-              slide.addText(additionalComments, { x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636" });
+              slide.addText("Additional Comments:", {
+                x: 0.5,
+                y: 6.2,
+                w: 9,
+                fontSize: 18,
+                bold: true,
+                color: "363636"
+              });
+              slide.addText(additionalComments, {
+                x: 0.5,
+                y: 6.7,
+                w: 9,
+                fontSize: 16,
+                color: "363636"
+              });
             }
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
-              .then(() => { alert("PowerPoint slide generated and downloaded!"); })
-              .catch(err => { alert("Error generating PPT. Check console for details."); });
+              .then(() => {
+                alert("PowerPoint slide generated and downloaded!");
+              })
+              .catch((err) => {
+                alert("Error generating PPT. Check console for details.");
+              });
           } catch (err) {
             alert("An unexpected error occurred. Check console for details.");
           }
@@ -1464,7 +1587,7 @@
       });
     }
 
-    // INITIAL LOAD: Epilepsy Rotation
+    // Initially load the default section (Epilepsy Rotation)
     renderSection();
 
     // FIXED FOOTER CONTROLS: Show on Scroll
