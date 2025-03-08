@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Responsive scaling on mobile -->
+  <!-- Responsive scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
   <!-- Google Fonts: Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome for Icons in horizontal nav -->
+  <!-- Font Awesome for Icons in navigation -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Favicon / Touch Icon -->
@@ -72,8 +72,8 @@
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease, font-size 0.3s ease;
-      /* Ensure body doesn't overlap fixed footer */
+      transition: background 0.3s, color 0.3s, font-size 0.3s;
+      /* Prevent content from being hidden by fixed footer */
       padding-bottom: 80px;
     }
 
@@ -125,7 +125,7 @@
       padding: 0.8em 1em;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
       text-align: left;
       display: block;
     }
@@ -154,7 +154,7 @@
       padding: 0.8em 1em;
       border-bottom: 1px solid var(--border-color);
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
     .dropdown-menu div:hover {
       background: var(--hover-bg);
@@ -209,7 +209,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 6px var(--shadow-color);
       margin-bottom: 1em;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
     .info-box h2, .references h2 {
       margin-bottom: 0.75em;
@@ -521,7 +521,6 @@
       item.addEventListener("click", (e) => {
         e.stopPropagation();
         dropdown.classList.remove("active");
-        // Remove icon text from label
         let textWithoutIcon = item.textContent.replace(/^[^ ]+ /, "");
         document.getElementById("dropdown-label").textContent = textWithoutIcon;
         currentSectionIndex = parseInt(item.getAttribute("data-index"));
@@ -1089,8 +1088,12 @@
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <!-- Embed the PDF using an iframe -->
-            <iframe src="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" width="100%" height="600" style="border: none;"></iframe>
+            <!-- Embed the PDF using an object element -->
+            <object data="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" type="application/pdf" width="100%" height="600">
+              <p>Your browser does not support embedded PDFs.
+                 <a href="ACNSNomenclature2021_ReferenceChart_2020_0725ForPublicComment.pdf" target="_blank">Download the PDF</a>.
+              </p>
+            </object>
           </div>
         `
       },
@@ -1139,7 +1142,7 @@
     const sectionContent = document.getElementById("section-content");
 
     /********************************************
-     * RENDER SECTION
+     * RENDER SECTION FUNCTION
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
@@ -1153,7 +1156,7 @@
     }
 
     /********************************************
-     * RENDER VIDEO LIST
+     * RENDER VIDEO LIST FUNCTION
      ********************************************/
     function renderVideoList() {
       const group = sections[currentSectionIndex];
@@ -1180,7 +1183,7 @@
     }
 
     /********************************************
-     * RENDER VIDEO SECTION
+     * RENDER VIDEO SECTION FUNCTION
      ********************************************/
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
@@ -1210,7 +1213,7 @@
     }
 
     /********************************************
-     * SETUP VIDEO QUIZ
+     * SETUP VIDEO QUIZ FUNCTION
      ********************************************/
     function setupVideoQuiz(vid) {
       const videoEl = document.getElementById("video");
@@ -1223,9 +1226,11 @@
       const returnBtn = document.getElementById("return-btn");
       const nextSectionBtn = document.getElementById("next-section-btn");
       const finalScoreDiv = document.getElementById("final-score");
+
       currentQuestionIndex = 0;
       score = 0;
       quizContainer.style.display = "none";
+
       function showQuestion() {
         feedbackDiv.innerHTML = "";
         feedbackDiv.className = "";
@@ -1265,6 +1270,7 @@
         });
         questionContainer.appendChild(answersDiv);
       }
+
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
