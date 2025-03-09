@@ -82,6 +82,14 @@
       padding-bottom: 80px; /* for footer spacing */
     }
 
+    /* Updated CSS rule to center and resize PNG images responsively */
+    .step-image {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+
     /*-----------------------------------------------
       HEADER (Centered container + Mobile vs Desktop)
     -----------------------------------------------*/
@@ -153,6 +161,10 @@
     .mobile-tabs a:hover {
       color: var(--accent-color);
       transform: scale(1.05);
+    }
+    /* The mobile current tab label */
+    #current-mobile-tab {
+      cursor: pointer;
     }
     .mobile-dropdown {
       display: none;
@@ -633,15 +645,15 @@
       <!-- Mobile Tabs: Home + Current Tab + Dropdown -->
       <div class="mobile-tabs" id="mobile-tabs">
         <!-- Home button -->
-        <a href="#" onclick="renderHomePage()">Home</a>
+        <a href="#" onclick="renderHomePage(); hideMobileDropdown()">Home</a>
         <!-- Current tab label; toggles dropdown -->
         <a href="#" id="current-mobile-tab" onclick="toggleMobileDropdown(event)">Epilepsy Rotation</a>
         <!-- Dropdown for other tabs -->
         <div class="mobile-dropdown" id="mobile-dropdown">
-          <a href="#" onclick="navigateToSection(0); toggleMobileDropdown(event)">Epilepsy Rotation</a>
-          <a href="#" onclick="navigateToSection(1); toggleMobileDropdown(event)">Natus Instructions</a>
-          <a href="#" onclick="navigateToSection(2); toggleMobileDropdown(event)">ACNS Criteria</a>
-          <a href="#" onclick="navigateToSection(3); toggleMobileDropdown(event)">EEG Videos</a>
+          <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
+          <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
+          <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
+          <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
         </div>
       </div>
     </div>
@@ -717,7 +729,7 @@
     let score = 0;
 
     /********************************************
-     * MOBILE TAB DROPDOWN
+     * MOBILE TAB DROPDOWN FUNCTIONS
      ********************************************/
     function toggleMobileDropdown(e) {
       e.preventDefault();
@@ -727,6 +739,9 @@
       } else {
         dropdown.style.display = "block";
       }
+    }
+    function hideMobileDropdown() {
+      document.getElementById("mobile-dropdown").style.display = "none";
     }
     function setMobileTabLabel(label) {
       document.getElementById("current-mobile-tab").textContent = label;
@@ -738,10 +753,8 @@
     function renderHomePage() {
       document.getElementById("section-content").innerHTML = "";
       document.getElementById("home-content").style.display = "block";
-      // Optionally set the mobile label to "Home"
       setMobileTabLabel("Home");
-      // Hide dropdown if open
-      document.getElementById("mobile-dropdown").style.display = "none";
+      hideMobileDropdown();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -752,11 +765,9 @@
       currentSectionIndex = index;
       renderSection();
       document.getElementById("home-content").style.display = "none";
-      // Set the mobile label based on which index
       const labels = ["Epilepsy Rotation", "Natus Instructions", "ACNS Criteria", "EEG Videos"];
       setMobileTabLabel(labels[index]);
-      // Hide dropdown if open
-      document.getElementById("mobile-dropdown").style.display = "none";
+      hideMobileDropdown();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
