@@ -82,7 +82,7 @@
       padding-bottom: 80px; /* for footer spacing */
     }
 
-    /* Updated CSS rule to center and resize PNG images responsively */
+    /* Responsive, centered images */
     .step-image {
       display: block;
       margin: 0 auto;
@@ -144,7 +144,9 @@
       transform: scale(1.05);
     }
 
-    /* Mobile Tabs: Home + Current Tab + Dropdown */
+    /* Mobile Tabs: 
+       1) The 'current-mobile-tab' toggles the dropdown.
+       2) The actual links appear in the .mobile-dropdown. */
     .mobile-tabs {
       display: none;
       align-items: center;
@@ -162,7 +164,6 @@
       color: var(--accent-color);
       transform: scale(1.05);
     }
-    /* The mobile current tab label */
     #current-mobile-tab {
       cursor: pointer;
     }
@@ -642,14 +643,15 @@
         <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
       </div>
 
-      <!-- Mobile Tabs: Home + Current Tab + Dropdown -->
+      <!-- Mobile Tabs: 
+           Removed the separate "Home" link.
+           The dropdown now contains "Home" as the first item. -->
       <div class="mobile-tabs" id="mobile-tabs">
-        <!-- Home button -->
-        <a href="#" onclick="renderHomePage(); hideMobileDropdown()">Home</a>
         <!-- Current tab label; toggles dropdown -->
         <a href="#" id="current-mobile-tab" onclick="toggleMobileDropdown(event)">Epilepsy Rotation</a>
         <!-- Dropdown for other tabs -->
         <div class="mobile-dropdown" id="mobile-dropdown">
+          <a href="#" onclick="renderHomePage(); hideMobileDropdown()">Home</a>
           <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
           <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
           <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
