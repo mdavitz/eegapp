@@ -11,13 +11,13 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
-  <!-- Favicon (for browser tab icon) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   
   <!-- Open Graph meta tags -->
   <meta property="og:title" content="EEG Curriculum" />
-  <meta property="og:description" content="Engaging Videos & Self-Assessment Tools" />
+  <meta property="og:description" content="Engaging Videos &amp; Self-Assessment Tools" />
   <meta property="og:image" content="https://example.com/logo.png" />
   <meta property="og:url" content="https://example.com" />
   
@@ -30,7 +30,7 @@
     :root {
       --primary-color: #003366;
       --secondary-color: #00509e;
-      --accent-color: #007bff; /* used by .btn-modern */
+      --accent-color: #007bff;
       --bg-color: #fafafa;
       --text-color: #333;
       --info-bg: #fff;
@@ -47,7 +47,7 @@
     .dark {
       --primary-color: #1a1a1a;
       --secondary-color: #333;
-      --accent-color: #0099ff; /* accent changes in dark mode */
+      --accent-color: #0099ff;
       --bg-color: #121212;
       --text-color: #eee;
       --info-bg: #1e1e1e;
@@ -59,13 +59,6 @@
       --dropdown-hover-bg: #2a2a2a;
       --answer-bg: #333;
       --answer-hover-bg: #444;
-    }
-    /* Always use blue header */
-    header {
-      background: linear-gradient(135deg, #003366, #00509e) !important;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translateZ(0);
     }
 
     body.large-font { font-size: 1.2em; }
@@ -79,139 +72,73 @@
       box-sizing: border-box;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                   "Open Sans", "Helvetica Neue", sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background var(--transition-duration), color var(--transition-duration), font-size var(--transition-duration);
+      transition: background var(--transition-duration),
+                  color var(--transition-duration),
+                  font-size var(--transition-duration);
       padding-bottom: 80px; /* for footer */
     }
 
     /*-----------------------------------------------
-      HEADER (Sticky with Shrink + Fade Out)
+      HEADER (Frosted + Logo on Left, Tabs on Right)
     -----------------------------------------------*/
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      color: var(--header-text);
-      text-align: center;
-      padding: 1.5em 1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 2rem;
+      background: rgba(0, 51, 102, 0.6); /* semi-transparent */
+      backdrop-filter: blur(8px);        /* frosted glass effect */
       box-shadow: 0 2px 6px var(--shadow-color);
-      margin-bottom: 1em;
-      transition: padding 0.3s ease;
+      transition: padding 0.3s ease, backdrop-filter 0.3s ease;
     }
-    /* On shrink, remove text from flow & reduce vertical padding. */
+    /* On scroll, shrink the header */
     header.shrink {
-      padding: 0.2em 1em;
-    }
-    header.shrink h1,
-    header.shrink p {
-      display: none; /* so it doesn't occupy vertical space */
+      padding: 0.2em 2rem;
     }
     .logo {
       width: 80px;
       height: auto;
-      margin-bottom: 0.5em;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      transition: width 0.3s;
+      cursor: pointer;
+      transition: width 0.3s, transform 0.3s;
     }
     header.shrink .logo {
       width: 60px;
-      margin-bottom: 0;
     }
-    /* Fade out the text from 1 -> 0 over scroll=0->100px. */
-    header h1, header p {
-      transition: opacity 0.3s ease;
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    nav.tabs-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    nav.tabs-nav a {
+      color: var(--header-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s;
+    }
+    nav.tabs-nav a:hover {
+      color: var(--accent-color);
+      transform: scale(1.05);
     }
     @media (max-width: 480px) {
       header {
         padding: 0.8em;
+        gap: 1rem;
       }
-    }
-
-    /*-----------------------------------------------
-      DROPDOWN NAVIGATION
-    -----------------------------------------------*/
-    .dropdown {
-      position: relative;
-      width: 100%;
-      background: var(--info-bg);
-      color: var(--text-color);
-      border-bottom: 1px solid var(--border-color);
-      padding: 0.8em 1em;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background var(--transition-duration);
-      text-align: left;
-      display: block;
-    }
-    .dropdown:hover {
-      background: var(--dropdown-hover-bg);
-    }
-    #dropdown-label {
-      display: inline-block;
-    }
-    .dropdown::after {
-      content: "▼";
-      float: right;
-      font-size: 0.8rem;
-      margin-top: 2px;
-    }
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      width: 100%;
-      background: var(--info-bg);
-      color: var(--text-color);
-      border-top: 1px solid var(--border-color);
-      box-shadow: 0 2px 4px var(--shadow-color);
-      z-index: 100;
-      transition: opacity var(--transition-duration) ease;
-    }
-    .dropdown-menu div {
-      padding: 0.8em 1em;
-      border-bottom: 1px solid var(--border-color);
-      cursor: pointer;
-      transition: background var(--transition-duration), transform 0.2s;
-    }
-    .dropdown-menu div:hover {
-      background: var(--hover-bg);
-      transform: scale(1.05);
-    }
-    .dropdown.active .dropdown-menu {
-      display: block;
-    }
-    @media (min-width: 768px) {
-      .dropdown {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      #dropdown-label {
-        display: none;
-      }
-      .dropdown::after {
-        content: none;
-      }
-      .dropdown-menu {
-        display: flex !important;
-        position: static;
-        border: none;
-        box-shadow: none;
-        width: auto;
-      }
-      .dropdown-menu div {
-        border: none;
-        padding: 10px 20px;
-        margin: 0 5px;
-        transition: background var(--transition-duration), transform 0.2s;
-      }
-      .dropdown-menu div:hover {
-        background: var(--hover-bg);
-        transform: scale(1.05);
+      nav.tabs-nav {
+        flex-wrap: wrap;
+        gap: 0.8rem;
       }
     }
 
@@ -225,7 +152,73 @@
     }
 
     /*-----------------------------------------------
-      INFO BOXES & STYLING
+      HOMEPAGE CARDS SECTION
+    -----------------------------------------------*/
+    .cards-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+    .cards-container h2 {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: var(--info-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+    .card i:hover {
+      transform: scale(1.1);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .card a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.3s;
+    }
+    .card a:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /*-----------------------------------------------
+      INFO BOXES & TABLES
     -----------------------------------------------*/
     .info-box {
       background: var(--info-bg);
@@ -239,36 +232,34 @@
       margin-bottom: 0.75em;
     }
 
-    /*-----------------------------------------------
-      CUSTOM TABLE (Improved Styling)
-    -----------------------------------------------*/
+    /* .custom-table with normal text (no uppercase) */
     .custom-table {
       width: 100%;
       border-collapse: collapse;
       margin: 1em 0;
-      background-color: #fff;
+      background-color: var(--info-bg);
       border: 1px solid var(--border-color);
       font-size: 1rem;
       border-radius: 8px;
-      overflow: hidden; /* So border-radius applies to table rows */
+      overflow: hidden;
+      color: var(--text-color);
     }
     .custom-table thead tr {
-      background-color: #f2f2f2;
+      background-color: var(--table-header-bg);
     }
     .custom-table thead th {
       font-weight: 600;
-      text-transform: uppercase;
+      /* removed text-transform: uppercase; */
     }
     .custom-table th,
     .custom-table td {
       padding: 16px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border-color);
     }
     .custom-table tr:hover td {
-      background-color: #fafafa;
+      background-color: var(--hover-bg);
     }
 
-    /* Table links (replacing buttons) */
     .table-link {
       display: inline-flex;
       align-items: center;
@@ -277,17 +268,15 @@
       font-weight: 500;
       text-decoration: none;
       border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
       margin-left: 0.5em;
     }
     .table-link:hover {
       text-decoration: underline;
       color: #0056b3;
+      transform: scale(1.05);
     }
 
-    /*-----------------------------------------------
-      TABLES (for schedule, etc.)
-    -----------------------------------------------*/
     table,
     th,
     td {
@@ -306,7 +295,7 @@
     }
 
     /*-----------------------------------------------
-      VIDEO LIST (Card Look)
+      VIDEO LIST & CONTAINER
     -----------------------------------------------*/
     .video-list {
       background: var(--info-bg);
@@ -326,15 +315,13 @@
       padding: 0.8em;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
-      transition: background var(--transition-duration);
+      transition: background var(--transition-duration), transform 0.3s;
     }
     .video-list li:hover {
       background: var(--hover-bg);
+      transform: scale(1.02);
     }
 
-    /*-----------------------------------------------
-      VIDEO CONTAINER
-    -----------------------------------------------*/
     .video-container {
       text-align: center;
       margin-bottom: 1.5em;
@@ -355,10 +342,11 @@
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
-      transition: background var(--transition-duration);
+      transition: background var(--transition-duration), transform 0.3s;
     }
     .skip-btn:hover {
       background-color: #218838;
+      transform: scale(1.05);
     }
 
     /*-----------------------------------------------
@@ -444,7 +432,7 @@
       color: #fff;
       border-radius: 4px;
       cursor: pointer;
-      transition: background var(--transition-duration);
+      transition: background var(--transition-duration), transform 0.3s;
       text-align: center;
     }
     .next-btn {
@@ -452,18 +440,21 @@
     }
     .next-btn:hover {
       background-color: #002147;
+      transform: scale(1.05);
     }
     .return-btn {
       background-color: #6c757d;
     }
     .return-btn:hover {
       background-color: #5a6268;
+      transform: scale(1.05);
     }
     .next-section-btn {
       background-color: #17a2b8;
     }
     .next-section-btn:hover {
       background-color: #138496;
+      transform: scale(1.05);
     }
     .final-score {
       text-align: center;
@@ -473,7 +464,7 @@
     }
 
     /*-----------------------------------------------
-      RESPONSIVE CARD LAYOUT (Teaching Rounds Table)
+      RESPONSIVE TEACHING ROUNDS TABLE
     -----------------------------------------------*/
     @media (max-width: 600px) {
       .responsive-table thead {
@@ -508,7 +499,7 @@
     }
 
     /*-----------------------------------------------
-      IMAGE STYLING (For Natus Steps, ACNS, etc.)
+      IMAGE STYLING
     -----------------------------------------------*/
     .step-image {
       display: block;
@@ -521,7 +512,7 @@
     }
 
     /*-----------------------------------------------
-      KITTEN OVERLAY (Click to Dismiss)
+      KITTEN OVERLAY
     -----------------------------------------------*/
     .kitten-overlay {
       position: fixed;
@@ -545,34 +536,11 @@
     }
 
     /*-----------------------------------------------
-      EEG SLIDE GENERATOR (Behind Header/Tabs)
+      EEG SLIDE GENERATOR
     -----------------------------------------------*/
     #generator {
       position: relative;
       z-index: 0;
-    }
-
-    /*-----------------------------------------------
-      MODERN BUTTON STYLE (legacy references)
-      Adapts to dark mode automatically by using
-      var(--accent-color).
-    -----------------------------------------------*/
-    .btn-modern {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      padding: 0.75em 1.5em;
-      cursor: pointer;
-      transition: filter var(--transition-duration), transform 0.2s;
-    }
-    .btn-modern:hover {
-      transform: translateY(-2px);
-      filter: brightness(0.9);
     }
 
     /*-----------------------------------------------
@@ -608,53 +576,75 @@
       padding: 10px 14px;
       border-radius: 4px;
       cursor: pointer;
-      transition: background var(--transition-duration);
+      transition: background var(--transition-duration), transform 0.3s;
       font-size: 0.9rem;
     }
     .footer-btns button:hover {
       background: #00509e;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- HEADER: Logo on left, tabs on right, frosted background -->
   <header id="header">
-    <img src="logo.png" alt="EEG Logo" class="logo" />
-    <h1>EEG Curriculum</h1>
-    <p>Engaging Videos &amp; Self-Assessment Tools</p>
+    <img src="logo.png" alt="Home" class="logo" onclick="renderHomePage()" />
+    <nav class="tabs-nav">
+      <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
+      <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
+      <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
+      <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
+    </nav>
   </header>
-
-  <!-- DROPDOWN NAVIGATION -->
-  <div class="dropdown" id="dropdown">
-    <span id="dropdown-label">Select Section</span>
-    <div class="dropdown-menu" id="dropdown-menu">
-      <div data-index="0"><i class="fa-solid fa-brain"></i> Epilepsy Rotation</div>
-      <div data-index="1"><i class="fa-solid fa-info-circle"></i> Natus Instructions</div>
-      <div data-index="2"><i class="fa-solid fa-file-pdf"></i> ACNS Criteria</div>
-      <div data-index="3"><i class="fa-solid fa-video"></i> EEG Videos</div>
+  
+  <!-- HOMEPAGE CARDS (Shown on initial load and when logo is clicked) -->
+  <div id="home-content" class="cards-container" style="display: none;">
+    <h2>Explore the EEG Curriculum</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <i class="fa-solid fa-brain"></i>
+        <h3>Epilepsy Rotation</h3>
+        <p>Delve into daily expectations with engaging videos, quizzes, and guidelines for EEG readings and milestones.</p>
+        <a href="#" onclick="navigateToSection(0)">Learn More</a>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-desktop"></i>
+        <h3>Natus Instructions</h3>
+        <p>Follow our step-by-step guide to launching Natus NeuroWorks, reviewing patient studies, and configuring the display.</p>
+        <a href="#" onclick="navigateToSection(1)">Learn More</a>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-file-pdf"></i>
+        <h3>ACNS Criteria</h3>
+        <p>Access detailed visual references and downloadable charts of ACNS guidelines to improve EEG interpretation.</p>
+        <a href="#" onclick="navigateToSection(2)">Learn More</a>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-video"></i>
+        <h3>EEG Videos</h3>
+        <p>Engage with interactive EEG videos accompanied by quizzes to sharpen your knowledge and interpretation skills.</p>
+        <a href="#" onclick="navigateToSection(3)">Learn More</a>
+      </div>
     </div>
   </div>
-
-  <!-- MAIN CONTAINER -->
+  
+  <!-- MAIN CONTAINER FOR SECTION CONTENT -->
   <div class="container">
     <div id="section-content"></div>
   </div>
-
+  
   <!-- FIXED FOOTER CONTROLS -->
   <footer id="footer">
     <div class="footer-btns">
-      <!-- Font Size Toggle Button -->
       <button onclick="toggleFontSize()" aria-label="Toggle Font Size">
         <span style="font-size:1.4em;">A</span>/<span style="font-size:0.8em;">a</span>
       </button>
-      <!-- Dark Mode Toggle Button -->
       <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
     </div>
   </footer>
-
+  
   <!-- PPTXGenJS for Slide Generation -->
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
-
   <script>
     // Auto-detect dark mode preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -672,6 +662,56 @@
     }
 
     /********************************************
+     * NAVIGATION LOGIC
+     ********************************************/
+    let currentSectionIndex = 0;
+    let currentVideoIndex = -1;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Show homepage cards
+    function renderHomePage() {
+      document.getElementById("section-content").innerHTML = "";
+      document.getElementById("home-content").style.display = "block";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Switch to a specific tab/section
+    function navigateToSection(index) {
+      currentSectionIndex = index;
+      renderSection();
+      document.getElementById("home-content").style.display = "none";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Shrink header, fade out text, and slightly decrease header opacity on scroll
+    window.addEventListener("scroll", () => {
+      const header = document.getElementById("header");
+      const scroll = window.scrollY;
+      if (scroll > 100) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
+      // If you had text in the header, it would fade here:
+      const fade = 1 - Math.min(scroll / 100, 1);
+      header.querySelectorAll("h1, p").forEach(el => {
+        el.style.opacity = fade;
+      });
+      header.style.opacity = 1 - Math.min(scroll / 1000, 0.1);
+    });
+
+    // Show fixed footer on scroll
+    const footer = document.getElementById("footer");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        footer.classList.add("show-footer");
+      } else {
+        footer.classList.remove("show-footer");
+      }
+    });
+
+    /********************************************
      * RANDOM CAT OVERLAY (User clicks to remove)
      ********************************************/
     function showKittenOverlay() {
@@ -687,41 +727,6 @@
       overlay.appendChild(catImg);
       document.body.appendChild(overlay);
     }
-
-    /********************************************
-     * NAVIGATION LOGIC
-     ********************************************/
-    const dropdown = document.getElementById("dropdown");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-    dropdown.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle("active");
-    });
-    document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove("active");
-      }
-    });
-
-    let currentSectionIndex = 0;
-    let currentVideoIndex = -1;
-    let currentQuestionIndex = 0;
-    let score = 0;
-
-    const menuItems = document.querySelectorAll(".dropdown-menu div");
-    menuItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        e.stopPropagation();
-        dropdown.classList.remove("active");
-        let textWithoutIcon = item.textContent.replace(/^[^ ]+ /, "");
-        document.getElementById("dropdown-label").textContent = textWithoutIcon;
-        currentSectionIndex = parseInt(item.getAttribute("data-index"));
-        currentVideoIndex = -1;
-        currentQuestionIndex = 0;
-        score = 0;
-        renderSection();
-      });
-    });
 
     /********************************************
      * VIDEO SECTIONS (All 10 Videos + Quizzes)
@@ -1138,67 +1143,67 @@
           <div class="info-box">
             <h2>Rotation Schedule</h2>
             <h3>Inpatient Rotation (MSH &amp; MSW EMU)</h3>
-            <table style="width:100%; border-collapse:collapse;">
+            <table class="custom-table">
               <thead>
-                <tr style="background:var(--table-header-bg);">
-                  <th style="padding:8px; border:1px solid var(--border-color);">Time</th>
-                  <th style="padding:8px; border:1px solid var(--border-color);">Activity</th>
+                <tr>
+                  <th>Time</th>
+                  <th>Activity</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">7-8 AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Arrive and preround on EMU/epilepsy consult patients</td>
+                  <td>7-8 AM</td>
+                  <td>Arrive and preround on EMU/epilepsy consult patients</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">8-9 AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Attend morning report</td>
+                  <td>8-9 AM</td>
+                  <td>Attend morning report</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">9-10 AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Read at least one LTM EEG, draft EEG reports</td>
+                  <td>9-10 AM</td>
+                  <td>Read at least one LTM EEG, draft EEG reports</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">10 AM-12 PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Round with epilepsy fellow/attending</td>
+                  <td>10 AM-12 PM</td>
+                  <td>Round with epilepsy fellow/attending</td>
                 </tr>
                 <tr class="pm-workflow">
-                  <td colspan="2" style="padding:8px; text-align:center; border:1px solid var(--border-color);">PM Workflow (~12-5pm)</td>
+                  <td colspan="2" style="text-align:center;">PM Workflow (~12-5pm)</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">12-1 PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Neurology noon conference</td>
+                  <td>12-1 PM</td>
+                  <td>Neurology noon conference</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">1-5 PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Elective admission H&amp;Ps, consults, follow-up on LTM EEG, read new inpatient EEGs</td>
+                  <td>1-5 PM</td>
+                  <td>Elective admission H&amp;Ps, consults, follow-up on LTM EEG, read new inpatient EEGs</td>
                 </tr>
               </tbody>
             </table>
 
             <h3>Outpatient Rotation</h3>
-            <table style="width:100%; border-collapse:collapse;">
+            <table class="custom-table">
               <thead>
-                <tr style="background:var(--table-header-bg);">
-                  <th style="padding:8px; border:1px solid var(--border-color);">Time</th>
-                  <th style="padding:8px; border:1px solid var(--border-color);">Activity</th>
+                <tr>
+                  <th>Time</th>
+                  <th>Activity</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">8-9 AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
+                  <td>8-9 AM</td>
+                  <td>Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">AM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
+                  <td>AM</td>
+                  <td>Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
                 </tr>
                 <tr>
-                  <td style="padding:8px; border:1px solid var(--border-color);">PM</td>
-                  <td style="padding:8px; border:1px solid var(--border-color);">Resident continuity clinic or faculty clinic, ambulatory EEG readings</td>
+                  <td>PM</td>
+                  <td>Resident continuity clinic or faculty clinic, ambulatory EEG readings</td>
                 </tr>
                 <tr>
-                  <td colspan="2" style="padding:8px; border:1px solid var(--border-color);">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td>
+                  <td colspan="2">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td>
                 </tr>
               </tbody>
             </table>
@@ -1207,7 +1212,7 @@
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
-            <table class="responsive-table">
+            <table class="custom-table responsive-table">
               <thead>
                 <tr>
                   <th>Seminar</th>
@@ -1265,9 +1270,9 @@
             <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/>
             <strong>Adjust the display parameters</strong> as follows:<br/>
             &nbsp;&nbsp;– Sensitivity: 7 μV<br/>
-            &nbsp;&nbsp;– Time base: 30 (e.g., 30 mm/sec)<br/>
+            &nbsp;&nbsp;– Time base: 30 mm/sec<br/>
             &nbsp;&nbsp;– High-frequency filter: 70 Hz; Low-frequency filter: 1 Hz<br/>
-            &nbsp;&nbsp;– Activate additional filters if required</p>
+            &nbsp;&nbsp;– Additional filters if needed</p>
             <img src="Step3.png" alt="Step 3 Screenshot" class="step-image" />
             <br/>
             <h3>Step 4: Analyze the EEG</h3>
@@ -1290,7 +1295,6 @@
         content: `
           <div class="info-box">
             <h2 style="text-align:center;">ACNS Criteria</h2>
-            <!-- ACNS PNG images replacing PDF -->
             <img src="ACNS1.png" alt="ACNS Criteria 1" class="step-image" />
             <img src="ACNS2.png" alt="ACNS Criteria 2" class="step-image" />
             <img src="ACNS3.png" alt="ACNS Criteria 3" class="step-image" />
@@ -1329,10 +1333,8 @@
     function renderSection() {
       const section = sections[currentSectionIndex];
       if (section.type === "info") {
-        // Show info content
         sectionContent.innerHTML = section.content;
       } else if (section.type === "videoGroup") {
-        // Show the video list
         renderVideoList();
       } else {
         sectionContent.innerHTML = section.content;
@@ -1353,8 +1355,6 @@
         html += `<li data-vid-index="${i}">${vid.title}</li>`;
       });
       html += `</ul></div>`;
-
-      // If there's a reference property, append it
       if (group.reference) {
         html += group.reference;
       }
@@ -1399,7 +1399,6 @@
           </div>
           <div class="final-score" id="final-score"></div>
         </div>
-        <!-- Curriculum reference appended to each video -->
         <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
           <p>
             <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570.
@@ -1432,7 +1431,6 @@
       score = 0;
       quizContainer.style.display = "none";
 
-      // Display each question
       function showQuestion() {
         feedbackDiv.innerHTML = "";
         progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
@@ -1454,14 +1452,10 @@
               score++;
               feedbackDiv.className = "correct-msg";
               feedbackDiv.textContent = ansObj.feedback;
-
-              // Show cat overlay
               showKittenOverlay();
-
               if (currentQuestionIndex < vid.questions.length - 1) {
                 nextBtn.style.display = "inline-block";
               } else {
-                // Quiz done
                 finalScoreDiv.textContent = `Your score: ${score} out of ${vid.questions.length}`;
                 nextSectionBtn.textContent = "Back to Video List";
                 nextSectionBtn.style.display = "inline-block";
@@ -1479,50 +1473,42 @@
         questionContainer.appendChild(answersDiv);
       }
 
-      // If video ends, show quiz
       videoEl.addEventListener("ended", () => {
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-      // Skip to quiz
       skipBtn.addEventListener("click", () => {
         videoEl.pause();
         videoContainer.style.display = "none";
         quizContainer.style.display = "block";
         showQuestion();
       });
-      // Next question
       nextBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
-
         currentQuestionIndex++;
         if (currentQuestionIndex < vid.questions.length) {
           showQuestion();
         }
       });
-      // Return to video
       returnBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
-
         quizContainer.style.display = "none";
         videoContainer.style.display = "block";
         videoEl.currentTime = 0;
         videoEl.play();
       });
-      // Back to video list
       nextSectionBtn.addEventListener("click", () => {
         const overlay = document.querySelector(".kitten-overlay");
         if (overlay) overlay.remove();
-
         renderVideoList();
       });
     }
 
     /********************************************
-     * EEG SLIDE GENERATOR FUNCTION
+     * EEG SLIDE GENERATOR
      ********************************************/
     function openEEGIndexApp() {
       const generatorHTML = `
@@ -1639,37 +1625,8 @@
       });
     }
 
-    // Initially load the default section (Epilepsy Rotation)
-    renderSection();
-
-    // Show the fixed footer on scroll
-    const footer = document.getElementById("footer");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        footer.classList.add("show-footer");
-      } else {
-        footer.classList.remove("show-footer");
-      }
-    });
-
-    // Shrink header, fade out text, and decrease header opacity as user scrolls
-    window.addEventListener("scroll", () => {
-      const header = document.getElementById("header");
-      const scroll = window.scrollY;
-      // If scrolled >100px, add "shrink"
-      if (scroll > 100) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
-      // Fade out the header's h1 and p text from 1 -> 0 over the first 100px
-      const fade = 1 - Math.min(scroll / 100, 1);
-      header.querySelectorAll("h1, p").forEach(el => {
-        el.style.opacity = fade;
-      });
-      // Slightly decrease overall header opacity (max reduction ~10%)
-      header.style.opacity = 1 - Math.min(scroll / 1000, 0.1);
-    });
+    // Initially load the homepage
+    renderHomePage();
   </script>
 </body>
 </html>
