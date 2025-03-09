@@ -60,7 +60,6 @@
       --answer-bg: #333;
       --answer-hover-bg: #444;
     }
-
     body.large-font { font-size: 1.2em; }
 
     /*-----------------------------------------------
@@ -80,29 +79,32 @@
       transition: background var(--transition-duration),
                   color var(--transition-duration),
                   font-size var(--transition-duration);
-      padding-bottom: 80px; /* for footer */
+      padding-bottom: 80px; /* for footer spacing */
     }
 
     /*-----------------------------------------------
-      HEADER (Frosted + Logo on Left, Tabs on Right)
+      HEADER (Centered container + Mobile vs Desktop)
     -----------------------------------------------*/
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 2rem;
-      background: rgba(0, 51, 102, 0.6); /* semi-transparent */
-      backdrop-filter: blur(8px);        /* frosted glass effect */
+      background: rgba(0, 51, 102, 0.6);
+      backdrop-filter: blur(8px);
       box-shadow: 0 2px 6px var(--shadow-color);
       transition: padding 0.3s ease, backdrop-filter 0.3s ease;
     }
-    /* On scroll, shrink the header */
-    header.shrink {
-      padding: 0.2em 2rem;
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    header.shrink .header-inner {
+      padding: 0.4rem 2rem;
     }
     .logo {
       width: 80px;
@@ -116,29 +118,72 @@
     .logo:hover {
       transform: scale(1.05);
     }
-    nav.tabs-nav {
+
+    /* Desktop Tabs */
+    .desktop-tabs {
       display: flex;
       gap: 1.5rem;
       align-items: center;
     }
-    nav.tabs-nav a {
+    .desktop-tabs a {
       color: var(--header-text);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease, transform 0.3s;
     }
-    nav.tabs-nav a:hover {
+    .desktop-tabs a:hover {
       color: var(--accent-color);
       transform: scale(1.05);
     }
-    @media (max-width: 480px) {
-      header {
-        padding: 0.8em;
-        gap: 1rem;
+
+    /* Mobile Tabs: Home + Current Tab + Dropdown */
+    .mobile-tabs {
+      display: none;
+      align-items: center;
+      position: relative;
+      gap: 1rem;
+    }
+    .mobile-tabs a {
+      text-decoration: none;
+      color: var(--header-text);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .mobile-tabs a:hover {
+      color: var(--accent-color);
+      transform: scale(1.05);
+    }
+    .mobile-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: var(--info-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 2px 6px var(--shadow-color);
+      z-index: 2000;
+      min-width: 150px;
+    }
+    .mobile-dropdown a {
+      display: block;
+      padding: 0.6rem 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .mobile-dropdown a:hover {
+      background: var(--hover-bg);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 600px) {
+      .desktop-tabs {
+        display: none;
       }
-      nav.tabs-nav {
-        flex-wrap: wrap;
-        gap: 0.8rem;
+      .mobile-tabs {
+        display: flex;
       }
     }
 
@@ -146,9 +191,14 @@
       MAIN CONTAINER
     -----------------------------------------------*/
     .container {
-      max-width: 650px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1em 2em;
+      padding: 0 1rem 2rem;
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 95%;
+      }
     }
 
     /*-----------------------------------------------
@@ -172,6 +222,8 @@
       margin-bottom: 2rem;
     }
     .card {
+      display: flex;
+      flex-direction: column;
       background: var(--info-bg);
       border: 1px solid var(--border-color);
       border-radius: 8px;
@@ -203,6 +255,7 @@
       line-height: 1.4;
     }
     .card a {
+      margin-top: auto;
       display: inline-block;
       padding: 0.5rem 1rem;
       background: var(--accent-color);
@@ -231,8 +284,6 @@
     .info-box h2 {
       margin-bottom: 0.75em;
     }
-
-    /* .custom-table with normal text (no uppercase) */
     .custom-table {
       width: 100%;
       border-collapse: collapse;
@@ -249,17 +300,14 @@
     }
     .custom-table thead th {
       font-weight: 600;
-      /* removed text-transform: uppercase; */
     }
-    .custom-table th,
-    .custom-table td {
+    .custom-table th, .custom-table td {
       padding: 16px;
       border-bottom: 1px solid var(--border-color);
     }
     .custom-table tr:hover td {
       background-color: var(--hover-bg);
     }
-
     .table-link {
       display: inline-flex;
       align-items: center;
@@ -276,14 +324,10 @@
       color: #0056b3;
       transform: scale(1.05);
     }
-
-    table,
-    th,
-    td {
+    table, th, td {
       border: 1px solid var(--border-color);
     }
-    th,
-    td {
+    th, td {
       padding: 10px;
       text-align: left;
     }
@@ -321,14 +365,13 @@
       background: var(--hover-bg);
       transform: scale(1.02);
     }
-
     .video-container {
       text-align: center;
       margin-bottom: 1.5em;
     }
     video {
       width: 100%;
-      max-width: 650px;
+      max-width: 1000px;
       height: auto;
       border-radius: 8px;
       background-color: #000;
@@ -499,19 +542,6 @@
     }
 
     /*-----------------------------------------------
-      IMAGE STYLING
-    -----------------------------------------------*/
-    .step-image {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      margin: 0.75em 0;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      box-shadow: 0 2px 6px var(--shadow-color);
-    }
-
-    /*-----------------------------------------------
       KITTEN OVERLAY
     -----------------------------------------------*/
     .kitten-overlay {
@@ -586,15 +616,35 @@
   </style>
 </head>
 <body>
-  <!-- HEADER: Logo on left, tabs on right, frosted background -->
+  <!-- HEADER -->
   <header id="header">
-    <img src="logo.png" alt="Home" class="logo" onclick="renderHomePage()" />
-    <nav class="tabs-nav">
-      <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
-      <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
-      <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
-      <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
-    </nav>
+    <div class="header-inner">
+      <!-- Logo (Home) -->
+      <img src="logo.png" alt="Home" class="logo" onclick="renderHomePage()" />
+
+      <!-- Desktop Tabs -->
+      <div class="desktop-tabs" id="desktop-tabs">
+        <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
+        <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
+        <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
+        <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
+      </div>
+
+      <!-- Mobile Tabs: Home + Current Tab + Dropdown -->
+      <div class="mobile-tabs" id="mobile-tabs">
+        <!-- Home button -->
+        <a href="#" onclick="renderHomePage()">Home</a>
+        <!-- Current tab label; toggles dropdown -->
+        <a href="#" id="current-mobile-tab" onclick="toggleMobileDropdown(event)">Epilepsy Rotation</a>
+        <!-- Dropdown for other tabs -->
+        <div class="mobile-dropdown" id="mobile-dropdown">
+          <a href="#" onclick="navigateToSection(0); toggleMobileDropdown(event)">Epilepsy Rotation</a>
+          <a href="#" onclick="navigateToSection(1); toggleMobileDropdown(event)">Natus Instructions</a>
+          <a href="#" onclick="navigateToSection(2); toggleMobileDropdown(event)">ACNS Criteria</a>
+          <a href="#" onclick="navigateToSection(3); toggleMobileDropdown(event)">EEG Videos</a>
+        </div>
+      </div>
+    </div>
   </header>
   
   <!-- HOMEPAGE CARDS (Shown on initial load and when logo is clicked) -->
@@ -661,30 +711,56 @@
       document.body.classList.toggle("large-font");
     }
 
-    /********************************************
-     * NAVIGATION LOGIC
-     ********************************************/
     let currentSectionIndex = 0;
     let currentVideoIndex = -1;
     let currentQuestionIndex = 0;
     let score = 0;
 
-    // Show homepage cards
+    /********************************************
+     * MOBILE TAB DROPDOWN
+     ********************************************/
+    function toggleMobileDropdown(e) {
+      e.preventDefault();
+      const dropdown = document.getElementById("mobile-dropdown");
+      if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+      } else {
+        dropdown.style.display = "block";
+      }
+    }
+    function setMobileTabLabel(label) {
+      document.getElementById("current-mobile-tab").textContent = label;
+    }
+
+    /********************************************
+     * HOMEPAGE
+     ********************************************/
     function renderHomePage() {
       document.getElementById("section-content").innerHTML = "";
       document.getElementById("home-content").style.display = "block";
+      // Optionally set the mobile label to "Home"
+      setMobileTabLabel("Home");
+      // Hide dropdown if open
+      document.getElementById("mobile-dropdown").style.display = "none";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Switch to a specific tab/section
+    /********************************************
+     * NAVIGATION LOGIC
+     ********************************************/
     function navigateToSection(index) {
       currentSectionIndex = index;
       renderSection();
       document.getElementById("home-content").style.display = "none";
+      // Set the mobile label based on which index
+      const labels = ["Epilepsy Rotation", "Natus Instructions", "ACNS Criteria", "EEG Videos"];
+      setMobileTabLabel(labels[index]);
+      // Hide dropdown if open
+      document.getElementById("mobile-dropdown").style.display = "none";
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Shrink header, fade out text, and slightly decrease header opacity on scroll
+    // Shrink header on scroll
     window.addEventListener("scroll", () => {
       const header = document.getElementById("header");
       const scroll = window.scrollY;
@@ -693,7 +769,6 @@
       } else {
         header.classList.remove("shrink");
       }
-      // If you had text in the header, it would fade here:
       const fade = 1 - Math.min(scroll / 100, 1);
       header.querySelectorAll("h1, p").forEach(el => {
         el.style.opacity = fade;
@@ -701,7 +776,7 @@
       header.style.opacity = 1 - Math.min(scroll / 1000, 0.1);
     });
 
-    // Show fixed footer on scroll
+    // Show/hide footer on scroll
     const footer = document.getElementById("footer");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
@@ -711,15 +786,11 @@
       }
     });
 
-    /********************************************
-     * RANDOM CAT OVERLAY (User clicks to remove)
-     ********************************************/
+    // Show cat overlay
     function showKittenOverlay() {
       const overlay = document.createElement("div");
       overlay.className = "kitten-overlay";
-      overlay.addEventListener("click", () => {
-        overlay.remove();
-      });
+      overlay.addEventListener("click", () => overlay.remove());
       const randomParam = Date.now();
       const catImg = document.createElement("img");
       catImg.src = `https://cataas.com/cat/gif?${randomParam}`;
@@ -1084,8 +1155,8 @@
     ];
 
     /********************************************
-     * SECTIONS ARRAY (4 Tabs)
-    ********************************************/
+     * SECTIONS ARRAY (4 TABS)
+     ********************************************/
     const sections = [
       {
         title: "Epilepsy Rotation",
@@ -1328,7 +1399,7 @@
     const sectionContent = document.getElementById("section-content");
 
     /********************************************
-     * RENDER SECTION FUNCTION
+     * RENDER SECTION
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
@@ -1342,7 +1413,7 @@
     }
 
     /********************************************
-     * RENDER VIDEO LIST FUNCTION
+     * RENDER VIDEO LIST
      ********************************************/
     function renderVideoList() {
       const group = sections[currentSectionIndex];
@@ -1373,7 +1444,7 @@
     }
 
     /********************************************
-     * RENDER VIDEO SECTION FUNCTION
+     * RENDER VIDEO SECTION
      ********************************************/
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
@@ -1399,20 +1470,13 @@
           </div>
           <div class="final-score" id="final-score"></div>
         </div>
-        <div class="curriculum-reference" style="margin-top:1em; text-align:center;">
-          <p>
-            <strong>Curriculum Reference:</strong> Moeller JJ, Farooque P, Leydon G, Dominguez M, Schwartz ML, Sadler RM. A video-based introductory EEG curriculum for neurology residents. <em>MedEdPORTAL</em>. 2017;13:10570.
-            <a href="https://doi.org/10.15766/mep_2374-8265.10570" target="_blank">
-              <i class="fa-solid fa-link"></i> Link
-            </a>
-          </p>
-        </div>
+        ${group.reference || ""}
       `;
       setupVideoQuiz(vid);
     }
 
     /********************************************
-     * SETUP VIDEO QUIZ FUNCTION
+     * SETUP VIDEO QUIZ
      ********************************************/
     function setupVideoQuiz(vid) {
       const videoEl = document.getElementById("video");
