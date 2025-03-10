@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!-- Responsive scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   
   <!-- Google Fonts -->
@@ -22,10 +23,9 @@
   
   <title>EEG Curriculum</title>
   
-  <!-- Main Styles -->
   <style>
     /********************************************
-     * THEME VARIABLES
+     * THEME VARIABLES & BASE STYLES
      ********************************************/
     :root {
       --primary-color: #003366;
@@ -38,11 +38,7 @@
       --header-text: #fff;
       --hover-bg: #f0f0f0;
       --shadow-color: rgba(0, 0, 0, 0.08);
-      --table-header-bg: #f8f8f8;
-      --dropdown-hover-bg: #f9f9f9;
       --transition-duration: 0.3s;
-      --answer-bg: #e9ecef;
-      --answer-hover-bg: #d6d8db;
     }
     .dark {
       --primary-color: #1a1a1a;
@@ -55,38 +51,22 @@
       --header-text: #fff;
       --hover-bg: #222;
       --shadow-color: rgba(0, 0, 0, 0.3);
-      --table-header-bg: #333;
-      --dropdown-hover-bg: #2a2a2a;
-      --answer-bg: #333;
-      --answer-hover-bg: #444;
     }
-    body.large-font { font-size: 1.2em; }
-    
-    /********************************************
-     * GLOBAL RESET & BASE STYLES
-     ********************************************/
-    * {
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-                   "Open Sans", "Helvetica Neue", sans-serif;
+      font-family: Roboto, sans-serif;
       background: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      transition: background var(--transition-duration),
-                  color var(--transition-duration),
-                  font-size var(--transition-duration);
+      transition: background var(--transition-duration), color var(--transition-duration);
       padding-bottom: 80px;
     }
     
     /********************************************
-     * LOGIN MODAL (BLOCKS ENTRY)
+     * LOGIN MODAL (BLOCKS SITE UNTIL SIGNED IN)
      ********************************************/
     .modal {
-      display: none; /* Shown only if user is NOT signed in */
+      display: none; /* Shown only when no user is signed in */
       position: fixed;
       z-index: 10000;
       top: 0;
@@ -106,9 +86,7 @@
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .modal-content h2 {
-      margin-bottom: 16px;
-    }
+    .modal-content h2 { margin-bottom: 16px; }
     .modal-content button {
       width: 100%;
       padding: 12px;
@@ -119,535 +97,205 @@
       cursor: pointer;
       color: #fff;
     }
-    .google-btn {
-      background-color: #4285F4;
+    .google-btn { background-color: #4285F4; }
+    .google-btn:hover { background-color: #3367D6; }
+    .apple-btn { background-color: #000; }
+    .apple-btn:hover { background-color: #333; }
+    .phone-btn { background-color: #34A853; }
+    .phone-btn:hover { background-color: #2c8e46; }
+    /* Phone auth input section */
+    #phoneAuthSection {
+      display: none;
+      margin-top: 16px;
+      text-align: left;
     }
-    .google-btn:hover {
-      background-color: #3367D6;
-    }
-    .apple-btn {
-      background-color: #000;
-    }
-    .apple-btn:hover {
-      background-color: #333;
+    #phoneAuthSection input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
     }
     
     /********************************************
-     * HEADER (Centered container + Mobile vs Desktop)
+     * HEADER (Simplified for this Example)
      ********************************************/
     header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(0, 51, 102, 0.6);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 6px var(--shadow-color);
-      transition: padding 0.3s ease, backdrop-filter 0.3s ease;
-    }
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    header.shrink .header-inner { 
-      padding: 0.4rem 2rem; 
-    }
-    .logo {
-      width: 80px; 
-      height: auto; 
-      cursor: pointer; 
-      transition: width 0.3s, transform 0.3s;
-    }
-    header.shrink .logo { 
-      width: 60px; 
-    }
-    .logo:hover { 
-      transform: scale(1.05); 
-    }
-    .desktop-tabs {
-      display: flex; 
-      gap: 1.5rem; 
-      align-items: center;
-    }
-    .desktop-tabs a {
+      background: rgba(0,51,102,0.6);
+      padding: 1rem;
       color: var(--header-text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease, transform 0.3s;
-    }
-    .desktop-tabs a:hover { 
-      color: var(--accent-color); 
-      transform: scale(1.05); 
-    }
-    .mobile-tabs {
-      display: none;
-      align-items: center;
-      position: relative;
-      gap: 1rem;
-    }
-    .mobile-tabs a {
-      text-decoration: none;
-      color: var(--header-text);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      transition: color 0.3s, transform 0.3s;
-    }
-    .mobile-tabs a:hover { 
-      color: var(--accent-color); 
-      transform: scale(1.05); 
-    }
-    #current-mobile-tab { 
-      cursor: pointer; 
-    }
-    .mobile-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: var(--info-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      box-shadow: 0 2px 6px var(--shadow-color);
-      z-index: 2000;
-      min-width: 150px;
-    }
-    .mobile-dropdown a {
-      display: block;
-      padding: 0.6rem 1rem;
-      color: var(--text-color);
-      text-decoration: none;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .mobile-dropdown a:hover {
-      background: var(--hover-bg); 
-      transform: scale(1.02);
-    }
-    @media (max-width: 600px) {
-      .desktop-tabs { 
-        display: none; 
-      }
-      .mobile-tabs { 
-        display: flex; 
-      }
+      text-align: center;
     }
     
     /********************************************
-     * HOMEPAGE CARDS
-     ********************************************/
-    .cards-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem 2rem;
-      text-align: center;
-    }
-    .cards-container h2 { 
-      margin-top: 1.5rem; 
-      margin-bottom: 1.5rem; 
-      font-size: 2rem; 
-    }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .card {
-      display: flex;
-      flex-direction: column;
-      background: var(--info-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .card i {
-      font-size: 3rem; 
-      color: var(--accent-color); 
-      margin-bottom: 1rem; 
-      transition: transform 0.3s;
-    }
-    .card i:hover { 
-      transform: scale(1.1); 
-    }
-    .card h3 { 
-      font-size: 1.5rem; 
-      margin-bottom: 0.75rem; 
-    }
-    .card p { 
-      font-size: 1rem; 
-      margin-bottom: 1rem; 
-      line-height: 1.4; 
-    }
-    .card a {
-      margin-top: auto;
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: var(--accent-color);
-      color: #fff;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s ease, transform 0.3s;
-    }
-    .card a:hover { 
-      background: #0056b3; 
-      transform: scale(1.05); 
-    }
-    
-    /********************************************
-     * FOOTER (Dark Mode & Font Size)
-     ********************************************/
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: var(--info-bg);
-      border-top: 1px solid var(--border-color);
-      padding: 1em;
-      text-align: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--transition-duration);
-    }
-    footer.show-footer {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .footer-btns {
-      display: inline-flex;
-      gap: 1em;
-      align-items: center;
-    }
-    .footer-btns button {
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background var(--transition-duration), transform 0.3s;
-      font-size: 0.9rem;
-    }
-    .footer-btns button:hover {
-      background: #00509e; 
-      transform: scale(1.05);
-    }
-    
-    /********************************************
-     * (Below are styles for the rest of your site)
+     * MAIN CONTENT & FOOTER (Simplified)
      ********************************************/
     .container {
-      max-width: 1200px; 
-      margin: 0 auto; 
-      padding: 0 1rem 2rem;
+      padding: 20px;
     }
-    .step-image {
-      display: block; 
-      margin: 0 auto; 
-      max-width: 100%; 
-      height: auto;
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: var(--info-bg);
+      border-top: 1px solid var(--border-color);
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
-    /* Additional table, quiz, overlay, etc. styles omitted here for brevity 
-       but included in your original code snippet. 
-       (They remain the same as your existing version.) */
   </style>
 </head>
 <body>
-  <!-- LOGIN MODAL (BLOCKS ACCESS UNTIL SIGNED IN) -->
+  <!-- LOGIN MODAL -->
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <h2>Please Sign In</h2>
       <button id="googleSignInBtn" class="google-btn">Sign in with Google</button>
       <button id="appleSignInBtn" class="apple-btn">Sign in with Apple</button>
+      <button id="phoneSignInBtn" class="phone-btn">Sign in with Phone</button>
+      
+      <!-- Phone Authentication Section -->
+      <div id="phoneAuthSection">
+        <input type="tel" id="phoneNumber" placeholder="Enter phone number (e.g., +1234567890)" />
+        <div id="recaptcha-container"></div>
+        <input type="text" id="verificationCode" placeholder="Enter verification code" />
+        <button id="verifyCodeBtn">Verify Code</button>
+      </div>
     </div>
   </div>
   
   <!-- HEADER -->
-  <header id="header">
-    <div class="header-inner">
-      <!-- Logo (Home) -->
-      <img src="logo.png" alt="Home" class="logo" onclick="renderHomePage()" />
-      <!-- Desktop Tabs -->
-      <div class="desktop-tabs" id="desktop-tabs">
-        <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
-        <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
-        <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
-        <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
-        <a href="#" onclick="navigateToSection(4)">FAQ</a>
-      </div>
-      <!-- Mobile Tabs -->
-      <div class="mobile-tabs" id="mobile-tabs">
-        <a href="#" id="current-mobile-tab" onclick="toggleMobileDropdown(event)">Epilepsy Rotation</a>
-        <div class="mobile-dropdown" id="mobile-dropdown">
-          <a href="#" onclick="renderHomePage(); hideMobileDropdown()">Home</a>
-          <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
-          <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
-          <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
-          <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
-          <a href="#" onclick="navigateToSection(4)">FAQ</a>
-        </div>
-      </div>
-    </div>
+  <header>
+    <h1>EEG Curriculum</h1>
+    <!-- (Additional navigation can be inserted here) -->
   </header>
   
-  <!-- HOMEPAGE CARDS -->
-  <div id="home-content" class="cards-container" style="display: none;">
+  <!-- MAIN CONTENT (Protected) -->
+  <div class="container" id="home-content">
     <h2>Explore the EEG Curriculum</h2>
-    <div class="cards-grid">
-      <div class="card">
-        <i class="fa-solid fa-brain"></i>
-        <h3>Epilepsy Rotation</h3>
-        <p>Delve into daily expectations with engaging videos, quizzes, and guidelines for EEG readings and milestones.</p>
-        <a href="#" onclick="navigateToSection(0)">Learn More</a>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-desktop"></i>
-        <h3>Natus Instructions</h3>
-        <p>Follow our step-by-step guide to launching Natus NeuroWorks, reviewing patient studies, and configuring the display.</p>
-        <a href="#" onclick="navigateToSection(1)">Learn More</a>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-file-pdf"></i>
-        <h3>ACNS Criteria</h3>
-        <p>Access detailed visual references and downloadable charts of ACNS guidelines to improve EEG interpretation.</p>
-        <a href="#" onclick="navigateToSection(2)">Learn More</a>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-video"></i>
-        <h3>EEG Videos</h3>
-        <p>Engage with interactive EEG videos accompanied by quizzes to sharpen your knowledge and interpretation skills.</p>
-        <a href="#" onclick="navigateToSection(3)">Learn More</a>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-circle-question"></i>
-        <h3>FAQ</h3>
-        <p>Find answers to common questions about EEG interpretation, seizure management, and epilepsy care.</p>
-        <a href="#" onclick="navigateToSection(4)">Learn More</a>
-      </div>
-    </div>
+    <p>Welcome! This content is protected and only visible after successful sign‑in.</p>
+    <!-- Your full website content goes here -->
   </div>
   
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-    <div id="section-content"></div>
-  </div>
-  
-  <!-- FIXED FOOTER CONTROLS (Dark Mode and Font Size Buttons) -->
-  <footer id="footer">
-    <div class="footer-btns">
-      <button onclick="toggleFontSize()" aria-label="Toggle Font Size">
-        <span style="font-size:1.4em;">A</span>/<span style="font-size:0.8em;">a</span>
-      </button>
-      <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">Dark Mode</button>
-    </div>
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 EEG Curriculum</p>
   </footer>
   
-  <!-- Include PPTXGenJS or other libraries as needed -->
-  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.9.0/dist/pptxgen.bundle.js"></script>
-  
-  <!-- Firebase App + Authentication (Google + Apple) -->
+  <!-- Firebase Initialization & Authentication -->
   <script type="module">
+    // Your provided Firebase initialization snippet:
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-    import { 
-      getAuth, 
-      onAuthStateChanged, 
-      signInWithPopup, 
-      GoogleAuthProvider, 
-      OAuthProvider 
-    } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-    
-    // Your Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDhMhYzo2G0Efvj7zM0rwjJbEN4nIWZEgQ",
       authDomain: "eeg-app-6968e.firebaseapp.com",
       projectId: "eeg-app-6968e",
-      storageBucket: "eeg-app-6968e.appspot.com",
+      storageBucket: "eeg-app-6968e.firebasestorage.app",
       messagingSenderId: "322977550023",
       appId: "1:322977550023:web:9f91e6ffd07d31c80578e2"
     };
-    
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    
+    // Import additional Firebase Auth modules
+    import { 
+      getAuth, 
+      onAuthStateChanged, 
+      signInWithRedirect, 
+      getRedirectResult, 
+      GoogleAuthProvider, 
+      OAuthProvider,
+      RecaptchaVerifier,
+      signInWithPhoneNumber
+    } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+    
     const auth = getAuth(app);
     
-    // Monitor auth state
+    // Process any redirect sign-in result (for Google/Apple)
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result && result.user) {
+          console.log("Redirect sign-in successful:", result.user);
+          document.getElementById("loginModal").style.display = "none";
+        }
+      })
+      .catch((error) => {
+        console.error("Redirect sign-in error:", error);
+      });
+    
+    // Monitor auth state: Show modal if not signed in, hide if signed in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Hide login modal if signed in
+        console.log("User is signed in:", user);
         document.getElementById("loginModal").style.display = "none";
       } else {
-        // Show login modal if not signed in
         document.getElementById("loginModal").style.display = "flex";
       }
     });
     
-    // Google Sign In
-    const googleBtn = document.getElementById("googleSignInBtn");
-    googleBtn.addEventListener("click", () => {
+    // Google Sign-In using redirect
+    document.getElementById("googleSignInBtn").addEventListener("click", () => {
       const provider = new GoogleAuthProvider();
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          console.log("Google sign-in successful:", result.user);
-        })
-        .catch((error) => {
-          console.error("Google sign-in error:", error);
-          alert("Google sign-in error: " + error.message);
-        });
+      signInWithRedirect(auth, provider);
     });
     
-    // Apple Sign In
-    const appleBtn = document.getElementById("appleSignInBtn");
-    appleBtn.addEventListener("click", () => {
+    // Apple Sign-In using redirect
+    document.getElementById("appleSignInBtn").addEventListener("click", () => {
       const provider = new OAuthProvider('apple.com');
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          console.log("Apple sign-in successful:", result.user);
-        })
-        .catch((error) => {
-          console.error("Apple sign-in error:", error);
-          alert("Apple sign-in error: " + error.message);
+      signInWithRedirect(auth, provider);
+    });
+    
+    // Phone Sign-In: Show phone auth inputs when button is clicked
+    document.getElementById("phoneSignInBtn").addEventListener("click", () => {
+      document.getElementById("phoneAuthSection").style.display = "block";
+      // Initialize invisible reCAPTCHA if not already initialized
+      if (!window.recaptchaVerifier) {
+        window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+          size: 'invisible',
+          callback: (response) => {
+            console.log("reCAPTCHA solved:", response);
+          }
+        }, auth);
+        window.recaptchaVerifier.render().then((widgetId) => {
+          window.recaptchaWidgetId = widgetId;
         });
+      }
+    });
+    
+    // Phone Authentication: Verify code or send verification code
+    document.getElementById("verifyCodeBtn").addEventListener("click", () => {
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      // If a verification code hasn't been sent, send one:
+      if (!window.confirmationResult) {
+        signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            alert("Verification code sent. Please check your phone.");
+          })
+          .catch((error) => {
+            console.error("Phone sign-in error:", error);
+            alert("Phone sign-in error: " + error.message);
+          });
+      } else {
+        // Otherwise, confirm the code entered by the user
+        const code = document.getElementById("verificationCode").value;
+        window.confirmationResult.confirm(code)
+          .then((result) => {
+            console.log("Phone sign-in successful:", result.user);
+            document.getElementById("loginModal").style.display = "none";
+          })
+          .catch((error) => {
+            console.error("Verification error:", error);
+            alert("Verification error: " + error.message);
+          });
+      }
     });
   </script>
   
-  <!-- Your existing site scripts -->
+  <!-- Site Navigation & Additional Scripts -->
   <script>
-    /********************************************
-     * HEADER SHRINK ON SCROLL
-     ********************************************/
-    window.addEventListener("scroll", () => {
-      const header = document.getElementById("header");
-      if (window.scrollY > 100) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
-    });
-
-    /********************************************
-     * SHOW FOOTER ON SCROLL
-     ********************************************/
-    window.addEventListener("scroll", () => {
-      const footer = document.getElementById("footer");
-      if (window.scrollY > 300) {
-        footer.classList.add("show-footer");
-      } else {
-        footer.classList.remove("show-footer");
-      }
-    });
-
-    /********************************************
-     * DARK MODE & FONT SIZE
-     ********************************************/
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-    }
-    function toggleFontSize() {
-      document.body.classList.toggle("large-font");
-    }
-
-    /********************************************
-     * MOBILE TAB DROPDOWN
-     ********************************************/
-    function toggleMobileDropdown(e) {
-      e.preventDefault();
-      const dropdown = document.getElementById("mobile-dropdown");
-      dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
-    }
-    function hideMobileDropdown() {
-      document.getElementById("mobile-dropdown").style.display = "none";
-    }
-    function setMobileTabLabel(label) {
-      document.getElementById("current-mobile-tab").textContent = label;
-    }
-
-    /********************************************
-     * HOMEPAGE
-     ********************************************/
+    // Minimal example: show home content when page loads.
     function renderHomePage() {
-      document.getElementById("section-content").innerHTML = "";
       document.getElementById("home-content").style.display = "block";
-      setMobileTabLabel("Home");
-      hideMobileDropdown();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    /********************************************
-     * NAVIGATE TO SECTION
-     ********************************************/
-    let currentSectionIndex = 0;
-    function navigateToSection(index) {
-      currentSectionIndex = index;
-      document.getElementById("home-content").style.display = "none";
-      renderSection();
-      hideMobileDropdown();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setMobileTabLabel(sections[index].title);
-    }
-
-    /********************************************
-     * FILTER FAQ (if needed)
-     ********************************************/
-    function filterFaq() {
-      // Implementation from your code if needed
-    }
-
-    /********************************************
-     * VIDEO/QUIZ CODE (Truncated for brevity here)
-     * Paste your full quiz logic or keep it as is
-     ********************************************/
-
-    // You already have a "sections" array, "renderSection()" function, 
-    // "renderVideoList()", "renderVideoSection()", etc. in your code.
-    // Insert or keep them in place below.
-    
-    // The following is a simplified placeholder to avoid code length issues:
-    const sections = [
-      {
-        title: "Epilepsy Rotation",
-        type: "info",
-        content: "<p>Epilepsy rotation content here...</p>"
-      },
-      {
-        title: "Natus Instructions",
-        type: "info",
-        content: "<p>Natus instructions content here...</p>"
-      },
-      {
-        title: "ACNS Criteria",
-        type: "info",
-        content: "<p>ACNS criteria content here...</p>"
-      },
-      {
-        title: "EEG Videos",
-        type: "info",
-        content: "<p>EEG videos content here...</p>"
-      },
-      {
-        title: "FAQ",
-        type: "info",
-        content: "<p>FAQ content here...</p>"
-      }
-    ];
-
-    function renderSection() {
-      const section = sections[currentSectionIndex];
-      document.getElementById("section-content").innerHTML = section.content;
-    }
-
-    // Show the homepage by default
     document.addEventListener("DOMContentLoaded", () => {
       renderHomePage();
     });
