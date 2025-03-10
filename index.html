@@ -65,11 +65,7 @@
     /*-----------------------------------------------
       GLOBAL RESET & BASE STYLES
     -----------------------------------------------*/
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
                    "Open Sans", "Helvetica Neue", sans-serif;
@@ -79,16 +75,9 @@
       transition: background var(--transition-duration),
                   color var(--transition-duration),
                   font-size var(--transition-duration);
-      padding-bottom: 80px; /* for footer spacing */
+      padding-bottom: 80px;
     }
-
-    /* Responsive, centered images */
-    .step-image {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-      height: auto;
-    }
+    .step-image { display: block; margin: 0 auto; max-width: 100%; height: auto; }
 
     /*-----------------------------------------------
       HEADER (Centered container + Mobile vs Desktop)
@@ -111,42 +100,18 @@
       justify-content: space-between;
       gap: 1rem;
     }
-    header.shrink .header-inner {
-      padding: 0.4rem 2rem;
-    }
-    .logo {
-      width: 80px;
-      height: auto;
-      cursor: pointer;
-      transition: width 0.3s, transform 0.3s;
-    }
-    header.shrink .logo {
-      width: 60px;
-    }
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    /* Desktop Tabs */
-    .desktop-tabs {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
+    header.shrink .header-inner { padding: 0.4rem 2rem; }
+    .logo { width: 80px; height: auto; cursor: pointer; transition: width 0.3s, transform 0.3s; }
+    header.shrink .logo { width: 60px; }
+    .logo:hover { transform: scale(1.05); }
+    .desktop-tabs { display: flex; gap: 1.5rem; align-items: center; }
     .desktop-tabs a {
       color: var(--header-text);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease, transform 0.3s;
     }
-    .desktop-tabs a:hover {
-      color: var(--accent-color);
-      transform: scale(1.05);
-    }
-
-    /* Mobile Tabs: 
-       1) The 'current-mobile-tab' toggles the dropdown.
-       2) The actual links appear in the .mobile-dropdown. */
+    .desktop-tabs a:hover { color: var(--accent-color); transform: scale(1.05); }
     .mobile-tabs {
       display: none;
       align-items: center;
@@ -160,13 +125,8 @@
       padding: 0.5rem 1rem;
       transition: color 0.3s, transform 0.3s;
     }
-    .mobile-tabs a:hover {
-      color: var(--accent-color);
-      transform: scale(1.05);
-    }
-    #current-mobile-tab {
-      cursor: pointer;
-    }
+    .mobile-tabs a:hover { color: var(--accent-color); transform: scale(1.05); }
+    #current-mobile-tab { cursor: pointer; }
     .mobile-dropdown {
       display: none;
       position: absolute;
@@ -186,48 +146,20 @@
       text-decoration: none;
       transition: background 0.3s, transform 0.3s;
     }
-    .mobile-dropdown a:hover {
-      background: var(--hover-bg);
-      transform: scale(1.02);
-    }
-
-    @media (max-width: 600px) {
-      .desktop-tabs {
-        display: none;
-      }
-      .mobile-tabs {
-        display: flex;
-      }
-    }
+    .mobile-dropdown a:hover { background: var(--hover-bg); transform: scale(1.02); }
+    @media (max-width: 600px) { .desktop-tabs { display: none; } .mobile-tabs { display: flex; } }
 
     /*-----------------------------------------------
       MAIN CONTAINER
     -----------------------------------------------*/
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem 2rem;
-    }
-    @media (max-width: 600px) {
-      .container {
-        max-width: 95%;
-      }
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem 2rem; }
+    @media (max-width: 600px) { .container { max-width: 95%; } }
 
     /*-----------------------------------------------
-      HOMEPAGE CARDS SECTION
+      HOMEPAGE CARDS
     -----------------------------------------------*/
-    .cards-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      text-align: center;
-    }
-    .cards-container h2 {
-      margin-top: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-    }
+    .cards-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; text-align: center; }
+    .cards-container h2 { margin-top: 1.5rem; margin-bottom: 1.5rem; font-size: 2rem; }
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -245,28 +177,11 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
     }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .card i {
-      font-size: 3rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-      transition: transform 0.3s;
-    }
-    .card i:hover {
-      transform: scale(1.1);
-    }
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-    .card p {
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .card i { font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem; transition: transform 0.3s; }
+    .card i:hover { transform: scale(1.1); }
+    .card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .card p { font-size: 1rem; margin-bottom: 1rem; line-height: 1.4; }
     .card a {
       margin-top: auto;
       display: inline-block;
@@ -278,10 +193,7 @@
       font-weight: 500;
       transition: background 0.3s ease, transform 0.3s;
     }
-    .card a:hover {
-      background: #0056b3;
-      transform: scale(1.05);
-    }
+    .card a:hover { background: #0056b3; transform: scale(1.05); }
 
     /*-----------------------------------------------
       INFO BOXES & TABLES
@@ -294,9 +206,7 @@
       margin-bottom: 1.5em;
       transition: background var(--transition-duration);
     }
-    .info-box h2 {
-      margin-bottom: 0.75em;
-    }
+    .info-box h2 { margin-bottom: 0.75em; }
     .custom-table {
       width: 100%;
       border-collapse: collapse;
@@ -308,19 +218,10 @@
       overflow: hidden;
       color: var(--text-color);
     }
-    .custom-table thead tr {
-      background-color: var(--table-header-bg);
-    }
-    .custom-table thead th {
-      font-weight: 600;
-    }
-    .custom-table th, .custom-table td {
-      padding: 16px;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .custom-table tr:hover td {
-      background-color: var(--hover-bg);
-    }
+    .custom-table thead tr { background-color: var(--table-header-bg); }
+    .custom-table thead th { font-weight: 600; }
+    .custom-table th, .custom-table td { padding: 16px; border-bottom: 1px solid var(--border-color); }
+    .custom-table tr:hover td { background-color: var(--hover-bg); }
     .table-link {
       display: inline-flex;
       align-items: center;
@@ -332,24 +233,11 @@
       transition: background 0.2s, color 0.2s, transform 0.2s;
       margin-left: 0.5em;
     }
-    .table-link:hover {
-      text-decoration: underline;
-      color: #0056b3;
-      transform: scale(1.05);
-    }
-    table, th, td {
-      border: 1px solid var(--border-color);
-    }
-    th, td {
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: var(--table-header-bg);
-    }
-    .pm-workflow {
-      background: var(--table-header-bg);
-    }
+    .table-link:hover { text-decoration: underline; color: #0056b3; transform: scale(1.05); }
+    table, th, td { border: 1px solid var(--border-color); }
+    th, td { padding: 10px; text-align: left; }
+    th { background-color: var(--table-header-bg); }
+    .pm-workflow { background: var(--table-header-bg); }
 
     /*-----------------------------------------------
       VIDEO LIST & CONTAINER
@@ -361,27 +249,16 @@
       box-shadow: 0 4px 8px var(--shadow-color);
       margin-bottom: 1.5em;
     }
-    .video-list h2 {
-      margin-bottom: 0.75em;
-    }
-    .video-list ul {
-      list-style: none;
-      margin-top: 0.5em;
-    }
+    .video-list h2 { margin-bottom: 0.75em; }
+    .video-list ul { list-style: none; margin-top: 0.5em; }
     .video-list li {
       padding: 0.8em;
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
       transition: background var(--transition-duration), transform 0.3s;
     }
-    .video-list li:hover {
-      background: var(--hover-bg);
-      transform: scale(1.02);
-    }
-    .video-container {
-      text-align: center;
-      margin-bottom: 1.5em;
-    }
+    .video-list li:hover { background: var(--hover-bg); transform: scale(1.02); }
+    .video-container { text-align: center; margin-bottom: 1.5em; }
     video {
       width: 100%;
       max-width: 1000px;
@@ -400,10 +277,7 @@
       cursor: pointer;
       transition: background var(--transition-duration), transform 0.3s;
     }
-    .skip-btn:hover {
-      background-color: #218838;
-      transform: scale(1.05);
-    }
+    .skip-btn:hover { background-color: #218838; transform: scale(1.05); }
 
     /*-----------------------------------------------
       QUIZ CONTAINER & FEEDBACK
@@ -440,21 +314,9 @@
       cursor: pointer;
       transition: transform 0.1s, background var(--transition-duration);
     }
-    .answers button:hover {
-      transform: scale(1.02);
-      background: var(--answer-hover-bg);
-    }
-    .feedback {
-      width: 100%;
-      margin-top: 0.75em;
-      font-size: 1rem;
-      min-height: 1.5em;
-    }
-    .correct-msg,
-    .incorrect-msg {
-      width: 100%;
-      box-sizing: border-box;
-    }
+    .answers button:hover { transform: scale(1.02); background: var(--answer-hover-bg); }
+    .feedback { width: 100%; margin-top: 0.75em; font-size: 1rem; min-height: 1.5em; }
+    .correct-msg, .incorrect-msg { width: 100%; box-sizing: border-box; }
     .correct-msg {
       color: #155724;
       background-color: #d4edda;
@@ -478,9 +340,7 @@
       justify-content: space-between;
       gap: 1%;
     }
-    .next-btn,
-    .return-btn,
-    .next-section-btn {
+    .next-btn, .return-btn, .next-section-btn {
       width: 32%;
       padding: 0.8em;
       font-size: 1rem;
@@ -491,52 +351,24 @@
       transition: background var(--transition-duration), transform 0.3s;
       text-align: center;
     }
-    .next-btn {
-      background-color: var(--primary-color);
-    }
-    .next-btn:hover {
-      background-color: #002147;
-      transform: scale(1.05);
-    }
-    .return-btn {
-      background-color: #6c757d;
-    }
-    .return-btn:hover {
-      background-color: #5a6268;
-      transform: scale(1.05);
-    }
-    .next-section-btn {
-      background-color: #17a2b8;
-    }
-    .next-section-btn:hover {
-      background-color: #138496;
-      transform: scale(1.05);
-    }
-    .final-score {
-      text-align: center;
-      margin-top: 1em;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
+    .next-btn { background-color: var(--primary-color); }
+    .next-btn:hover { background-color: #002147; transform: scale(1.05); }
+    .return-btn { background-color: #6c757d; }
+    .return-btn:hover { background-color: #5a6268; transform: scale(1.05); }
+    .next-section-btn { background-color: #17a2b8; }
+    .next-section-btn:hover { background-color: #138496; transform: scale(1.05); }
+    .final-score { text-align: center; margin-top: 1em; font-size: 1.1rem; font-weight: bold; }
 
     /*-----------------------------------------------
       RESPONSIVE TEACHING ROUNDS TABLE
     -----------------------------------------------*/
     @media (max-width: 600px) {
-      .responsive-table thead {
-        display: none;
-      }
-      .responsive-table,
-      .responsive-table tbody,
-      .responsive-table tr,
-      .responsive-table td {
+      .responsive-table thead { display: none; }
+      .responsive-table, .responsive-table tbody, .responsive-table tr, .responsive-table td {
         display: block;
         width: 100%;
       }
-      .responsive-table tr {
-        margin-bottom: 1rem;
-        border-bottom: 2px solid var(--border-color);
-      }
+      .responsive-table tr { margin-bottom: 1rem; border-bottom: 2px solid var(--border-color); }
       .responsive-table td {
         position: relative;
         padding-left: 50%;
@@ -581,10 +413,7 @@
     /*-----------------------------------------------
       EEG SLIDE GENERATOR
     -----------------------------------------------*/
-    #generator {
-      position: relative;
-      z-index: 0;
-    }
+    #generator { position: relative; z-index: 0; }
 
     /*-----------------------------------------------
       FIXED FOOTER CONTROLS
@@ -603,10 +432,7 @@
       pointer-events: none;
       transition: opacity var(--transition-duration);
     }
-    footer.show-footer {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    footer.show-footer { opacity: 1; pointer-events: auto; }
     .footer-btns {
       display: inline-flex;
       gap: 1em;
@@ -622,10 +448,58 @@
       transition: background var(--transition-duration), transform 0.3s;
       font-size: 0.9rem;
     }
-    .footer-btns button:hover {
-      background: #00509e;
-      transform: scale(1.05);
+    .footer-btns button:hover { background: #00509e; transform: scale(1.05); }
+
+    /*-----------------------------------------------
+      FAQ SECTION STYLES
+    -----------------------------------------------*/
+    .faq-section { padding: 1em; }
+    .faq-section h2 { margin-bottom: 0.5em; text-align: center; }
+    .faq-search-bar { margin-bottom: 1em; }
+    .faq-search-bar input {
+      width: 100%;
+      padding: 0.5em;
+      font-size: 1em;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
     }
+    .faq-category { margin-bottom: 1.5em; }
+    .faq-category h3 {
+      margin-bottom: 0.5em;
+      color: var(--secondary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.3em;
+    }
+    .faq-item { margin-bottom: 0.5em; }
+    .faq-item summary {
+      font-weight: 500;
+      background: var(--info-bg);
+      padding: 0.5em;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .faq-item summary:focus { outline: none; }
+    .faq-item summary::marker { display: none; }
+    .faq-item summary::before { content: "+"; font-weight: bold; margin-right: 0.5em; }
+    .faq-item[open] summary::before { content: "-"; }
+    .answer {
+      padding: 0.5em 1em;
+      background: var(--answer-bg);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+    }
+    mark { background-color: yellow; padding: 0 2px; }
+    .legal-disclaimer {
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+      margin-bottom: 1em;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1em;
+    }
+    .legal-disclaimer strong { font-weight: bold; }
   </style>
 </head>
 <body>
@@ -634,34 +508,30 @@
     <div class="header-inner">
       <!-- Logo (Home) -->
       <img src="logo.png" alt="Home" class="logo" onclick="renderHomePage()" />
-
       <!-- Desktop Tabs -->
       <div class="desktop-tabs" id="desktop-tabs">
         <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
         <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
         <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
         <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
+        <a href="#" onclick="navigateToSection(4)">FAQ</a>
       </div>
-
-      <!-- Mobile Tabs: 
-           Removed the separate "Home" link.
-           The dropdown now contains "Home" as the first item. -->
+      <!-- Mobile Tabs -->
       <div class="mobile-tabs" id="mobile-tabs">
-        <!-- Current tab label; toggles dropdown -->
         <a href="#" id="current-mobile-tab" onclick="toggleMobileDropdown(event)">Epilepsy Rotation</a>
-        <!-- Dropdown for other tabs -->
         <div class="mobile-dropdown" id="mobile-dropdown">
           <a href="#" onclick="renderHomePage(); hideMobileDropdown()">Home</a>
           <a href="#" onclick="navigateToSection(0)">Epilepsy Rotation</a>
           <a href="#" onclick="navigateToSection(1)">Natus Instructions</a>
           <a href="#" onclick="navigateToSection(2)">ACNS Criteria</a>
           <a href="#" onclick="navigateToSection(3)">EEG Videos</a>
+          <a href="#" onclick="navigateToSection(4)">FAQ</a>
         </div>
       </div>
     </div>
   </header>
   
-  <!-- HOMEPAGE CARDS (Shown on initial load and when logo is clicked) -->
+  <!-- HOMEPAGE CARDS -->
   <div id="home-content" class="cards-container" style="display: none;">
     <h2>Explore the EEG Curriculum</h2>
     <div class="cards-grid">
@@ -689,15 +559,21 @@
         <p>Engage with interactive EEG videos accompanied by quizzes to sharpen your knowledge and interpretation skills.</p>
         <a href="#" onclick="navigateToSection(3)">Learn More</a>
       </div>
+      <div class="card">
+        <i class="fa-solid fa-circle-question"></i>
+        <h3>FAQ</h3>
+        <p>Find answers to common questions about EEG interpretation, seizure management, and epilepsy care.</p>
+        <a href="#" onclick="navigateToSection(4)">Learn More</a>
+      </div>
     </div>
   </div>
   
-  <!-- MAIN CONTAINER FOR SECTION CONTENT -->
+  <!-- MAIN CONTAINER -->
   <div class="container">
     <div id="section-content"></div>
   </div>
   
-  <!-- FIXED FOOTER CONTROLS -->
+  <!-- FIXED FOOTER CONTROLS (Dark Mode and Font Size Buttons) -->
   <footer id="footer">
     <div class="footer-btns">
       <button onclick="toggleFontSize()" aria-label="Toggle Font Size">
@@ -716,19 +592,37 @@
     }
 
     /********************************************
+     * HEADER SHRINK ON SCROLL
+     ********************************************/
+    window.addEventListener("scroll", () => {
+      const header = document.getElementById("header");
+      const scroll = window.scrollY;
+      if (scroll > 100) {
+        header.classList.add("shrink");
+      } else {
+        header.classList.remove("shrink");
+      }
+    });
+
+    /********************************************
+     * SHOW FOOTER ON SCROLL (Dark Mode and Font Size Buttons)
+     ********************************************/
+    window.addEventListener("scroll", () => {
+      const footer = document.getElementById("footer");
+      if (window.scrollY > 300) {
+        footer.classList.add("show-footer");
+      } else {
+        footer.classList.remove("show-footer");
+      }
+    });
+
+    /********************************************
      * DARK MODE & FONT SIZE FUNCTIONS
      ********************************************/
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-    }
-    function toggleFontSize() {
-      document.body.classList.toggle("large-font");
-    }
+    function toggleDarkMode() { document.body.classList.toggle("dark"); }
+    function toggleFontSize() { document.body.classList.toggle("large-font"); }
 
-    let currentSectionIndex = 0;
-    let currentVideoIndex = -1;
-    let currentQuestionIndex = 0;
-    let score = 0;
+    let currentSectionIndex = 0, currentVideoIndex = -1, currentQuestionIndex = 0, score = 0;
 
     /********************************************
      * MOBILE TAB DROPDOWN FUNCTIONS
@@ -736,18 +630,10 @@
     function toggleMobileDropdown(e) {
       e.preventDefault();
       const dropdown = document.getElementById("mobile-dropdown");
-      if (dropdown.style.display === "block") {
-        dropdown.style.display = "none";
-      } else {
-        dropdown.style.display = "block";
-      }
+      dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
     }
-    function hideMobileDropdown() {
-      document.getElementById("mobile-dropdown").style.display = "none";
-    }
-    function setMobileTabLabel(label) {
-      document.getElementById("current-mobile-tab").textContent = label;
-    }
+    function hideMobileDropdown() { document.getElementById("mobile-dropdown").style.display = "none"; }
+    function setMobileTabLabel(label) { document.getElementById("current-mobile-tab").textContent = label; }
 
     /********************************************
      * HOMEPAGE
@@ -761,59 +647,7 @@
     }
 
     /********************************************
-     * NAVIGATION LOGIC
-     ********************************************/
-    function navigateToSection(index) {
-      currentSectionIndex = index;
-      renderSection();
-      document.getElementById("home-content").style.display = "none";
-      const labels = ["Epilepsy Rotation", "Natus Instructions", "ACNS Criteria", "EEG Videos"];
-      setMobileTabLabel(labels[index]);
-      hideMobileDropdown();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Shrink header on scroll
-    window.addEventListener("scroll", () => {
-      const header = document.getElementById("header");
-      const scroll = window.scrollY;
-      if (scroll > 100) {
-        header.classList.add("shrink");
-      } else {
-        header.classList.remove("shrink");
-      }
-      const fade = 1 - Math.min(scroll / 100, 1);
-      header.querySelectorAll("h1, p").forEach(el => {
-        el.style.opacity = fade;
-      });
-      header.style.opacity = 1 - Math.min(scroll / 1000, 0.1);
-    });
-
-    // Show/hide footer on scroll
-    const footer = document.getElementById("footer");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        footer.classList.add("show-footer");
-      } else {
-        footer.classList.remove("show-footer");
-      }
-    });
-
-    // Show cat overlay
-    function showKittenOverlay() {
-      const overlay = document.createElement("div");
-      overlay.className = "kitten-overlay";
-      overlay.addEventListener("click", () => overlay.remove());
-      const randomParam = Date.now();
-      const catImg = document.createElement("img");
-      catImg.src = `https://cataas.com/cat/gif?${randomParam}`;
-      catImg.alt = "Kitten Celebration!";
-      overlay.appendChild(catImg);
-      document.body.appendChild(overlay);
-    }
-
-    /********************************************
-     * VIDEO SECTIONS (All 10 Videos + Quizzes)
+     * VIDEO SECTIONS ARRAY
      ********************************************/
     const videoSections = [
       {
@@ -987,7 +821,7 @@
           {
             question: "What is the significance of a 60 Hz artifact?",
             answers: [
-              { text: "High impedance (poor connection)", feedback: "Correct." },
+              { text: "High impedance (poor connection)", feedback: "Correct. A 60 Hz artifact often indicates poor electrode contact or grounding issues. See the <a href='https://www.acns.org/clinical-resources/critical-care-eeg-terminology' target='_blank'>ACNS guidelines</a> for details." },
               { text: "Low impedance (good connection)", feedback: "Incorrect." },
               { text: "Excessive digital interference", feedback: "Incorrect." },
               { text: "Excessive muscle activity", feedback: "Incorrect." }
@@ -1083,7 +917,7 @@
             correct: 2
           },
           {
-            question: "Characteristic of focal epileptiform discharges?",
+            question: "What is characteristic of focal epileptiform discharges?",
             answers: [
               { text: "No disruption of background", feedback: "Incorrect." },
               { text: "Duration > 200 ms", feedback: "Incorrect." },
@@ -1091,6 +925,16 @@
               { text: "After-coming slow wave", feedback: "Correct." }
             ],
             correct: 3
+          },
+          {
+            question: "How can artifacts be distinguished from true epileptiform discharges?",
+            answers: [
+              { text: "Artifacts are isolated to one electrode", feedback: "Correct. Artifacts typically lack a consistent field." },
+              { text: "Artifacts are always slower in frequency", feedback: "Incorrect." },
+              { text: "Artifacts do not follow a consistent morphology", feedback: "Incorrect." },
+              { text: "Artifacts occur only during sleep", feedback: "Incorrect." }
+            ],
+            correct: 0
           }
         ]
       },
@@ -1109,23 +953,23 @@
             correct: 3
           },
           {
-            question: "Difference between focal rhythmic and polymorphic delta?",
+            question: "What is the difference between focal rhythmic and polymorphic delta?",
             answers: [
               { text: "Rhythmic delta is more epileptogenic", feedback: "Correct." },
               { text: "Polymorphic delta is more epileptogenic", feedback: "Incorrect." },
-              { text: "No difference", feedback: "Incorrect." }
+              { text: "There is no difference", feedback: "Incorrect." }
             ],
             correct: 0
           },
           {
             question: "What is a breach rhythm?",
             answers: [
-              { text: "Increase in low-frequency activity", feedback: "Incorrect." },
-              { text: "Decrease in low-frequency activity", feedback: "Incorrect." },
-              { text: "Increase in high-frequency activity", feedback: "Correct." },
-              { text: "Decrease in high-frequency activity", feedback: "Incorrect." }
+              { text: "An increase in high-frequency activity over a skull defect", feedback: "Correct." },
+              { text: "A decrease in low-frequency activity", feedback: "Incorrect." },
+              { text: "A decrease in high-frequency activity", feedback: "Incorrect." },
+              { text: "An increase in low-frequency activity", feedback: "Incorrect." }
             ],
-            correct: 2
+            correct: 0
           }
         ]
       },
@@ -1154,12 +998,12 @@
             correct: 2
           },
           {
-            question: "Significance of lateralized periodic discharges?",
+            question: "What is the significance of lateralized periodic discharges?",
             answers: [
-              { text: "They are a focal seizure", feedback: "Incorrect." },
+              { text: "They indicate a focal seizure", feedback: "Incorrect." },
               { text: "They indicate increased seizure risk", feedback: "Correct." },
               { text: "They are not associated with risk", feedback: "Incorrect." },
-              { text: "Only seen in HSV encephalitis", feedback: "Incorrect." }
+              { text: "They are only seen in HSV encephalitis", feedback: "Incorrect." }
             ],
             correct: 1
           }
@@ -1167,9 +1011,6 @@
       }
     ];
 
-    /********************************************
-     * SECTIONS ARRAY (4 TABS)
-     ********************************************/
     const sections = [
       {
         title: "Epilepsy Rotation",
@@ -1180,20 +1021,11 @@
             <h3>Daily Expectations and Goals</h3>
             <table class="custom-table">
               <thead>
-                <tr>
-                  <th>Activity</th>
-                  <th>Description</th>
-                </tr>
+                <tr><th>Activity</th><th>Description</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Watch Video</td>
-                  <td>Review the designated EEG video for the day.</td>
-                </tr>
-                <tr>
-                  <td>Complete Quiz</td>
-                  <td>Answer the quiz questions associated with the video.</td>
-                </tr>
+                <tr><td>Watch Video</td><td>Review the designated EEG video for the day.</td></tr>
+                <tr><td>Complete Quiz</td><td>Answer the quiz questions associated with the video.</td></tr>
                 <tr>
                   <td>Upload EEG</td>
                   <td>
@@ -1203,12 +1035,7 @@
                     </a>
                   </td>
                 </tr>
-                <tr>
-                  <td>EEG Reading</td>
-                  <td>
-                    Every day you are expected to read both routine and continuous EEGs as described below.
-                  </td>
-                </tr>
+                <tr><td>EEG Reading</td><td>Read both routine and continuous EEGs as described below.</td></tr>
                 <tr>
                   <td>Review Milestones</td>
                   <td>
@@ -1223,87 +1050,42 @@
               </tbody>
             </table>
           </div>
-
           <div class="info-box">
             <h2>Rotation Schedule</h2>
             <h3>Inpatient Rotation (MSH &amp; MSW EMU)</h3>
             <table class="custom-table">
               <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Activity</th>
-                </tr>
+                <tr><th>Time</th><th>Activity</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>7-8 AM</td>
-                  <td>Arrive and preround on EMU/epilepsy consult patients</td>
-                </tr>
-                <tr>
-                  <td>8-9 AM</td>
-                  <td>Attend morning report</td>
-                </tr>
-                <tr>
-                  <td>9-10 AM</td>
-                  <td>Read at least one LTM EEG, draft EEG reports</td>
-                </tr>
-                <tr>
-                  <td>10 AM-12 PM</td>
-                  <td>Round with epilepsy fellow/attending</td>
-                </tr>
-                <tr class="pm-workflow">
-                  <td colspan="2" style="text-align:center;">PM Workflow (~12-5pm)</td>
-                </tr>
-                <tr>
-                  <td>12-1 PM</td>
-                  <td>Neurology noon conference</td>
-                </tr>
-                <tr>
-                  <td>1-5 PM</td>
-                  <td>Elective admission H&amp;Ps, consults, follow-up on LTM EEG, read new inpatient EEGs</td>
-                </tr>
+                <tr><td>7-8 AM</td><td>Arrive and preround on EMU/epilepsy consult patients</td></tr>
+                <tr><td>8-9 AM</td><td>Attend morning report</td></tr>
+                <tr><td>9-10 AM</td><td>Read at least one LTM EEG, draft EEG reports</td></tr>
+                <tr><td>10 AM-12 PM</td><td>Round with epilepsy fellow/attending</td></tr>
+                <tr class="pm-workflow"><td colspan="2" style="text-align:center;">PM Workflow (~12-5pm)</td></tr>
+                <tr><td>12-1 PM</td><td>Neurology noon conference</td></tr>
+                <tr><td>1-5 PM</td><td>Elective admission H&amp;Ps, consults, follow-up on LTM EEG, read new inpatient EEGs</td></tr>
               </tbody>
             </table>
-
             <h3>Outpatient Rotation</h3>
             <table class="custom-table">
               <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Activity</th>
-                </tr>
+                <tr><th>Time</th><th>Activity</th></tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>8-9 AM</td>
-                  <td>Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td>
-                </tr>
-                <tr>
-                  <td>AM</td>
-                  <td>Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td>
-                </tr>
-                <tr>
-                  <td>PM</td>
-                  <td>Resident continuity clinic or faculty clinic, ambulatory EEG readings</td>
-                </tr>
-                <tr>
-                  <td colspan="2">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td>
-                </tr>
+                <tr><td>8-9 AM</td><td>Morning report (MSH Ambulatory EEG / Outpatient PGY-2)</td></tr>
+                <tr><td>AM</td><td>Epilepsy clinic or outpatient EEG reading (self-study if no clinic)</td></tr>
+                <tr><td>PM</td><td>Resident continuity clinic or faculty clinic, ambulatory EEG readings</td></tr>
+                <tr><td colspan="2">MSW Outpatient (PGY-2): Similar schedule with assigned epilepsy clinics &amp; EEG readings</td></tr>
               </tbody>
             </table>
           </div>
-
           <div class="info-box">
             <h2>Teaching Rounds &amp; Conferences</h2>
             <p>All epilepsy conferences are currently held via Zoom (unless otherwise indicated).</p>
             <table class="custom-table responsive-table">
               <thead>
-                <tr>
-                  <th>Seminar</th>
-                  <th>Day/Time</th>
-                  <th>Location</th>
-                  <th>Notes</th>
-                </tr>
+                <tr><th>Seminar</th><th>Day/Time</th><th>Location</th><th>Notes</th></tr>
               </thead>
               <tbody>
                 <tr>
@@ -1341,33 +1123,19 @@
           <div class="info-box">
             <h2>Natus Instructions</h2>
             <h3>Step 1: Launch and Log In</h3>
-            <p><strong>Power on the workstation</strong> and launch the Natus NeuroWorks application.<br/>
-            <strong>Log in</strong> with your secure credentials (username/password).</p>
-            <img src="Step1.png" alt="Step 1 Screenshot" class="step-image" />
-            <br/>
+            <p><strong>Power on the workstation</strong> and launch the Natus NeuroWorks application.<br/><strong>Log in</strong> with your secure credentials (username/password).</p>
+            <img src="Step1.png" alt="Step 1 Screenshot" class="step-image" /><br/>
             <h3>Step 2: Open a Patient Study</h3>
-            <p><strong>From the main dashboard</strong>, navigate to the Patient Studies list or use the search function to locate a patient record.<br/>
-            <strong>Select the desired EEG study</strong> to open it in review mode.</p>
-            <img src="Step2.png" alt="Step 2 Screenshot" class="step-image" />
-            <br/>
+            <p><strong>From the main dashboard</strong>, navigate to the Patient Studies list or use the search function to locate a patient record.<br/><strong>Select the desired EEG study</strong> to open it in review mode.</p>
+            <img src="Step2.png" alt="Step 2 Screenshot" class="step-image" /><br/>
             <h3>Step 3: Configure the Display</h3>
-            <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/>
-            <strong>Adjust the display parameters</strong> as follows:<br/>
-            &nbsp;&nbsp;– Sensitivity: 7 μV<br/>
-            &nbsp;&nbsp;– Time base: 30 mm/sec<br/>
-            &nbsp;&nbsp;– High-frequency filter: 70 Hz; Low-frequency filter: 1 Hz<br/>
-            &nbsp;&nbsp;– Additional filters if needed</p>
-            <img src="Step3.png" alt="Step 3 Screenshot" class="step-image" />
-            <br/>
+            <p><strong>Select the bipolar montage</strong> titled <em>Bipolar LT over RT</em> from the montage menu.<br/><strong>Adjust the display parameters</strong> as follows:<br/>&nbsp;&nbsp;– Sensitivity: 7 μV<br/>&nbsp;&nbsp;– Time base: 30 mm/sec<br/>&nbsp;&nbsp;– High-frequency filter: 70 Hz; Low-frequency filter: 1 Hz<br/>&nbsp;&nbsp;– Additional filters if needed</p>
+            <img src="Step3.png" alt="Step 3 Screenshot" class="step-image" /><br/>
             <h3>Step 4: Analyze the EEG</h3>
-            <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/>
-            <strong>Use built-in tools</strong> to assess amplitude, frequency, and duration.<br/>
-            <strong>Identify patterns</strong> and add annotations for significant events.</p>
-            <br/>
+            <p><strong>Scroll through the recording</strong> and visually inspect the waveforms.<br/><strong>Use built-in tools</strong> to assess amplitude, frequency, and duration.<br/><strong>Identify patterns</strong> and add annotations for significant events.</p><br/>
             <h3>Step 5: Annotate and Mark Key Events</h3>
             <p><strong>Place event markers</strong> by clicking the relevant buttons at the top of the screen.</p>
-            <img src="Step5.png" alt="Step 5 Screenshot" class="step-image" />
-            <br/>
+            <img src="Step5.png" alt="Step 5 Screenshot" class="step-image" /><br/>
             <h3>Step 6: Create an EEG Report in Epic</h3>
             <p><strong>Once the EEG review is complete</strong>, open Epic’s reporting interface, generate a new report, and pend the note for review.</p>
           </div>
@@ -1406,13 +1174,297 @@
             </p>
           </div>
         `
+      },
+      {
+        title: "EEG &amp; Seizure FAQ",
+        type: "info",
+        content: `
+          <div class="faq-section">
+            <div class="legal-disclaimer">
+              <p><strong>Legal Disclaimer:</strong> This FAQ section is for educational and informational purposes only and is under active revision. It does not constitute medical advice. Always consult your home institution’s guidelines and your neurology leadership or a qualified healthcare professional before making any medical decisions.</p>
+            </div>
+            <h2>EEG &amp; Seizure FAQs</h2>
+            <div class="faq-search-bar">
+              <input type="text" id="faqSearch" placeholder="Search FAQs..." oninput="filterFaq()">
+            </div>
+            <div id="faq-list">
+              <!-- Category: Seizure & EEG Fundamentals -->
+              <div class="faq-category">
+                <h3>Seizure &amp; EEG Fundamentals</h3>
+                <details class="faq-item">
+                  <summary>What is an EEG and why is it important in evaluating seizures?</summary>
+                  <div class="answer">
+                    <p>
+                      An EEG is a noninvasive test that records the brain’s electrical activity via scalp electrodes. It detects epileptiform abnormalities—such as spikes and spike‐and‐wave discharges—which are crucial for diagnosing epilepsy.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>When and how often should an EEG be obtained after a patient’s first seizure?</summary>
+                  <div class="answer">
+                    <p>
+                      Guidelines from AAN and AES recommend obtaining an EEG following a first unprovoked seizure, ideally within 24–48 hours to maximize the chance of capturing abnormalities.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What is the role of EEG in differentiating seizure types?</summary>
+                  <div class="answer">
+                    <p>
+                      EEG helps distinguish between focal and generalized seizures. Focal seizures show localized discharges, while generalized seizures display synchronous activity across both hemispheres.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Seizure Classification -->
+              <div class="faq-category">
+                <h3>Seizure Classification</h3>
+                <details class="faq-item">
+                  <summary>How are seizures classified according to ILAE guidelines?</summary>
+                  <div class="answer">
+                    <p>
+                      The ILAE (2017) classifies seizures as focal, generalized, or unknown onset. This framework is further refined by considering epilepsy type and syndrome, with etiology (genetic, structural, etc.) playing a crucial role.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What additional factors help in determining an epilepsy syndrome?</summary>
+                  <div class="answer">
+                    <p>
+                      Factors such as age of onset, seizure semiology, EEG findings, and imaging results are combined to define an epilepsy syndrome, aiding in prognosis and treatment selection.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>Why is etiological classification important?</summary>
+                  <div class="answer">
+                    <p>
+                      Identifying the underlying etiology (genetic, structural, metabolic, etc.) guides treatment and counseling, and can help select candidates for specific interventions.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: EEG Interpretation -->
+              <div class="faq-category">
+                <h3>EEG Interpretation</h3>
+                <details class="faq-item">
+                  <summary>What are the basic technical requirements for recording a quality EEG?</summary>
+                  <div class="answer">
+                    <p>
+                      A quality EEG uses the full 10–20 system (minimum 21 electrodes), low-noise electrodes with impedance below 5 KΩ, proper amplifier settings (e.g., 0.5–1 Hz low and ~70 Hz high-frequency filters), and is recorded in a controlled environment.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>How are electrodes positioned using the 10–20 system?</summary>
+                  <div class="answer">
+                    <p>
+                      The 10–20 system positions electrodes based on fixed percentages of the distances between anatomical landmarks (nasion, inion, preauricular points), ensuring standardized and reproducible placement.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What do delta, theta, alpha, and beta waves indicate?</summary>
+                  <div class="answer">
+                    <p>
+                      Delta (<4 Hz) is typical for deep sleep or pathology; theta (4–7 Hz) is seen during drowsiness; alpha (8–13 Hz) indicates relaxed wakefulness; and beta (14+ Hz) may reflect alertness or medication effects.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Status Epilepticus Management -->
+              <div class="faq-category">
+                <h3>Status Epilepticus Management</h3>
+                <details class="faq-item">
+                  <summary>What are the initial steps in managing an acute seizure or status epilepticus?</summary>
+                  <div class="answer">
+                    <p>
+                      Management begins with stabilization (airway, breathing, circulation) and prompt administration of benzodiazepines (e.g., IV lorazepam) within 5–20 minutes. Additional therapies are then used if seizures persist.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What is the role of continuous EEG monitoring in the ICU?</summary>
+                  <div class="answer">
+                    <p>
+                      Continuous EEG (cEEG) is used to detect nonconvulsive seizures in critically ill patients and to guide the titration of IV anesthetics in refractory status epilepticus.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>How should refractory status epilepticus be managed?</summary>
+                  <div class="answer">
+                    <p>
+                      If seizures persist despite initial therapies, patients are treated with IV anesthetic infusions (e.g., midazolam, propofol) under continuous EEG monitoring until burst suppression is achieved.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Drug-Resistant Epilepsy -->
+              <div class="faq-category">
+                <h3>Drug-Resistant Epilepsy</h3>
+                <details class="faq-item">
+                  <summary>When is epilepsy considered drug-resistant?</summary>
+                  <div class="answer">
+                    <p>
+                      Epilepsy is considered drug-resistant when seizures persist despite trials of two appropriate antiseizure medications at therapeutic doses.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>Why is early referral for epilepsy surgery important?</summary>
+                  <div class="answer">
+                    <p>
+                      Early referral helps prevent additional brain injury from uncontrolled seizures and enables a comprehensive presurgical evaluation.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What non-resective treatments are available for drug-resistant epilepsy?</summary>
+                  <div class="answer">
+                    <p>
+                      Options include neuromodulation (e.g., vagus nerve stimulation, responsive neurostimulation, deep brain stimulation), dietary therapies, and minimally invasive procedures such as laser interstitial thermal therapy.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Advanced EEG & Nomenclature (Fellows) -->
+              <div class="faq-category">
+                <h3>Advanced EEG &amp; Nomenclature (Fellows)</h3>
+                <details class="faq-item">
+                  <summary>What advanced EEG interpretation techniques should fellows learn?</summary>
+                  <div class="answer">
+                    <p>
+                      Fellows should learn quantitative EEG, trending, source localization, and the standardized ACNS 2021 terminology (e.g., LPDs, BIRDs) for interpreting complex patterns.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>How does the ACNS 2021 update improve EEG interpretation?</summary>
+                  <div class="answer">
+                    <p>
+                      The update standardizes terminology for rhythmic and periodic patterns, clarifying the criteria for electrographic seizures and improving inter-clinician communication.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>Why is standardized EEG terminology important?</summary>
+                  <div class="answer">
+                    <p>
+                      Consistent terminology reduces misinterpretation and ensures that critical EEG findings are clearly communicated among clinicians.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Epilepsy Surgery Evaluation (Fellows) -->
+              <div class="faq-category">
+                <h3>Epilepsy Surgery Evaluation (Fellows)</h3>
+                <details class="faq-item">
+                  <summary>What constitutes a comprehensive presurgical evaluation?</summary>
+                  <div class="answer">
+                    <p>
+                      It includes prolonged video-EEG monitoring, high-resolution MRI, PET/SPECT imaging, neuropsychological testing, and invasive EEG when necessary.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>When is invasive EEG monitoring indicated?</summary>
+                  <div class="answer">
+                    <p>
+                      Invasive monitoring is indicated when noninvasive studies are inconclusive or when precise localization of the epileptogenic zone is essential for surgical planning.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What are the surgical options for refractory epilepsy?</summary>
+                  <div class="answer">
+                    <p>
+                      Options include resective surgery (e.g., temporal lobectomy), laser interstitial thermal therapy, and neuromodulation devices (e.g., RNS, DBS) when resection isn’t feasible.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: ICU EEG (Fellows) -->
+              <div class="faq-category">
+                <h3>ICU EEG (Fellows)</h3>
+                <details class="faq-item">
+                  <summary>What are the indications for continuous EEG monitoring in the ICU?</summary>
+                  <div class="answer">
+                    <p>
+                      Continuous EEG is indicated for patients with unexplained altered mental status, suspected nonconvulsive seizures, or post-convulsive status epilepticus.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>How is refractory status epilepticus managed in the ICU?</summary>
+                  <div class="answer">
+                    <p>
+                      After failure of first- and second-line therapies, patients are treated with IV anesthetic infusions (e.g., midazolam, propofol) with continuous EEG monitoring until burst suppression is achieved.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What EEG patterns in the ICU signal high seizure risk?</summary>
+                  <div class="answer">
+                    <p>
+                      Lateralized periodic discharges, rhythmic delta activity, and periodic discharges with a “+” modifier indicate an increased risk of seizures.
+                    </p>
+                  </div>
+                </details>
+              </div>
+              <!-- Category: Epilepsy Genetics (Fellows) -->
+              <div class="faq-category">
+                <h3>Epilepsy Genetics (Fellows)</h3>
+                <details class="faq-item">
+                  <summary>How has genetic testing impacted epilepsy diagnosis?</summary>
+                  <div class="answer">
+                    <p>
+                      Comprehensive genetic testing, including whole-exome sequencing, has revealed that many cases of unexplained epilepsy are genetic in origin, which helps tailor treatment and provide prognostic information.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>What are some examples of precision therapies in epilepsy?</summary>
+                  <div class="answer">
+                    <p>
+                      For instance, SCN1A mutations in Dravet syndrome advise against sodium channel blockers, while mTOR inhibitors are used in tuberous sclerosis. Additional details are available in AES resources and recent Neurology articles.
+                    </p>
+                  </div>
+                </details>
+                <details class="faq-item">
+                  <summary>Why is it important to incorporate genetics into epilepsy management?</summary>
+                  <div class="answer">
+                    <p>
+                      Identifying a genetic cause can guide targeted therapies, avoid contraindicated medications, and offer prognostic insight for more personalized management.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </div>
+        `
       }
     ];
 
     const sectionContent = document.getElementById("section-content");
 
     /********************************************
-     * RENDER SECTION
+     * SHOW KITTEN OVERLAY FUNCTION
+     ********************************************/
+    function showKittenOverlay() {
+      const overlay = document.createElement("div");
+      overlay.className = "kitten-overlay";
+      overlay.addEventListener("click", () => overlay.remove());
+      const randomParam = Date.now();
+      const catImg = document.createElement("img");
+      catImg.src = `https://cataas.com/cat/gif?${randomParam}`;
+      catImg.alt = "Kitten Celebration!";
+      overlay.appendChild(catImg);
+      document.body.appendChild(overlay);
+    }
+
+    /********************************************
+     * RENDER SECTION FUNCTION
      ********************************************/
     function renderSection() {
       const section = sections[currentSectionIndex];
@@ -1426,26 +1478,16 @@
     }
 
     /********************************************
-     * RENDER VIDEO LIST
+     * RENDER VIDEO LIST FUNCTION
      ********************************************/
     function renderVideoList() {
       const group = sections[currentSectionIndex];
-      let html = `
-        <div class="video-list">
-          <h2>Select a Video Topic</h2>
-          <ul id="video-sub-list">
-      `;
-      group.videoSections.forEach((vid, i) => {
-        html += `<li data-vid-index="${i}">${vid.title}</li>`;
-      });
+      let html = `<div class="video-list"><h2>Select a Video Topic</h2><ul id="video-sub-list">`;
+      group.videoSections.forEach((vid, i) => { html += `<li data-vid-index="${i}">${vid.title}</li>`; });
       html += `</ul></div>`;
-      if (group.reference) {
-        html += group.reference;
-      }
+      if (group.reference) { html += group.reference; }
       sectionContent.innerHTML = html;
-
-      const subList = document.getElementById("video-sub-list");
-      const items = subList.querySelectorAll("li");
+      const items = document.querySelectorAll("#video-sub-list li");
       items.forEach(item => {
         item.addEventListener("click", () => {
           currentVideoIndex = parseInt(item.getAttribute("data-vid-index"));
@@ -1457,7 +1499,7 @@
     }
 
     /********************************************
-     * RENDER VIDEO SECTION
+     * RENDER VIDEO SECTION FUNCTION
      ********************************************/
     function renderVideoSection(videoIdx) {
       const group = sections[currentSectionIndex];
@@ -1489,7 +1531,7 @@
     }
 
     /********************************************
-     * SETUP VIDEO QUIZ
+     * SETUP VIDEO QUIZ FUNCTION
      ********************************************/
     function setupVideoQuiz(vid) {
       const videoEl = document.getElementById("video");
@@ -1512,14 +1554,11 @@
         feedbackDiv.innerHTML = "";
         progressIndicator.textContent = `Question ${currentQuestionIndex + 1} of ${vid.questions.length}`;
         finalScoreDiv.textContent = "";
-
         const currentQ = vid.questions[currentQuestionIndex];
         questionContainer.innerHTML = `<h2 style="color: var(--text-color);">${currentQ.question}</h2>`;
-
         let correctChosen = false;
         const answersDiv = document.createElement("div");
         answersDiv.className = "answers";
-
         currentQ.answers.forEach((ansObj, idx) => {
           const btn = document.createElement("button");
           btn.textContent = ansObj.text;
@@ -1589,36 +1628,35 @@
      ********************************************/
     function openEEGIndexApp() {
       const generatorHTML = `
-      <div id="generator" style="max-width:400px; width:90%; margin:0 auto; box-shadow:0 4px 8px var(--shadow-color); border-radius:8px; overflow:hidden; background: var(--info-bg);">
-        <header style="background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); padding:30px; text-align:center;">
-          <h2 style="font-size:28px; margin:0;">EEG Slide Generator</h2>
-        </header>
-        <div class="content" style="padding:20px;">
-          <form id="slideForm">
-            <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
-            <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
-            <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
-            <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
-            <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
-            <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
-            <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
-            <textarea id="patternDescription" rows="4" placeholder="Enter the description of the pattern" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
-            <label for="additionalComments" style="font-size:20px; margin-top:15px;">Additional Comments (Optional):</label>
-            <textarea id="additionalComments" rows="3" placeholder="Enter any additional comments" style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
-            <button type="submit" style="margin-top:20px; padding:16px; background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); border:none; border-radius:4px; width:100%; font-size:22px; cursor:pointer;">
-              Generate PowerPoint Slide
-            </button>
-          </form>
+        <div id="generator" style="max-width:400px; width:90%; margin:0 auto; box-shadow:0 4px 8px var(--shadow-color); border-radius:8px; overflow:hidden; background: var(--info-bg);">
+          <header style="background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); padding:30px; text-align:center;">
+            <h2 style="font-size:28px; margin:0;">EEG Slide Generator</h2>
+          </header>
+          <div class="content" style="padding:20px;">
+            <form id="slideForm">
+              <label for="fullName" style="font-size:20px; margin-top:15px;">Full Name:</label>
+              <input type="text" id="fullName" placeholder="Enter your full name" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+              <label for="residency" style="font-size:20px; margin-top:15px;">Residency Program:</label>
+              <input type="text" id="residency" placeholder="e.g. PGY-2 Neurology" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+              <label for="eegImage" style="font-size:20px; margin-top:15px;">Upload EEG Screenshot:</label>
+              <input type="file" id="eegImage" accept="image/*" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;">
+              <label for="patternDescription" style="font-size:20px; margin-top:15px;">Describe the EEG Pattern:</label>
+              <textarea id="patternDescription" rows="4" placeholder="Enter the description of the pattern" required style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
+              <label for="additionalComments" style="font-size:20px; margin-top:15px;">Additional Comments (Optional):</label>
+              <textarea id="additionalComments" rows="3" placeholder="Enter any additional comments" style="width:100%; padding:14px; font-size:20px; border:1px solid var(--border-color); border-radius:4px; margin-top:5px;"></textarea>
+              <button type="submit" style="margin-top:20px; padding:16px; background: linear-gradient(135deg, #003366, #00509e); color: var(--header-text); border:none; border-radius:4px; width:100%; font-size:22px; cursor:pointer;">
+                Generate PowerPoint Slide
+              </button>
+            </form>
+          </div>
+          <p class="footer-tip" style="text-align:center; font-size:16px; color: var(--text-color); margin-top:10px;">
+            Tip: Run this page on a local web server and use PNG/JPG images.
+          </p>
         </div>
-        <p class="footer-tip" style="text-align:center; font-size:16px; color: var(--text-color); margin-top:10px;">
-          Tip: Run this page on a local web server and use PNG/JPG images.
-        </p>
-      </div>
       `;
       document.getElementById("section-content").innerHTML = generatorHTML;
       attachEEGSlideFormListener();
     }
-
     function attachEEGSlideFormListener() {
       document.getElementById("slideForm").addEventListener("submit", function(e) {
         e.preventDefault();
@@ -1628,7 +1666,7 @@
         const additionalComments = document.getElementById("additionalComments").value;
         const fileInput = document.getElementById("eegImage");
         const file = fileInput.files[0];
-        if (!file) {
+        if(!file){
           alert("Please choose a PNG or JPG file first!");
           return;
         }
@@ -1639,70 +1677,94 @@
             let pptx = new PptxGenJS();
             let slide = pptx.addSlide();
             slide.addText("EEG Slide Submission", {
-              x: 0.5,
-              y: 0.3,
-              w: 9,
-              fontSize: 24,
-              bold: true,
-              align: "center"
+              x: 0.5, y: 0.3, w: 9, fontSize: 24, bold: true, align: "center"
             });
             slide.addText(`Submitted by: ${fullName} (${residency})`, {
-              x: 0.5,
-              y: 1,
-              w: 9,
-              fontSize: 16,
-              color: "555555",
-              align: "center"
+              x: 0.5, y: 1, w: 9, fontSize: 16, color: "555555", align: "center"
             });
             slide.addImage({ data: imageData, x: "3", y: "1.5", w: "4", h: "3" });
             slide.addText("EEG Pattern Description:", {
-              x: 0.5,
-              y: 4.8,
-              w: 9,
-              fontSize: 18,
-              bold: true,
-              color: "363636"
+              x: 0.5, y: 4.8, w: 9, fontSize: 18, bold: true, color: "363636"
             });
             slide.addText(description, {
-              x: 0.5,
-              y: 5.3,
-              w: 9,
-              fontSize: 16,
-              color: "363636"
+              x: 0.5, y: 5.3, w: 9, fontSize: 16, color: "363636"
             });
-            if (additionalComments.trim() !== "") {
+            if(additionalComments.trim() !== ""){
               slide.addText("Additional Comments:", {
-                x: 0.5,
-                y: 6.2,
-                w: 9,
-                fontSize: 18,
-                bold: true,
-                color: "363636"
+                x: 0.5, y: 6.2, w: 9, fontSize: 18, bold: true, color: "363636"
               });
               slide.addText(additionalComments, {
-                x: 0.5,
-                y: 6.7,
-                w: 9,
-                fontSize: 16,
-                color: "363636"
+                x: 0.5, y: 6.7, w: 9, fontSize: 16, color: "363636"
               });
             }
             pptx.writeFile({ fileName: "EEG_Slide.pptx" })
-              .then(() => {
-                alert("PowerPoint slide generated and downloaded!");
-              })
-              .catch((err) => {
-                alert("Error generating PPT. Check console for details.");
-              });
-          } catch (err) {
-            alert("An unexpected error occurred. Check console for details.");
-          }
+              .then(() => { alert("PowerPoint slide generated and downloaded!"); })
+              .catch((err) => { alert("Error generating PPT. Check console for details."); });
+          } catch(err){ alert("An unexpected error occurred. Check console for details."); }
         };
         reader.readAsDataURL(file);
       });
     }
 
-    // Initially load the homepage
+    /********************************************
+     * FAQ SEARCH FUNCTIONALITY
+     ********************************************/
+    function filterFaq() {
+      const query = document.getElementById('faqSearch').value.toLowerCase();
+      const faqs = document.querySelectorAll('.faq-item');
+      faqs.forEach(faq => {
+        const summaryEl = faq.querySelector('summary');
+        const answerEl = faq.querySelector('.answer');
+        const questionText = summaryEl.innerText.toLowerCase();
+        const answerText = answerEl.innerText.toLowerCase();
+        const matches = questionText.includes(query) || answerText.includes(query);
+        faq.style.display = matches ? "" : "none";
+        summaryEl.innerHTML = summaryEl.innerText;
+        answerEl.innerHTML = answerEl.innerText;
+        if(matches && query !== ""){
+          const regex = new RegExp(query, "gi");
+          summaryEl.innerHTML = summaryEl.innerText.replace(regex, match => `<mark>${match}</mark>`);
+          answerEl.innerHTML = answerEl.innerText.replace(regex, match => `<mark>${match}</mark>`);
+          faq.setAttribute("open", "");
+        } else { faq.removeAttribute("open"); }
+      });
+    }
+    function attachFAQSearch() {
+      const searchInput = document.getElementById("faqSearch");
+      if(searchInput){ searchInput.addEventListener("input", filterFaq); }
+    }
+
+    /********************************************
+     * RENDER SECTION FUNCTION
+     ********************************************/
+    function renderSection() {
+      const section = sections[currentSectionIndex];
+      if(section.type === "info"){
+        document.getElementById("section-content").innerHTML = section.content;
+      } else if(section.type === "videoGroup"){
+        renderVideoList();
+      } else {
+        document.getElementById("section-content").innerHTML = section.content;
+      }
+    }
+
+    /********************************************
+     * NAVIGATION FUNCTION
+     ********************************************/
+    function navigateToSection(index) {
+      currentSectionIndex = index;
+      document.getElementById("home-content").style.display = "none";
+      const labels = ["Epilepsy Rotation", "Natus Instructions", "ACNS Criteria", "EEG Videos", "EEG & Seizure FAQ"];
+      setMobileTabLabel(labels[index]);
+      hideMobileDropdown();
+      renderSection();
+      if(labels[index] === "EEG & Seizure FAQ"){ attachFAQSearch(); }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /********************************************
+     * INITIALIZE HOMEPAGE ON LOAD
+     ********************************************/
     renderHomePage();
   </script>
 </body>
